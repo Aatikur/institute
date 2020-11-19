@@ -13,6 +13,11 @@ Route::group(['namespace' => 'Admin'],function(){
         
         Route::group(['prefix'=>'course'],function(){
             Route::get('/list', 'CourseController@courseList')->name('admin.course_list'); 
+            Route::get('add/form', 'CourseController@addCourseForm')->name('admin.add_course_form');
+            Route::post('add','CourseController@addCourse')->name('admin.add_course'); 
+            Route::get('status/{course_id}/{status}','CourseController@status')->name('admin.course_status'); 
+            Route::get('edit/form/{course_id}', 'CourseController@editCourseForm')->name('admin.edit_course_form');
+            Route::put('update/{id}','CourseController@updateCourse')->name('admin.update_course'); 
 
         });
     });   

@@ -8,31 +8,42 @@
     	    <div class="x_panel">
 
     	        <div class="x_title">
-                    <h2>Category List</h2>
-                    <a class="btn btn-sm btn-info" style="float: right" href="{{ route('admin.category_add_form') }}">Add New Category</a>
+                    <h2>Course List</h2>
+                    <a class="btn btn-sm btn-info" style="float: right" href="{{ route('admin.add_course_form') }}">Add New Course</a>
     	            <div class="clearfix"></div>
     	        </div>
     	        <div>
     	            <div class="x_content">
-                        <table id="category" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <table id="course" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                           <thead>
                             <tr>
                               <th>Sl</th>
                               <th>Name</th>
+                              <th>Course Code</th>
+                              <th>Eligibility</th>
+                              <th>Course Fee</th>
+                              <th>Duration</th>
+                              <th>Detail</th>
+                              <th>Exam Fees</th>
                               <th>Status</th>
                               <th>Action</th>
                             </tr>
                           </thead>
                           <tbody>  
-                            @if (isset($category) && !empty($category))
+                            @if (isset($courses) && !empty($courses))
                             @php
                               $count=1;
                             @endphp
-                                @foreach ($category as $item)
+                                @foreach ($courses as $item)
                                     <tr>
                                       <td>{{$count++}}</td>
                                       <td>{{$item->name}}</td>
-                                    
+                                      <td>{{$item->course_code}}</td>
+                                      <td>{{$item->eligibility}}</td>
+                                      <td>{{$item->course_fees}}</td>
+                                      <td>{{$item->duration}}</td>
+                                      <td>{!! $item->detail !!}</td>
+                                      <td>{{$item->exam_fees}}</td>
                                       <td>
                                         @if ($item->status == '1')
                                           <a  class="btn btn-sm btn-primary" aria-disabled="true">Enabled</a>
@@ -41,11 +52,11 @@
                                         @endif
                                       </td>
                                       <td>
-                                        <a href="{{route('admin.category_edit_form',['id'=>encrypt($item->id)])}}" class="btn btn-sm btn-warning">Edit</a>
+                                        <a href="{{ route('admin.edit_course_form',['course_id'=>$item->id]) }}" class="btn btn-sm btn-warning">Edit</a>
                                         @if ($item->status == '1')
-                                          <a href="{{route('admin.category_status',['id'=>encrypt($item->id),'status'=>2])}}" class="btn btn-sm btn-danger">Disable</a>
+                                          <a href="{{ route('admin.course_status',['course_id'=>$item->id,'status'=>2]) }}" class="btn btn-sm btn-danger">Disable</a>
                                         @else
-                                          <a href="{{route('admin.category_status',['id'=>encrypt($item->id),'status'=>1])}}" class="btn btn-sm btn-primary">Enable</a>
+                                          <a href="{{ route('admin.course_status',['course_id'=>$item->id,'status'=>1]) }}" class="btn btn-sm btn-primary">Enable</a>
                                         @endif
                                        
                                       </td>
@@ -53,7 +64,7 @@
                                 @endforeach
                             @else
                               <tr>
-                                <td colspan="4" style="text-align: center">No Category Found</td>
+                                <td colspan="4" style="text-align: center">No Courses Found</td>
                               </tr>  
                             @endif                   
                           </tbody>

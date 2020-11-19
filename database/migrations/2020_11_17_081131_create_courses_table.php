@@ -18,9 +18,10 @@ class CreateCoursesTable extends Migration
             $table->string('name')->nullable();
             $table->string('course_code')->nullable();
             $table->string('eligibility')->nullable();
-            $table->string('detail')->nullable();
+            $table->longText('detail')->nullable();
             $table->double('course_fees')->nullable();
             $table->double('exam_fees')->nullable();
+            $table->string('duration')->nullable();
             $table->char('status',1)->comment('1=active,2=inactive');
             $table->timestamps();
         });
