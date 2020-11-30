@@ -14,6 +14,10 @@ Route::group(['namespace' => 'Branch','prefix'=>'branch'],function(){
         Route::group(['prefix' => 'student'], function () {
             Route::get('list', 'StudentController@studentList')->name('branch.student_list'); 
             Route::get('register/form', 'StudentController@registerStudentForm')->name('branch.register_student_form'); 
+            Route::post('register', 'StudentController@registerStudent')->name('branch.register_student'); 
+            Route::get('status/{id}/{status}','StudentController@status')->name('branch.status');
+            Route::get('list/ajax', 'StudentController@studentListAjax')->name('branch.student_list_ajax'); 
+            Route::get('retrive/course/fees/{course_id}', 'StudentController@retriveCourseFees')->name('branch.retrive_course_fees'); 
             
             
             

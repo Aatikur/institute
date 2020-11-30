@@ -6,7 +6,7 @@
         color:red;
     }
 </style>
-<link href="{{ asset('admin/select2-4.1.0-beta.1/dist/css/select2.min.css') }}" rel="stylesheet" />
+
 
 <div class="right_col" role="main">
     <div class="row">
@@ -28,14 +28,14 @@
 
                 </div>
     	        <div>
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{ route('branch.register_student') }}" enctype="multipart/form-data">
                         @csrf
     	            <div class="x_content">
                         <div class="well" style="overflow: auto">
-                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="doc_div">
+                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                 <label for="course"> Select Course<span><b style="color: red"> * </b></span></label>
-                                <select class="form-control">
-                                    <option value=""></option>
+                                <select class="form-control"  name="course" id="course_chg">
+                                    <option value="" >Select Course</option>
                                     @foreach($courses as $data)
                                       <option value="{{ $data->id }}">{{ $data->name }}</option>
                                     @endforeach
@@ -47,19 +47,10 @@
                             @enderror
                             </div>
 
-                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="doc_div">
-                                <label for="student_name"><span><b style="color: red"> * </b></span></label>
-                                <input type="text" class="form-control" name="student_name">
-                                
-                            @if($errors->has('student_name'))
-                                <span class="invalid-feedback" role="alert" style="color:red">
-                                    <strong>{{ $errors->first('student_name') }}</strong>
-                                </span>
-                            @enderror
+                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="fees_div" style="display:none;">
+                                <label for="course_fees">Course Fees<span><b style="color: red"> * </b></span></label>
+                                <input type="number"  class="form-control" readonly="readonly" name="course_fees" id="course_fees" >
                             </div>
-
-                            
-
                         </div>
     	                <div class="well" style="overflow: auto">
                             <div class="form-row mb-10">
@@ -230,7 +221,7 @@
                             <div class="form-row mb-3">     
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3" style="margin-top: 20px;">
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                        <label for="gender">Medium</label>
+                                        <label for="medium">Medium</label>
                                     </div>
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                         <p >  
@@ -272,7 +263,7 @@
     	        </div>
     	    </div>
     	</div>
-    	{{-- <div class="col-md-2"></div> --}}
+    	
     </div>
 </div>
 
@@ -280,9 +271,34 @@
  @endsection
 
 @section('script')
-<script src="{{ asset('admin/select2-4.1.0-beta.1/dist/js/select2.min.js')}}"></script>
 
+<script>
+    
+$('#course_chg').change(function(){
+    var course_id = $(this).val();
+    console.log(course_id);
+    $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type:"GET",
+            url:"{{ url('branch/student/retrive/course/fees')}}"+"/"+course_id,
+            success:function(response){
+                if(response == 2){
 
+                }else{
+                   
+                    $('#fees_div').show();
+                    $('#course_fees').val(response);
+                }
+            } 
+        });
+
+});
+
+</script>
 @endsection
 
 

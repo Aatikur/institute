@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Branch;
 use App\Models\BranchDetails;
+use App\Models\BranchWallet;
 use Hash;
 use Image;
 class BranchController extends Controller
@@ -62,6 +63,11 @@ class BranchController extends Controller
             $branch_details->center_state	 = $request->input('center_state');
             $branch_details->center_district = $request->input('center_district');
             $branch_details->save();
+            if($branch_details->save()){
+                $wallet =  new BranchWallet();
+                $wallet->branch_id = $branch->id;
+                $wallet->save();
+            }
             if($branch_details->save()){
                 return redirect()->back()->with('message','New Branch Created Successfully');
             }else{
