@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'admin',
         'passwords' => 'users',
     ],
 
@@ -36,13 +36,10 @@ return [
     */
 
     'guards' => [
-        'customer' => [
+       
+        'branch' => [
             'driver' => 'session',
-            'provider' => 'customers',
-        ],
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'branch',
         ],
         'api' => [
             'driver' => 'token',
@@ -77,9 +74,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-        'customers' => [
+        'branch' => [
             'driver' => 'eloquent',
-            'model' => App\Customer::class,
+            'model' => App\Models\Branch::class,
         ],
         'admin' => [
             'driver' => 'eloquent',

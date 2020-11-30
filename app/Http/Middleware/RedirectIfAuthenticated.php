@@ -20,11 +20,14 @@ class RedirectIfAuthenticated
     {
        if (Auth::guard($guard)->check()) {
             switch ($guard) {
-               case 'admin':
-                   $route = 'admin/deshboard';
-                   break;
-              default:
-                   $route = 'admin/deshboard';
+                case 'admin':
+                    $route = 'admin/deshboard';
+                    break;
+                case 'branch':
+                    $route = 'branch/deshboard';
+                    break;
+                default:
+                    $route = 'admin/deshboard';
            }
            return redirect($route);
        }

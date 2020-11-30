@@ -1,0 +1,290 @@
+@extends('branch.template.branch_master')
+
+@section('content')
+<style>
+    .error{
+        color:red;
+    }
+</style>
+<link href="{{ asset('admin/select2-4.1.0-beta.1/dist/css/select2.min.css') }}" rel="stylesheet" />
+
+<div class="right_col" role="main">
+    <div class="row">
+    	{{-- <div class="col-md-2"></div> --}}
+    	<div class="col-md-12" style="margin-top:50px;">
+    	    <div class="x_panel">
+
+    	        <div class="x_title">
+    	            <h2>Register Student</h2>
+    	            <div class="clearfix"></div>
+    	        </div>
+                <div>
+                     @if (Session::has('message'))
+                        <div class="alert alert-success" >{{ Session::get('message') }}</div>
+                     @endif
+                     @if (Session::has('error'))
+                        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                     @endif
+
+                </div>
+    	        <div>
+                    <form method="POST" action="#">
+                        @csrf
+    	            <div class="x_content">
+                        <div class="well" style="overflow: auto">
+                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="doc_div">
+                                <label for="course"> Select Course<span><b style="color: red"> * </b></span></label>
+                                <select class="form-control">
+                                    <option value=""></option>
+                                    @foreach($courses as $data)
+                                      <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                    @endforeach
+                                </select>
+                            @if($errors->has('course'))
+                                <span class="invalid-feedback" role="alert" style="color:red">
+                                    <strong>{{ $errors->first('course') }}</strong>
+                                </span>
+                            @enderror
+                            </div>
+
+                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="doc_div">
+                                <label for="student_name"><span><b style="color: red"> * </b></span></label>
+                                <input type="text" class="form-control" name="student_name">
+                                
+                            @if($errors->has('student_name'))
+                                <span class="invalid-feedback" role="alert" style="color:red">
+                                    <strong>{{ $errors->first('student_name') }}</strong>
+                                </span>
+                            @enderror
+                            </div>
+
+                            
+
+                        </div>
+    	                <div class="well" style="overflow: auto">
+                            <div class="form-row mb-10">
+                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="doc_div">
+                                    <label for="student_name">Name<span><b style="color: red"> * </b></span></label>
+                                    <input type="text" class="form-control" name="student_name">
+                                    
+                                @if($errors->has('student_name'))
+                                    <span class="invalid-feedback" role="alert" style="color:red">
+                                        <strong>{{ $errors->first('student_name') }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
+                                    <label for="father_name">Father Name<span><b style="color: red"> * </b></span></label>
+                                    <input type="text"  class="form-control" name="father_name" value="{{ old('father_name') }}" >
+                                    @if($errors->has('father_name'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('father_name') }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
+                                    <label for="mother_name">Mother Name<span><b style="color: red"> * </b></span></label>
+                                    <input type="text"  class="form-control" name="mother_name" value="{{ old('mother_name') }}" >
+                                    @if($errors->has('mother_name'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('mother_name') }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
+                                    <label for="hus_name">Husband Name</label>
+                                    <input type="text"  class="form-control" name="hus_name" value="{{ old('hus_name') }}" >
+                                    @if($errors->has('hus_name'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('hus_name') }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-row mb-10">
+                                    <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                        <label for="tel_no" >Telephone Number</label>
+                                        <input type="tel" class="form-control" name="tel_no"  value="{{ old('tel_no') }}" >
+                                        @if($errors->has('tel_no'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('tel_no') }}</strong>
+                                        </span>
+                                    @enderror
+                                    </div>
+                                </div>
+                                <div class="form-row mb-10">
+                                    <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                        <label for="mob_no" >Mobile Number<span><b style="color: red"> * </b></span></label>
+                                        <input type="tel" class="form-control" name="mob_no"  value="{{ old('mob_no') }}" >
+                                        @if($errors->has('mob_no'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('mob_no') }}</strong>
+                                        </span>
+                                    @enderror
+                                    </div>
+                                </div>
+                                <div class="form-row mb-10">
+                                    <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                        <label for="email" >Email</label>
+                                        <input type="email" class="form-control" name="email"  value="{{ old('email') }}" >
+                                        @if($errors->has('email'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @enderror
+                                    </div>
+                                </div>
+                                <div class="form-row mb-10">
+                                    <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                        <label for="dob" >DOB<span><b style="color: red"> * </b></span></label>
+                                        <input type="date" class="form-control" name="dob"  value="{{ old('dob') }}" >
+                                        @if($errors->has('dob'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('dob') }}</strong>
+                                        </span>
+                                    @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="well" style="overflow: auto">
+                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                <label for="state" >State<span><b style="color: red"> * </b></span></label>
+                                <input type="text" class="form-control" name="state"  value="{{ old('state') }}" >
+                                @if($errors->has('state'))
+                                <span class="invalid-feedback" role="alert" style="color:red">
+                                    <strong>{{ $errors->first('state') }}</strong>
+                                </span>
+                            @enderror
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                <label for="city" >City<span><b style="color: red"> * </b></span></label>
+                                <input type="text" class="form-control" name="city"  value="{{ old('city') }}" >
+                                @if($errors->has('city'))
+                                <span class="invalid-feedback" role="alert" style="color:red">
+                                    <strong>{{ $errors->first('city') }}</strong>
+                                </span>
+                            @enderror
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                <label for="country" >Country<span><b style="color: red"> * </b></span></label>
+                                <input type="text" class="form-control" name="country"  value="{{ old('country') }}" >
+                                @if($errors->has('country'))
+                                <span class="invalid-feedback" role="alert" style="color:red">
+                                    <strong>{{ $errors->first('country') }}</strong>
+                                </span>
+                            @enderror
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                <label for="pin" >PIN<span><b style="color: red"> * </b></span></label>
+                                <input type="number" class="form-control" name="pin"  value="{{ old('pin') }}" >
+                                @if($errors->has('pin'))
+                                <span class="invalid-feedback" role="alert" style="color:red">
+                                    <strong>{{ $errors->first('pin') }}</strong>
+                                </span>
+                            @enderror
+                            </div>
+                            <div class="form-row mb-10">
+                                <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
+                                    <label for="address" >Address</label>
+                                    <textarea  class="form-control" name="address"  ></textarea>
+                                    @if($errors->has('address'))
+                                    <span class="invalid-feedback" role="alert" style="color:red">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="well" style="overflow: auto">
+                            <div class="form-row mb-3">     
+                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" style="margin-top: 20px;">
+                                    <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                        <label for="gender">Category</label>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                        <p >  
+                                            <input type="radio" name="category"  value="1">GEN 
+                                            <input type="radio" name="category"  value="2">SC 
+                                            <input type="radio" name="category"  value="3">ST 
+                                            <input type="radio" name="category"  value="4">Handicapped 
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">     
+                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" style="margin-top: 20px;">
+                                    <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                        <label for="gender">Gender</label>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                        <p >  
+                                            <input type="radio" name="gender"  value="1">Male 
+                                            <input type="radio" name="gender"  value="2">Female 
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>  
+                            <div class="form-row mb-3">     
+                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" style="margin-top: 20px;">
+                                    <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                        <label for="gender">Medium</label>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                        <p >  
+                                            <input type="radio" name="medium"  value="1">English 
+                                            <input type="radio" name="medium"  value="2">Hindi 
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>     
+                        </div>   
+                            
+                            
+                           
+                        <div class="well" style="overflow: auto">
+                             
+                            <div class="form-row mb-10">
+                                <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
+                                    <label for="profile" >Profile Image <span><b style="color: red"> * </b></span></label>
+                                    <input class="form-control" type="file" name="profile">
+                                    @if($errors->has('profile'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('profile') }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                      
+
+    	            	<div class="form-group">    
+                            <button type="submit" class='btn btn-success'>Submit</button>
+    	            	</div>
+    	            	
+
+                    </div>
+                    </form>
+    	        </div>
+    	    </div>
+    	</div>
+    	{{-- <div class="col-md-2"></div> --}}
+    </div>
+</div>
+
+
+ @endsection
+
+@section('script')
+<script src="{{ asset('admin/select2-4.1.0-beta.1/dist/js/select2.min.js')}}"></script>
+
+
+@endsection
+
+
+        
+    

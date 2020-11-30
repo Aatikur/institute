@@ -56,7 +56,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="{{route('admin.deshboard')}}" class="site_title">
+              <a href="{{route('branch.deshboard')}}" class="site_title">
                 Institute
                 {{-- <img src="{{ asset('logo/logo.png')}}" height="50" style=" width: 90%;"> --}}
               </a>
@@ -70,7 +70,7 @@
                 <img src="images/img.jpg" alt="..." class="img-circle profile_img">
               </div> --}}
               <div class="profile_info">
-                <span>Welcome,<b>Admin</b></span>
+                <span>Welcome,<b>Branch</b></span>
                 
               </div>
             </div>
@@ -83,11 +83,11 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="{{ route('admin.deshboard')}}"><i class="fa fa-home"></i> Home </span></a></li>
-                  <li><a href="{{ route('admin.course_list') }}"><i class="fa fa-book"></i> Course </span></a></li>
-                  <li><a href="{{ route('admin.branch_list') }}"><i class="fa fa-wrench"></i> Branch </span></a></li>
-                  
+                  <li><a href="{{ route('branch.deshboard')}}"><i class="fa fa-home"></i> Home </span></a></li>
+                  <li><a href="{{ route('branch.student_list') }}"><i class="fa fa-cog"></i> Students </span></a></li>
+                 
                 </ul>
+               
               </div>
 
             </div>
@@ -123,7 +123,7 @@
 
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-             <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+             <form id="logout-form" action="{{ route('branch.logout') }}" method="POST" style="display: none;">
                   @csrf
               </form>
               </ul>

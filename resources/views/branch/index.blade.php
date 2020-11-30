@@ -39,9 +39,9 @@
                   <div class="alert alert-danger" >{{ Session::get('error') }}</div>
               @endif
             </div>
-            {{ Form::open(array('route' => 'admin.login_submit', 'method' => 'post')) }}
+            {{ Form::open(array('route' => 'branch.login_submit', 'method' => 'post')) }}
 
-              <h1>Admin Login Form</h1>
+              <h1>Branch Login Form</h1>
               <div>
                 {{ Form::email('email', '',array('class' => 'form-control','placeholder'=>'Enter Email','required')) }}
                 @if ($message = Session::get('login_error'))

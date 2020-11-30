@@ -64,6 +64,9 @@ class Handler extends ExceptionHandler
             case 'admin':
                 $login = 'admin.login_form';
                 break;
+            case 'branch':
+                $login = 'branch.login_form';
+            break;
             case 'api':
                 $response = [
                     'status'=>false,
