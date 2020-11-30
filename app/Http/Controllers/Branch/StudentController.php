@@ -135,7 +135,6 @@ class StudentController extends Controller
     public function retriveCourseFees($course_id){
         $course = Course::where('id',$course_id)->where('status',1)->first();
         $course_fees = $course->course_fees;
-
         if($course_fees){
             return $course_fees;
         }else{
