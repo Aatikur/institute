@@ -45,7 +45,8 @@ class StudentController extends Controller
         ]);
        
         $branch_wallet = BranchWallet::where('branch_id',Auth::user()->id)->first();
-        if($branch_wallet->amount >= $request->input('course_fees')){
+        $course = Course::where('id',$request->input('course'))->first();
+        if($branch_wallet->amount >= $course->course_fees){
             $branch_wallet->amount = $branch_wallet->amount -  $request->input('course_fees');
             $branch_wallet->save();
         }
