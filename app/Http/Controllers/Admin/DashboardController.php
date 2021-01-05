@@ -5,13 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\Course;
+use App\Models\Branch;
 use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends Controller
 {
     public function dashboardView()
     {
-        return view('admin.dashboard');
+        $course_cnt = Course::count();
+        $branch_cnt = Branch::count();
+        return view('admin.dashboard',compact('course_cnt','branch_cnt'));
     }
 
 //     public function changePasswordForm()

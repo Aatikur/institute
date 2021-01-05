@@ -13,10 +13,7 @@ class Branch extends Authenticatable
 
     
     protected $fillable = [
-        'name','email','password'
+        'mobile','email','password'
     ];
 
-    protected $hidden = [
-        'password',
-    ];
 }

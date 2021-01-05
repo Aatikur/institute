@@ -86,7 +86,8 @@
                   <li><a href="{{ route('admin.deshboard')}}"><i class="fa fa-home"></i> Home </span></a></li>
                   <li><a href="{{ route('admin.course_list') }}"><i class="fa fa-book"></i> Course </span></a></li>
                   <li><a href="{{ route('admin.branch_list') }}"><i class="fa fa-wrench"></i> Branch </span></a></li>
-                  
+                  <li><a href="{{ route('admin.branch_wallet_balance') }}"><i class="fa fa-credit-card"></i> Wallet </span></a></li>
+                  <li><a href="{{ route('admin.student_list') }}"><i class="fa fa-users"></i> Student </span></a></li>
                 </ul>
               </div>
 

@@ -25,6 +25,7 @@ class LoginController extends Controller
         $credentials = array(
             'email' => $request->input('email'),
             'password'  => $request->input('password'),
+            'status'=>1,
         );
        
         if (Auth::guard('branch')->attempt($credentials )) {

@@ -18,10 +18,14 @@ Route::group(['namespace' => 'Branch','prefix'=>'branch'],function(){
             Route::get('status/{id}/{status}','StudentController@status')->name('branch.status');
             Route::get('list/ajax', 'StudentController@studentListAjax')->name('branch.student_list_ajax'); 
             Route::get('retrive/course/fees/{course_id}', 'StudentController@retriveCourseFees')->name('branch.retrive_course_fees'); 
-            
-            
-            
-            
+        });
+
+        Route::group(['prefix' => 'wallet'], function () {
+            Route::get('history', 'WalletController@walletHistory')->name('branch.wallet_history'); 
+            Route::get('history/ajax', 'WalletController@walletHistoryAjax')->name('branch.wallet_history_ajax'); 
+
+
+
         });
     });
 

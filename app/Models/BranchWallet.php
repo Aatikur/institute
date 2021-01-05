@@ -11,4 +11,8 @@ class BranchWallet extends Model
     protected $fillable = [
         'amount','branch_id'
     ];
+
+    public function branch(){
+        return $this->belongsTo('App\Models\Branch','branch_id','id');
+    }
 }

@@ -4,16 +4,16 @@
 
 <div class="right_col" role="main">
      <!-- top tiles -->
-     {{-- <div class="row tile_count">
+     <div class="row tile_count">
       <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count" style="text-align: center">
-        <span class="count_top"><i class="fa fa-user"></i> Total Customers</span>
-        <div class="count green">10</div>
+        <span class="count_top"><i class="fa fa-user"></i> Total Courses</span>
+        <div class="count green">{{ $course_cnt }}</div>
       </div>
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count"  style="text-align: center">
-        <span class="count_top"><i class="fa fa-clock-o"></i> Total Retailers</span>
-        <div class="count green">10</div>
+        <span class="count_top"><i class="fa fa-clock-o"></i> Total Branch</span>
+        <div class="count green">{{ $branch_cnt }}</div>
       </div>
-      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count"  style="text-align: center">
+      {{-- <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count"  style="text-align: center">
           <span class="count_top"><i class="fa fa-user"></i> Total Products</span>
           <div class="count green">10</div>
       </div>

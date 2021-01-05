@@ -99,6 +99,29 @@ class BranchController extends Controller
         return view('admin.branch.edit_branch_form',compact('branch_data','branch'));
     }
 
+    public function changePasswordForm($id){
+        return view('admin.branch.change_password',compact('id'));
+    }
+
+    public function changePassword(Request $request,$id)
+    {
+        $this->validate($request, [
+           
+            'current_password' => ['required', 'string'],
+            'new_password' => ['required', 'string', 'min:8', 'same:confirm_password'],
+        ]);
+
+        $user = Branch::where('id',$id)->first();
+        
+        if(Hash::check($request->input('current_password'), $user->password)){
+            Branch::where('id',$id)->update([
+                'password'=>Hash::make($request->input('new_password')),
+            ]);
+            return redirect()->back()->with('message','Branch Password Updated Successfully');
+        }else{
+            return redirect()->back()->with('error','Sorry Current Password Does Not Correct');
+        }
+    }
     public function updateBranch(Request $request,$id){
         
         $this->validate($request, [

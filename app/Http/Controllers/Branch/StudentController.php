@@ -8,7 +8,9 @@ use App\Models\Course;
 use App\Models\Student;
 use App\Models\BranchWallet;
 use App\Models\StudentDetail;
+use App\Models\WalletHistory;
 use App\Models\BranchDetails;
+use App\Models\StudentQualification;
 use Auth;
 use Image;
 use Carbon\Carbon;
@@ -29,7 +31,7 @@ class StudentController extends Controller
             'student_name'=>'required',
             'father_name'=>'required',
             'mother_name'=>'required',
-            'mob_no'=>'required|numeric',
+            'mob_no'=>'required|numeric|digits:10',
             
             'dob'=>'required|date',
             'state'=>'required',
@@ -40,7 +42,12 @@ class StudentController extends Controller
             'category'=>'required|numeric',
             'gender'=>'required|numeric',
             'medium'=>'required|numeric',
-            'profile'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'profile'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'exam'=>'array|required|min:1',
+            'board'=>'array|required|min:1',
+            'college'=>'array|required|min:1',
+            'year'=>'array|required|min:1',
+            'marks'=>'array|required|min:1',
 
         ]);
        
@@ -49,6 +56,12 @@ class StudentController extends Controller
         if($branch_wallet->amount >= $course->course_fees){
             $branch_wallet->amount = $branch_wallet->amount -  $request->input('course_fees');
             $branch_wallet->save();
+            $wallet_history = new WalletHistory();
+            $wallet_history->wallet_id = $branch_wallet->id;
+            $wallet_history->transaction_type = 2;
+            $wallet_history->amount = $request->input('course_fees');
+            $wallet_history->save();
+           
         }
         else{
             return redirect()->back()->with('error','Not enough money in wallet to pay for course fees');
@@ -58,6 +71,8 @@ class StudentController extends Controller
         $student->is_reg_fee_paid = 2;
         $student->reg_fee_paid_date = Carbon::today();
         if($student->save()){
+            $wallet_history->comment = 'Course Fees Of Amount="'.$request->input('course_fees').'" Paid For Student ID="'.$student->id.'"';
+                $wallet_history->save();
             $enrollment_id = $this->generateEnrollmentId($student->id);
             if($enrollment_id == false){
                 return redirect()->back()->with('error','Center not found');
@@ -66,10 +81,32 @@ class StudentController extends Controller
                 $student->save();
             }
         }
+
         if($student){
+          
+            $exam = $request->input('exam');
+            $board = $request->input('board');
+            $college = $request->input('college');
+            $year = $request->input('year');
+            $marks = $request->input('marks');
+            for($i=0;$i<count($exam);$i++){
+                $qualification =  new StudentQualification();
+                $qualification->student_id = $student->id;
+                $qualification->exam_name= $exam[$i];
+                $qualification->board = $board[$i];
+                $qualification->college = $college[$i];
+                $qualification->year_of_passing = $year[$i];
+                $qualification->marks_obtained = $marks[$i];
+                $qualification->save();
+
+            }
+            
+            
+            
             $student_details = new StudentDetail();
             $student_details->student_id =$student->id;
             $student_details->name = $request->input('student_name');
+            $student->branch_id = Auth::user()->id;
             $student_details->father_name = $request->input('father_name');
             $student_details->mother_name = $request->input('mother_name');
             if(!empty($request->input('hus_name'))){
@@ -189,4 +226,6 @@ class StudentController extends Controller
         return redirect()->back();
 
     }
+
+    
 }

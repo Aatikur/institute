@@ -28,6 +28,22 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
             Route::get('status/{branch_id}/{status}','BranchController@status')->name('admin.branch_status');
             Route::get('edit/form/{id}', 'BranchController@editBranchForm')->name('admin.edit_branch_form');
             Route::post('update/{id}','BranchController@updateBranch')->name('admin.update_branch');
+            Route::get('change/password/form/{id}','BranchController@changePasswordForm')->name('admin.change_password_form');
+            Route::put('change/password/{id}','BranchController@changePassword')->name('admin.change_branch_password');
+        });
+
+        Route::group(['prefix'=>'wallet'],function(){
+            Route::get('/balance', 'WalletController@walletBalance')->name('admin.branch_wallet_balance'); 
+            Route::get('/balance/ajax', 'WalletController@walletBalanceAjax')->name('admin.branch_wallet_balance_ajax'); 
+            Route::get('/history/{id}', 'WalletController@walletHistory')->name('admin.branch_wallet_history'); 
+
+        });
+
+        Route::group(['prefix'=>'student'],function(){
+            Route::get('/list', 'StudentController@studentList')->name('admin.student_list'); 
+            Route::get('/list/ajax', 'StudentController@studentListAjax')->name('admin.student_list_ajax'); 
+            Route::get('edit/form/{student_id}','StudentController@studentEditForm')->name('admin.edit_student_form');
+
         });
     });   
 });

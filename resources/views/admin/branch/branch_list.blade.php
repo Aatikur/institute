@@ -48,6 +48,8 @@
                                         @else
                                           <a href="{{ route('admin.branch_status',['branch_id'=>$item->id,'status'=>1]) }}" class="btn btn-sm btn-primary">Enable</a>
                                         @endif
+
+                                        <a href="{{ route('admin.change_password_form',['id'=>$item->id]) }}" class="btn btn-sm btn-success">Change Password</a>
                                        
                                       </td>
                                     </tr>
