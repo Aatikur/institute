@@ -20,4 +20,7 @@ class Student extends Model
     public function branch(){
         return $this->belongsTo('App\Models\Branch','branch_id','id');
     }
+    public function branchDetails(){
+        return $this->belongsTo('App\Models\BranchDetails','branch_id','id');
+    }
 }

@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BranchWallet extends Model
+class PaymentRequest extends Model
 {
-    protected $table = 'branch_wallet';
+    protected $table = 'payment_request';
     protected $primarykey = 'id';
-    protected $fillable = [
-        'amount','branch_id'
+
+    protected $fillable=[
+        'branch_id','amount','comment','proof','status'
     ];
 
     public function branch(){

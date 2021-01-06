@@ -36,6 +36,10 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
             Route::get('/balance', 'WalletController@walletBalance')->name('admin.branch_wallet_balance'); 
             Route::get('/balance/ajax', 'WalletController@walletBalanceAjax')->name('admin.branch_wallet_balance_ajax'); 
             Route::get('/history/{id}', 'WalletController@walletHistory')->name('admin.branch_wallet_history'); 
+            Route::get('/credit/form/{id}', 'WalletController@creditForm')->name('admin.branch_credit_form'); 
+            Route::put('/credit/balance/{id}', 'WalletController@credit')->name('admin.branch_credit'); 
+            Route::get('/debit/form/{id}', 'WalletController@debitForm')->name('admin.branch_debit_form'); 
+            Route::put('/debit/balance/{id}', 'WalletController@debit')->name('admin.branch_debit'); 
 
         });
 
@@ -43,6 +47,17 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
             Route::get('/list', 'StudentController@studentList')->name('admin.student_list'); 
             Route::get('/list/ajax', 'StudentController@studentListAjax')->name('admin.student_list_ajax'); 
             Route::get('edit/form/{student_id}','StudentController@studentEditForm')->name('admin.edit_student_form');
+            Route::get('retrive/course/fees/{course_id}', 'StudentController@retriveCourseFees')->name('admin.retrive_course_fees');
+            Route::get('remove/qual/{qual_id}', 'StudentController@removeQual')->name('admin.remove_qual');
+            Route::put('update/student/{id}/{branch_id}', 'StudentController@updateStudent')->name('admin.update_student');
+
+        });
+
+        Route::group(['prefix' => 'payment'], function () {
+            Route::get('request/list', 'PaymentController@paymentRequestList')->name('admin.payment_request_list'); 
+            Route::get('request/list/ajax', 'PaymentController@paymentRequestListAjax')->name('admin.payment_request_list_ajax'); 
+            Route::get('approve/{id}', 'PaymentController@approvePayment')->name('admin.approve_payment_request'); 
+            Route::get('reject/{id}', 'PaymentController@rejectPayment')->name('admin.reject_payment_request'); 
 
         });
     });   

@@ -1,4 +1,4 @@
-@extends('branch.template.branch_master')
+@extends('admin.template.admin_master')
 
 @section('content')
 <style>
@@ -28,16 +28,17 @@
 
                 </div>
     	        <div>
-                    <form method="POST" action="{{ route('branch.register_student') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.update_student',['id'=>$student_details->id,'branch_id'=>$student_details->student->branch_id]) }}" enctype="multipart/form-data">
+                        @method('put')
                         @csrf
     	            <div class="x_content">
-                        {{-- <div class="well" style="overflow: auto">
+                        <div class="well" style="overflow: auto">
                             <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                 <label for="course"> Select Course<span><b style="color: red"> * </b></span></label>
                                 <select class="form-control"  name="course" id="course_chg">
                                     <option value="" >Select Course</option>
                                     @foreach($courses as $data)
-                                      <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                      <option value="{{ $data->id }}" {{ $data->id == $student_details->student->course_id?'selected':'' }}>{{ $data->name }}</option>
                                     @endforeach
                                 </select>
                             @if($errors->has('course'))
@@ -47,11 +48,11 @@
                             @enderror
                             </div>
 
-                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="fees_div" style="display:none;">
+                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="fees_div" >
                                 <label for="course_fees">Course Fees<span><b style="color: red"> * </b></span></label>
-                                <input type="number"  class="form-control" readonly="readonly" name="course_fees" id="course_fees" >
+                                <input type="number"  class="form-control" value="{{ $student_details->student->course->course_fees }}" readonly="readonly" name="course_fees" id="course_fees" >
                             </div>
-                        </div> --}}
+                        </div>
     	                <div class="well" style="overflow: auto">
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="doc_div">
@@ -211,7 +212,7 @@
                                         <label for="gender">Gender</label>
                                     </div>
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                        <p >  
+                                        <p>  
                                             <input type="radio" name="gender"  value="1" {{ $student_details->gender=='1'?'checked':'' }}>Male 
                                             <input type="radio" name="gender"  value="2" {{ $student_details->gender=='2'?'checked':'' }}>Female 
                                         </p>
@@ -232,15 +233,12 @@
                                 </div>
                             </div>     
                         </div>   
-                            
-                            
-                           
                         <div class="well" style="overflow: auto">
-                             
                             <div class="form-row mb-10">
                                 <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
                                     <label for="profile" >Profile Image <span><b style="color: red"> * </b></span></label>
-                                    <input class="form-control" type="file" name="profile">
+                                    <input class="form-control" type="file" name="profile" id="imgprev">
+                                    <img style="width:150px;height:150px;" src="{{ asset('images/student/thumb/'.$student_details->image) }}" id="preview"/>
                                     @if($errors->has('profile'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('profile') }}</strong>
@@ -248,17 +246,73 @@
                                     @enderror
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="well" style="overflow: auto" id="addDiv">
+                            <h4>Qualification:</h4>
+                            @foreach($qualification as  $value)
+                                
+                                <div class="form-row mb-10" >
+                                    <div class="col-md-2 col-sm-12 col-xs-12 mb-3">
+                                        <label for="exam" >Exam Name <span><b style="color: red"> * </b></span></label>
+                                        <input class="form-control" type="text" value="{{ $value->exam_name }}" name="exam[]">
+                                        <input type="hidden" name="quali_id[]" value="{{ $value->id }}"> 
+                                        @if($errors->has('exam'))
+                                            <span class="invalid-feedback" role="alert" style="color:red">
+                                                <strong>{{ $errors->first('exam') }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 col-xs-12 mb-3">
+                                        <label for="board" >Board <span><b style="color: red"> * </b></span></label>
+                                        <input class="form-control" type="text" value="{{ $value->board }}" name="board[]">
+                                        @if($errors->has('board'))
+                                            <span class="invalid-feedback" role="alert" style="color:red">
+                                                <strong>{{ $errors->first('board') }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 col-xs-12 mb-3">
+                                        <label for="college" >College <span><b style="color: red"> * </b></span></label>
+                                        <input class="form-control" type="text" value="{{ $value->college }}" name="college[]">
+                                        @if($errors->has('college'))
+                                            <span class="invalid-feedback" role="alert" style="color:red">
+                                                <strong>{{ $errors->first('college') }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-2 col-sm-12 col-xs-12 mb-3">
+                                        <label for="year" >Year Of Passing <span><b style="color: red"> * </b></span></label>
+                                        <input class="form-control" type="text" value="{{ $value->year_of_passing }}" name="year[]">
+                                        @if($errors->has('year'))
+                                            <span class="invalid-feedback" role="alert" style="color:red">
+                                                <strong>{{ $errors->first('year') }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-2 col-sm-12 col-xs-12 mb-3">
+                                        <label for="marks" >Marks <span><b style="color: red"> * </b></span></label>
+                                        <input class="form-control" type="number" value="{{ $value->marks_obtained }}" name="marks[]">
+                                        @if($errors->has('marks'))
+                                            <span class="invalid-feedback" role="alert" style="color:red">
+                                                <strong>{{ $errors->first('marks') }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    
+                                  
+                                </div>
+                                @if ($loop->first)
+                                    <a onclick="addMoreDiv()"  class='btn btn-primary'>Add More</a>
+                                @else
+                                    <a href="{{ route('admin.remove_qual',['qual_id'=>$value->id]) }}"  class='btn btn-danger'>Remove</a>
+                                @endif 
+                            @endforeach
                             
                         </div>
-                      
-
-    	            	<div class="form-group">    
+                        <div class="form-group">    
                             <button type="submit" class='btn btn-success'>Submit</button>
     	            	</div>
-    	            	
-
-                    </div>
+    	            </div>
                     </form>
     	        </div>
     	    </div>
@@ -296,7 +350,90 @@ $('#course_chg').change(function(){
             } 
         });
 
-});
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgprev").change(function(){
+        readURL(this);
+    });
+
+    $('#course_chg').change(function(){
+        var course_id = $(this).val();
+        console.log(course_id);
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type:"GET",
+                url:"{{ url('admin/student/retrive/course/fees')}}"+"/"+course_id,
+                success:function(response){
+                    if(response == 2){
+                        $('#course_fees').val();
+                    }else{
+                    
+                       
+                        $('#course_fees').val(response);
+                    }
+                } 
+            });
+
+    });
+
+    var div_counter = 1;
+    function addMoreDiv(){
+        var html = ` <div class="form-row mb-10" id="divs${div_counter}" >
+                <div class="col-md-2 col-sm-12 col-xs-12 mb-3">
+                    <label for="exam" >Exam Name </label>
+                    <input class="form-control" type="text" name="exam[]">
+                    
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12 mb-3">
+                    <label for="board" >Board </label>
+                    <input class="form-control" type="text" name="board[]">
+                    
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12 mb-3">
+                    <label for="college" >College </label>
+                    <input class="form-control" type="text" name="college[]">
+                    
+                </div>
+                <div class="col-md-2 col-sm-12 col-xs-12 mb-3">
+                    <label for="year" >Year Of Passing </label>
+                    <input class="form-control" type="text" name="year[]">
+                    
+                </div>
+                    <div class="col-md-2 col-sm-12 col-xs-12 mb-3">
+                    <label for="marks" >Marks </label>
+                    <input class="form-control" type="number" name="marks[]">
+                    
+                </div>
+                <a onclick="removeDiv(${div_counter})"  class='btn btn-danger'>Remove</a>
+            </div>`;
+        
+            $('#addDiv').append(html);
+        
+        div_counter++;
+    }
+
+    function removeDiv(div_id){
+        $('#divs'+div_id).remove();
+        div_counter --;
+    }
+
+    
 
 </script>
 @endsection

@@ -86,7 +86,7 @@
                   <li><a href="{{ route('branch.deshboard')}}"><i class="fa fa-home"></i> Home </span></a></li>
                   <li><a href="{{ route('branch.student_list') }}"><i class="fa fa-users"></i> Students </span></a></li>
                   <li><a href="{{ route('branch.wallet_history') }}"><i class="fa fa-google-wallet"></i> Wallet </span></a></li>
-                  <li><a href="{{ route('branch.wallet_history') }}"><i class="fa fa-google-wallet"></i> Payment Request </span></a></li>
+                  <li><a href="{{ route('branch.payment_request_list') }}"><i class="fa fa-google-wallet"></i> Payment Request </span></a></li>
                 </ul>
                
               </div>

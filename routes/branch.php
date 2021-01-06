@@ -23,8 +23,13 @@ Route::group(['namespace' => 'Branch','prefix'=>'branch'],function(){
         Route::group(['prefix' => 'wallet'], function () {
             Route::get('history', 'WalletController@walletHistory')->name('branch.wallet_history'); 
             Route::get('history/ajax', 'WalletController@walletHistoryAjax')->name('branch.wallet_history_ajax'); 
+        });
 
-
+        Route::group(['prefix' => 'payment'], function () {
+            Route::get('request/list', 'PaymentController@paymentRequestList')->name('branch.payment_request_list'); 
+            Route::get('add/request/form', 'PaymentController@paymentRequestForm')->name('branch.payment_request_form'); 
+            Route::post('submit/request', 'PaymentController@addPaymentRequest')->name('branch.submit_payment_request'); 
+            Route::get('request/list/ajax', 'PaymentController@paymentRequestListAjax')->name('branch.payment_request_list_ajax'); 
 
         });
     });

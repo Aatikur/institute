@@ -18,15 +18,16 @@ class CourseController extends Controller
     }
 
     public function addCourse(Request $request){
-        $this->validate($request, [
-            'name'=>'required',
-            'course_code'=>'required',
-            'eligibity'=>'required',
-            'duration'=>'required',
-            'course_fees'=>'required',
-            'exam_fees'=>'required',
-            'details'=>'required',
-        ]);
+       
+        // $this->validate($request, [
+        //     'name'=>'required',
+        //     'course_code'=>'required',
+        //     'eligibity'=>'required',
+        //     'duration'=>'required',
+        //     'course_fees'=>'required',
+        //     'exam_fees'=>'required',
+        //     'details'=>'required',
+        // ]);
         $course = new Course();
         $course->name = $request->input('name');
         $course->course_code = $request->input('course_code');

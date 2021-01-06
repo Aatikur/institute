@@ -9,7 +9,9 @@
 
     	        <div class="x_title">
                     <h2>Branch Wallet History</h2>
-                   
+                  <div style="text-align:right;">
+                    <h4 >Wallet Amount : ₹ <b style="color:green;">{{ $wallet->amount }}</b></h4><a href="{{ route('admin.branch_credit_form',['id'=>$wallet->id]) }}"  target="_blank" class="btn btn-success">Credit</a><a href="{{ route('admin.branch_debit_form',['id'=>$wallet->id]) }}" class="btn btn-danger" target="_blank" >Debit</a>
+                  </div>
     	            <div class="clearfix"></div>
     	        </div>
     	        <div>
@@ -18,11 +20,11 @@
                           <thead>
                             <tr>
                               <th>Sl</th>
-                              <th>Branch Email</th>                              
+                              <th>Branch Name</th>                              
                               <th>Transaction Type</th>
                               <th>Amount</th>
                               <th>Comment</th>
-                            
+                              
                             </tr>
                           </thead>
                           <tbody>  
@@ -31,7 +33,7 @@
                                 @foreach ($wallet_history as $item)
                                     <tr>
                                       <td>{{$loop->iteration}}</td>
-                                      <td>{{ $item->wallet->branch->email??null }}</td>
+                                      <td>{{ $item->wallet->branchDetails->center_name??null }}</td>
                                       <td>
                                         @if ($item->transaction_type == '1')
                                             <p>Credit</p>

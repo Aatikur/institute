@@ -17,7 +17,9 @@ class CreatePaymentRequestTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('branch_id')->nullable();
             $table->double('amount')->nullable();
-            $table->
+            $table->string('comment')->nullable();
+            $table->string('proof')->nullable();
+            $table->char('status')->comment('1=Pending, 2=Paid')->nullable();
             $table->timestamps();
         });
     }

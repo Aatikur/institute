@@ -88,6 +88,7 @@
                   <li><a href="{{ route('admin.branch_list') }}"><i class="fa fa-wrench"></i> Branch </span></a></li>
                   <li><a href="{{ route('admin.branch_wallet_balance') }}"><i class="fa fa-credit-card"></i> Wallet </span></a></li>
                   <li><a href="{{ route('admin.student_list') }}"><i class="fa fa-users"></i> Student </span></a></li>
+                  <li><a href="{{ route('admin.payment_request_list') }}"><i class="fa fa-google-wallet"></i> Payment Request </span></a></li>
                 </ul>
               </div>
 
