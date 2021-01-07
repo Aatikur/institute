@@ -100,9 +100,6 @@ class StudentController extends Controller
                 $qualification->save();
 
             }
-            
-            
-            
             $student_details = new StudentDetail();
             $student_details->student_id =$student->id;
             $student_details->name = $request->input('student_name');
@@ -206,14 +203,23 @@ class StudentController extends Controller
                     return "Hindi";
                 }
             })->addColumn('status', function ($row) {
+                $btn='';
                 if($row->student->status==1){
-                    $btn = '<a href="' . route('branch.status',['id'=>$row->student_id,'status'=>2]).'"class="btn btn-danger btn-sm">Disable</a>';
-                    return $btn;
+                    $btn .= '<a href="' . route('branch.status',['id'=>$row->student_id,'status'=>2]).'"class="btn btn-danger btn-sm">Disable</a>';
+                   
                
                 }else{
-                    $btn = '<a href="' . route('branch.status',['id'=>$row->student_id,'status'=>1]).'"class="btn btn-primary btn-sm">Enable</a>';
-                    return $btn;
+                    $btn .= '<a href="' . route('branch.status',['id'=>$row->student_id,'status'=>1]).'"class="btn btn-primary btn-sm">Enable</a>';
+                  
                 }
+
+                if($row->student->is_exam_fee_paid ==1){
+                    $btn .= '<a href="' . route('branch.exam_fees_form',['id'=>$row->student_id,'status'=>1]).'"class="btn btn-success btn-sm">Exam</a>';
+                }else{
+                    $btn .= '<a class="btn btn-info btn-sm">Fee Paid</a>';
+                }
+
+                return $btn;
             })->rawColumns(['course_name','gender','medium','status'])
             ->make(true);
     }
@@ -225,6 +231,42 @@ class StudentController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function examFeesForm($id){
+        $wallet = BranchWallet::where('branch_id',Auth::user()->id)->first();
+        $student = StudentDetail::where('student_id',$id)->first();
+      
+        return view('branch.student.exam_fees_form',compact('wallet','student'));
+    }
+
+    public function payExamFees($id){
+        $student = Student::where('id',$id)->first();
+        $wallet = BranchWallet::where('branch_id',Auth::user()->id)->first();
+        if($wallet->amount > $student->course->exam_fees){
+            $wallet->amount = $wallet->amount  - $student->course->exam_fees;
+            if($wallet->save()){
+                $wallet_history = new WalletHistory();
+                $wallet_history->wallet_id = $wallet->id;
+                $wallet_history->transaction_type = 2;
+                $wallet_history->amount =  $student->course->exam_fees;
+                $wallet_history->comment = "Exam Fees of amount ".$student->course->exam_fees." Paid for student Id ".$student->id." of Branch ".Auth::user()->id."";
+
+            }
+            if($wallet_history->save()){
+                $student->is_exam_fee_paid = 2;
+                $student->exam_fee_paid_date  = Carbon::now();
+            }
+
+        }
+
+        if($student->save()){
+            return redirect()->back()->with('message','Exam Fees Paid Successfully');
+        }
+
+        
+        
+        
     }
 
     

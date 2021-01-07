@@ -12,7 +12,7 @@
               </div>
     	        <div>
     	            <div class="x_content">
-                        <h2>Student List</h2>
+                        <h2>Exam Fee Paid List</h2>
                         <table id="student_list" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                           <thead>
                             <tr>
@@ -20,8 +20,8 @@
                               <th>Student Name</th>
                               <th>Branch Name</th>
                               <th>Course</th>
-                              <th>Status</th>
-                              <th>Action</th>
+                              <th>Admit Card Status</th>
+                            
                             </tr>
                           </thead>
                           <tbody>                       
@@ -45,14 +45,14 @@
     var table = $('#student_list').DataTable({
       processing: true,
       serverSide: true,
-      ajax: "{{ route('admin.student_list_ajax') }}",
+      ajax: "{{ route('admin.exam_fee_paid_list_ajax') }}",
       columns: [
           {data: 'DT_RowIndex', name: 'DT_RowIndex'},
           {data: 'name', name: 'name',searchable: true},
           {data: 'branch', name: 'branch',searchable: true},
           {data: 'course', name: 'course',searchable: true},
           {data: 'status', name: 'status',searchable: true},
-          {data: 'action', name: 'action',searchable: true},
+        
         ]
 });
 

@@ -50,6 +50,9 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
             Route::get('retrive/course/fees/{course_id}', 'StudentController@retriveCourseFees')->name('admin.retrive_course_fees');
             Route::get('remove/qual/{qual_id}', 'StudentController@removeQual')->name('admin.remove_qual');
             Route::put('update/student/{id}/{branch_id}', 'StudentController@updateStudent')->name('admin.update_student');
+            
+            Route::get('/exam/fee/paid/list', 'StudentController@examFeePaidList')->name('admin.exam_fee_paid_list'); 
+            Route::get('/exam/fee/paid/list/ajax', 'StudentController@examFeePaidListAjax')->name('admin.exam_fee_paid_list_ajax'); 
 
         });
 

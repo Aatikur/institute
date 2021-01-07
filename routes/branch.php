@@ -18,6 +18,8 @@ Route::group(['namespace' => 'Branch','prefix'=>'branch'],function(){
             Route::get('status/{id}/{status}','StudentController@status')->name('branch.status');
             Route::get('list/ajax', 'StudentController@studentListAjax')->name('branch.student_list_ajax'); 
             Route::get('retrive/course/fees/{course_id}', 'StudentController@retriveCourseFees')->name('branch.retrive_course_fees'); 
+            Route::get('exam/fees/form/{id}', 'StudentController@examFeesForm')->name('branch.exam_fees_form'); 
+            Route::put('pay/exam/fees/{id}', 'StudentController@payExamFees')->name('branch.pay_exam_fees'); 
         });
 
         Route::group(['prefix' => 'wallet'], function () {

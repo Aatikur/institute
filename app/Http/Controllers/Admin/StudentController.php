@@ -24,17 +24,22 @@ class StudentController extends Controller
         return datatables()->of(StudentDetail::latest()->get())
             ->addIndexColumn()
             ->addColumn('branch', function ($row) {
-                
                 return isset($row->student->branchDetails->center_name)?$row->student->branchDetails->center_name:'';
            
             })->addColumn('course', function ($row) {
-                
                 return isset($row->student->course->name)?$row->student->course->name:'';
+           
+            })->addColumn('status', function ($row) {
+               if($row->student->is_exam_fee_paid == 2){
+                   return '<a class="btn btn-success btn-sm">Exam Fee Paid</a>';
+               }else{
+                return '<a class="btn btn-warning btn-sm">Exam Fee Not Paid</a>';
+               }
            
             })->addColumn('action', function ($row) {
                 $btn = '<a href="'.route('admin.branch_wallet_history',['id'=>$row->id]).'" class="btn btn-primary">View</a>';
                 return $btn .= '<a href="'.route('admin.edit_student_form',['student_id'=>$row->id]).'" class="btn btn-info">Edit</a>';
-            })->rawColumns(['branch','action','course'])
+            })->rawColumns(['branch','action','course','status'])
             ->make(true);
     }
 
@@ -194,6 +199,30 @@ class StudentController extends Controller
             }   
         }
 
+    }
+
+    public function examFeePaidList(){
+        return view('admin.student.exam_fee_paid_list');
+    }
+
+    public function examFeePaidListAjax(){
+        return datatables()->of(StudentDetail::latest()->get())
+            ->addIndexColumn()
+            ->addColumn('branch', function ($row) {
+                return isset($row->student->branchDetails->center_name)?$row->student->branchDetails->center_name:'';
+           
+            })->addColumn('course', function ($row) {
+                return isset($row->student->course->name)?$row->student->course->name:'';
+           
+            })->addColumn('status', function ($row) {
+               if($row->student->is_exam_fee_paid == 2){
+                   return '<a class="btn btn-success btn-sm">Admit Card Generated</a>';
+               }else{
+                return '<a class="btn btn-warning btn-sm">Admit Card Not Generated</a>';
+               }
+           
+            })->rawColumns(['branch','course','status'])
+            ->make(true);
     }
 
 }
