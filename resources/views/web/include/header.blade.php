@@ -99,6 +99,9 @@
                            <li><a href="{{ route('web.student.registration-process') }}">Registration Process</a></li>
                            <li><a href="{{ route('web.student.student-verification') }}">Enrollment Verification</a></li>
                            <li><a href="{{ route('web.student.student-result') }}">Online Result</a></li>
+                           <li><a href="{{ route('web.student.student-admit') }}">Student Admit</a></li>
+                           <li><a href="{{ route('web.student.student-result') }}">Student Certificate</a></li>
+                           <li><a href="{{ route('web.student.student-result') }}">Student Marksheet</a></li>
                         </ul>
                      </li>
                      <li><a href="{{ route('web.contact.contact') }}" >Contact Us</a></li>

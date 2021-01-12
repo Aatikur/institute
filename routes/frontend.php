@@ -55,6 +55,10 @@ Route::get('/Student/Result', function () {
     return view('web.student.student-result');
 })->name('web.student.student-result');
 
+Route::get('/Student/Admit', function () {
+    return view('web.student.student-admit');
+})->name('web.student.student-admit');
+
 // ------- Center --------
 Route::get('/Center/Login', function () {
     return view('web.center.center-login');
