@@ -53,6 +53,8 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
             
             Route::get('/exam/fee/paid/list', 'StudentController@examFeePaidList')->name('admin.exam_fee_paid_list'); 
             Route::get('/exam/fee/paid/list/ajax', 'StudentController@examFeePaidListAjax')->name('admin.exam_fee_paid_list_ajax'); 
+            
+            Route::get('/add/admit/card/form/{id}', 'StudentController@admitCardForm')->name('admin.admit_Card_form'); 
 
         });
 
