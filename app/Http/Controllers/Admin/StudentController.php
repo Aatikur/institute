@@ -215,14 +215,27 @@ class StudentController extends Controller
                 return isset($row->student->course->name)?$row->student->course->name:'';
            
             })->addColumn('status', function ($row) {
-               if($row->student->is_exam_fee_paid == 2){
+               if($row->student->is_admit_generated == 2){
                    return '<a class="btn btn-success btn-sm">Admit Card Generated</a>';
                }else{
                 return '<a class="btn btn-warning btn-sm">Admit Card Not Generated</a>';
                }
            
-            })->rawColumns(['branch','course','status'])
+            })->addColumn('action', function ($row) {
+                if($row->student->is_admit_generated == 1){
+                    return '<a  href="'.route('admin.admit_Card_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Admit Card</a>';
+                }else{
+                 return '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
+                }
+            
+             })->rawColumns(['branch','course','status','action'])
             ->make(true);
+    }
+
+    public function admitCardForm($id){
+        $student_details = StudentDetail::where('id',$id)->first();
+        return view('admin.student.admit_card_form',compact('student_details'));
+
     }
 
 }

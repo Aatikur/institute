@@ -21,6 +21,7 @@
                               <th>Branch Name</th>
                               <th>Course</th>
                               <th>Admit Card Status</th>
+                              <th>Action</th>
                             
                             </tr>
                           </thead>
@@ -52,6 +53,7 @@
           {data: 'branch', name: 'branch',searchable: true},
           {data: 'course', name: 'course',searchable: true},
           {data: 'status', name: 'status',searchable: true},
+          {data: 'action', name: 'action',searchable: true},
         
         ]
 });
