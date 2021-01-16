@@ -10,7 +10,7 @@
    </style>
    <body>
       <div>
-         <div style="width:100%;margin: auto; background-image:url('{{asset('web/assets/img/gclm-bg.png')}}');background-size: 5%;padding-top: 10px;">
+         <div style="width:100%;margin: auto; background-image:url('{{asset('web/assets/img/gclm-bg.png')}}');background-size: 5%;padding-top: 10px; overflow: auto;">
             <div style="text-align: center">   
                <img src="{{asset('web/assets/img/gclm-admit.png')}}" style="width: 70%;">
             </div>
@@ -29,7 +29,14 @@
                   <h4 style="font-weight: 500;width: 40%; float:left;margin-top: 0px;"><strong>Center :</strong>Guwahati</h4>
                   <h4 style="font-weight: 500;width: 60%; float:left;margin-top: 0px;"><strong>Examination to be held on :</strong> JUNE- 2021</h4>
                </div>
-               {{-- <img src="{{asset ('web/images/logo-50.png') }}" alt="watermark"  style="position: absolute;top: 12%;width: 35%;left: 33%;z-index: -1;"> --}}
+               
+               <div style="width: 70%; float:left;margin-top: 20px;">
+                  <h4 style="font-weight: 500; "><strong >Signature of Candidate</strong></h4>
+               </div>
+               <div style="width: 30%;float: right;margin-top: 20px;">
+                  <h4 style="font-weight: 500;"><strong>Authorised Signature</strong></h4>
+               </div>
+               <img src="{{asset('web/assets/img/GCLM.png')}}" alt="watermark"  style="position: absolute;top: 30%;width: 37%;left: 33%;z-index: -1; opacity: 0.3;">
             </div>
          </div>
          <div style="text-align: center"><button onclick="window.print()"class="btn btn-success">Print</button></div>
