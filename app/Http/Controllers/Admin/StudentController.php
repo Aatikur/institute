@@ -232,10 +232,5 @@ class StudentController extends Controller
             ->make(true);
     }
 
-    public function admitCardForm($id){
-        $student_details = StudentDetail::where('id',$id)->first();
-        return view('admin.student.admit_card_form',compact('student_details'));
-
-    }
-
+   
 }
