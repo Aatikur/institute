@@ -63,6 +63,10 @@ Route::get('/Student/Certificate', function () {
     return view('web.student.student-certificate');
 })->name('web.student.student-certificate');
 
+Route::get('/Student/Marksheet', function () {
+    return view('web.student.student-marksheet');
+})->name('web.student.student-marksheet');
+
 // ------- Center --------
 Route::get('/Center/Login', function () {
     return view('web.center.center-login');

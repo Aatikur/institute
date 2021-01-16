@@ -101,7 +101,7 @@
                            <li><a href="{{ route('web.student.student-result') }}">Online Result</a></li>
                            <li><a href="{{ route('web.student.student-admit') }}">Student Admit</a></li>
                            <li><a href="{{ route('web.student.student-certificate') }}">Student Certificate</a></li>
-                           <li><a href="{{ route('web.student.student-result') }}">Student Marksheet</a></li>
+                           <li><a href="{{ route('web.student.student-marksheet') }}">Student Marksheet</a></li>
                         </ul>
                      </li>
                      <li><a href="{{ route('web.contact.contact') }}" >Contact Us</a></li>
