@@ -55,17 +55,27 @@ Route::get('/Student/Result', function () {
     return view('web.student.student-result');
 })->name('web.student.student-result');
 
-Route::get('/Student/Admit', function () {
-    return view('web.student.student-admit');
-})->name('web.student.student-admit');
 
-Route::get('/Student/Certificate', function () {
-    return view('web.student.student-certificate');
-})->name('web.student.student-certificate');
+Route::get('/Online/Admit', function () {
+    return view('web.student.admit-card');
+})->name('web.student.admit-card');
 
-Route::get('/Student/Marksheet', function () {
-    return view('web.student.student-marksheet');
-})->name('web.student.student-marksheet');
+Route::get('/Online/Marksheet', function () {
+    return view('web.student.marksheet-online');
+})->name('web.student.marksheet-online');
+
+Route::get('/Online/Certificate', function () {
+    return view('web.student.certificate-online');
+})->name('web.student.certificate-online');
+
+
+// Route::get('/Student/Certificate', function () {
+//     return view('web.student.student-certificate');
+// })->name('web.student.student-certificate');
+
+// Route::get('/Student/Marksheet', function () {
+//     return view('web.student.student-marksheet');
+// })->name('web.student.student-marksheet');
 
 // ------- Center --------
 Route::get('/Center/Login', function () {
@@ -80,3 +90,10 @@ Route::get('/Center/Forgot/Password', function () {
 Route::get('/Contact', function () {
     return view('web.contact.contact-us');
 })->name('web.contact.contact');
+
+Route::group(['namespace'=>'Web'],function(){
+    Route::post('/Student/Admit/Card','WebController@studentAdmitCard')->name('web.admit.card');
+    Route::post('/Student/Marksheet','WebController@studentMarksheet')->name('web.marksheet');
+    Route::post('/Student/Certificate','WebController@studentCertificate')->name('web.cerificate');
+    
+});

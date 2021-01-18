@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="duration">Duration<span><b style="color: red"> * </b></span></label>
-                                    <input type="text"  class="form-control" name="duration" >
+                                    <input type="text"  class="form-control" readonly="readonly" value="{{ $student_details->student->duration }}" >
                                     @if($errors->has('duration'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('duration') }}</strong>
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="grade">Grade</label>
-                                    <input type="text"  class="form-control" name="grade">
+                                    <input type="text"  class="form-control"  readonly="readonly" value="{{ $student_details->student->grade }}">
                                     @if($errors->has('grade'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('grade') }}</strong>

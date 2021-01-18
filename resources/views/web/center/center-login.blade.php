@@ -18,14 +18,15 @@
          </div>
          <br />
          <div class="contact_forms_outer" style="float:left !important;">
-            <form action="#" method="post" name="form1" id="form1" class="contact_forms">
+            <form action="{{route('branch.login_submit')}}" method="post" name="form1" id="form1" class="contact_forms">
+               @csrf
                <input type="hidden" name="hd" value="val" />
                <div class="contact_forms_element">
-                  <input name="username" id="email" type="text" Placeholder="Center ID" value="" required oninvalid="this.setCustomValidity('Please Enter Center ID')">
+                  <input name="email" id="email" type="text" Placeholder="Center ID"  oninvalid="this.setCustomValidity('Please Enter Center ID')">
                   <span class="error msg_holder"></span>
                </div>
                <div class="contact_forms_element">
-                  <input name="password" id="password" type="password" Placeholder="Password" value="" required oninvalid="this.setCustomValidity('Please Enrter Password')">
+                  <input name="password" id="password" type="password" Placeholder="Password"   oninvalid="this.setCustomValidity('Please Enrter Password')">
                   <span class="error msg_holder"></span>
                </div>
                <div class="contact_forms_element" style="margin-bottom:20px;">

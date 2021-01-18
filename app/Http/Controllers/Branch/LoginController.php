@@ -16,7 +16,7 @@ class LoginController extends Controller
 
     public function branchLogin(Request $request, Guard $guard)
     {
-        
+      
         $this->validate($request, [
             'email'   => 'required|email',
             'password' => 'required|min:6'
@@ -27,10 +27,10 @@ class LoginController extends Controller
             'password'  => $request->input('password'),
             'status'=>1,
         );
+     
        
-        if (Auth::guard('branch')->attempt($credentials )) {
-
-            return redirect()->intended('/branch/dashboard');
+        if(Auth::guard('branch')->attempt($credentials )) {
+           return redirect()->intended('/branch/dashboard');
         }
         return back()->withInput($request->only('email', 'remember'))->with('login_error','Username or password incorrect');
     }
@@ -39,6 +39,6 @@ class LoginController extends Controller
     {
         $guard->logout();
         $request->session()->invalidate();
-        return redirect()->route('branch.login_form');
+        return redirect()->route('web.center.center-login');
     }
 }
