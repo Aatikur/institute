@@ -10,6 +10,7 @@ use App\Models\Course;
 use App\Models\StudentQualification;
 use App\Models\BranchWallet;
 use App\Models\WalletHistory;
+use App\Models\Board;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
@@ -216,25 +217,113 @@ class StudentController extends Controller
            
             })->addColumn('status', function ($row) {
                if($row->student->is_admit_generated == 2){
-                   return '<a class="btn btn-success btn-sm">Admit Card Generated</a>';
+                   return '<a class="btn btn-success btn-sm">Generated</a>';
                }else{
-                return '<a class="btn btn-warning btn-sm">Admit Card Not Generated</a>';
+                return '<a class="btn btn-warning btn-sm">Not Generated</a>';
                }
            
             })->addColumn('action', function ($row) {
+                $btn ='';
                 if($row->student->is_admit_generated == 1){
-                    return '<a  href="'.route('admin.admit_Card_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Admit Card</a>';
+                     $btn .='<a  href="'.route('admin.admit_Card_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Admit Card</a>';
                 }else{
-                 return '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
+                  $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
+                  $btn .= '<a href="'.route('admin.view_admit',['id'=>$row->id]).'" class="btn btn-primary btn-sm">View</a>';
+                }
+                return $btn;
+             })->addColumn('marksheet_status', function ($row) {
+                if($row->student->is_marksheet_generated == 2){
+                    return '<a class="btn btn-success btn-sm">Generated</a>';
+                }else{
+                 return '<a class="btn btn-warning btn-sm">Not Generated</a>';
                 }
             
-             })->rawColumns(['branch','course','status','action'])
+             })->addColumn('certificate_status', function ($row) {
+                if($row->student->is_certificate_generated == 2){
+                    return '<a class="btn btn-success btn-sm">Generated</a>';
+                }else{
+                 return '<a class="btn btn-warning btn-sm">Not Generated</a>';
+                }
+            
+             })->addColumn('certificate_action', function ($row) {
+                $btn ='';
+                if($row->student->is_certificate_generated == 1){
+                     $btn .='<a  href="'.route('admin.certificate_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Certificate</a>';
+                }else{
+                  $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
+                  $btn .= '<a href="'.route('admin.view_certificate',['id'=>$row->id]).'" class="btn btn-primary btn-sm">View</a>';
+                }
+                return $btn;
+             })->rawColumns(['branch','course','status','action','marksheet_status','certificate_status','certificate_action'])
             ->make(true);
     }
 
     public function admitCardForm($id){
         $student_details = StudentDetail::where('id',$id)->first();
-        return view('admin.student.admit_card_form',compact('student_details'));
+        $board = Board::first();
+        return view('admin.student.admit_card_form',compact('student_details','board'));
+
+    }
+
+    public function addAdminCard(Request $request,$id){
+        $this->validate($request, [
+            'center'=>'required',
+            'exam_Date'=>'required',
+            'reg_no'=>'required',
+            'year'=>'required',
+
+        ]);
+
+        $student = Student::where('id',$id)->first();
+        $student->center = $request->input('center');
+        $student->exam_date = $request->input('exam_Date');
+        $student->year = $request->input('year');
+        $student->reg_no = $request->input('reg_no');
+        $student->is_admit_generated = 2;
+        if($student->save()){
+            return redirect()->route('admin.exam_fee_paid_list')->with('message','Student Admit Generated Successfully');
+        }
+
+    }
+
+    public function viewAdmit($id){
+        $student_details = StudentDetail::findorFail($id);
+        return view('web.student.student-admit',compact('student_details'));
+
+    }
+
+    public function certificateForm($id){
+        $student_details = StudentDetail::where('id',$id)->first();
+        return view('admin.student.certificate_form',compact('student_details'));
+
+    }
+
+    public function addCertificate(Request $request,$id){
+        $this->validate($request, [
+            'duration'=>'required',
+            'grade'=>'required',
+            'training_from'=>'required',
+            'training_to'=>'required',
+            'date_of_issue'=>'required',
+
+        ]);
+
+        $student = Student::where('id',$id)->first();
+        $student->duration = $request->input('duration');
+        $student->grade = $request->input('grade');
+        $student->training_to = $request->input('training_to');
+        $student->training_from = $request->input('training_from');
+        $student->date_of_issue = $request->input('date_of_issue');
+        $student->is_certificate_generated = 2;
+        if($student->save()){
+            return redirect()->route('admin.exam_fee_paid_list')->with('message','Student Certificate Generated Successfully');
+        }
+
+    }
+
+    public function viewCertificate($id){
+        $student_details = StudentDetail::findorFail($id);
+        return view('web.student.student-certificate',compact('student_details'));
 
     }
 

@@ -90,6 +90,7 @@
                   <li><a href="{{ route('admin.student_list') }}"><i class="fa fa-users"></i> Student </span></a></li>
                   <li><a href="{{ route('admin.payment_request_list') }}"><i class="fa fa-google-wallet"></i> Payment Request </span></a></li>
                   <li><a href="{{ route('admin.exam_fee_paid_list') }}"><i class="fa fa-list-alt"></i> Exam Fees </span></a></li>
+                  <li><a href="{{ route('admin.board_list') }}"><i class="fa fa-list-alt"></i> Board </span></a></li>
                 </ul>
               </div>
 

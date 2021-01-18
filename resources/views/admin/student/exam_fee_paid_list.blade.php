@@ -21,8 +21,11 @@
                               <th>Branch Name</th>
                               <th>Course</th>
                               <th>Admit Card Status</th>
-                              <th>Action</th>
-                            
+                              <th>Admit Card Action</th>
+                              <th>Marksheet Status</th>
+                              <th>Marksheet Action</th>
+                              <th>Certificate Status</th>
+                              <th>Certificate Action</th>
                             </tr>
                           </thead>
                           <tbody>                       
@@ -54,6 +57,10 @@
           {data: 'course', name: 'course',searchable: true},
           {data: 'status', name: 'status',searchable: true},
           {data: 'action', name: 'action',searchable: true},
+          {data: 'marksheet_status', name: 'marksheet_status',searchable: true},
+          {data: 'marksheet_action', name: 'marksheet_action',searchable: true},
+          {data: 'certificate_status', name: 'certificate_status',searchable: true},
+          {data: 'certificate_action', name: 'certificate_action',searchable: true},
         
         ]
 });
