@@ -16,18 +16,18 @@
             </div>
             <div style="margin: 0px 50px 0px 50px;">
                <div style="width: 70%; float:left">
-                  <h4 style="font-weight: 500; "><strong >Student's Name : </strong><span>Vishal</span></h4>
-                  <h4 style="font-weight: 500;"><strong>Father's Name : </strong>Gulzar</h4>
-                  <h4 style="font-weight: 500;width: 70%; float:left;margin-top: 0px;"><strong>Registration-no : </strong>GCLM234567</h4>
-                  <h4 style="font-weight: 500;width: 30%; float:right;margin-top: 0px;"><strong>Year : </strong>2019</h4>
+                  <h4 style="font-weight: 500; "><strong >Student's Name : </strong><span>{{$student_details->name}}</span></h4>
+                  <h4 style="font-weight: 500;"><strong>Father's Name : </strong>{{$student_details->father_name}} </h4>
+                  <h4 style="font-weight: 500;width: 70%; float:left;margin-top: 0px;"><strong>Registration-no : </strong>{{$student_details->student->reg_no??null}}</h4>
+                  <h4 style="font-weight: 500;width: 30%; float:right;margin-top: 0px;"><strong>Year : </strong>{{$student_details->student->year??null}}</h4>
                </div>
                <div style="width: 30%;float: right;">
                   <img src="{{asset('web/assets/img/people.png')}}" style="width: 100%;">
                </div>
                <div style="width: 100%; overflow: auto;">
-                  <h4 style="font-weight: 500;margin-top: 0px;"><strong>Course :</strong> Computer Advance Diploma Courses </h4>
-                  <h4 style="font-weight: 500;width: 40%; float:left;margin-top: 0px;"><strong>Center :</strong>Guwahati</h4>
-                  <h4 style="font-weight: 500;width: 60%; float:left;margin-top: 0px;"><strong>Examination to be held on :</strong> JUNE- 2021</h4>
+                  <h4 style="font-weight: 500;margin-top: 0px;"><strong>Course :</strong>{{$student_details->student->course->name??null}} </h4>
+                  <h4 style="font-weight: 500;width: 40%; float:left;margin-top: 0px;"><strong>Center :</strong>{{$student_details->student->center??null}}</h4>
+                  <h4 style="font-weight: 500;width: 60%; float:left;margin-top: 0px;"><strong>Examination to be held on :</strong> {{$student_details->student->exam_date??null}}</h4>
                </div>
                
                <div style="width: 70%; float:left;margin-top: 20px;">

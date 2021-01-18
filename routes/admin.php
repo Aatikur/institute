@@ -53,7 +53,14 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
             
             Route::get('/exam/fee/paid/list', 'StudentController@examFeePaidList')->name('admin.exam_fee_paid_list'); 
             Route::get('/exam/fee/paid/list/ajax', 'StudentController@examFeePaidListAjax')->name('admin.exam_fee_paid_list_ajax'); 
+            
+            Route::get('/add/admit/card/form/{id}', 'StudentController@admitCardForm')->name('admin.admit_Card_form'); 
+            Route::put('/generate/admit/card/{id}', 'StudentController@addAdminCard')->name('admin.add_admit_card'); 
+            Route::get('/view/admit/card/{id}', 'StudentController@viewAdmit')->name('admin.view_admit'); 
 
+            Route::get('/add/certificate/form/{id}', 'StudentController@certificateForm')->name('admin.certificate_form'); 
+            Route::put('/generate/certificate/{id}', 'StudentController@addCertificate')->name('admin.add_certificate'); 
+            Route::get('/view/certificate/{id}', 'StudentController@viewCertificate')->name('admin.view_certificate'); 
         });
 
         Route::group(['prefix' => 'payment'], function () {
@@ -62,6 +69,12 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
             Route::get('approve/{id}', 'PaymentController@approvePayment')->name('admin.approve_payment_request'); 
             Route::get('reject/{id}', 'PaymentController@rejectPayment')->name('admin.reject_payment_request'); 
 
+        });
+
+        Route::group(['prefix' => 'board'], function () {
+            Route::get('list', 'BoardController@boardList')->name('admin.board_list'); 
+            Route::get('edit/form/{id}', 'BoardController@boardEditForm')->name('admin.board_edit_form'); 
+            Route::put('update/{id}', 'BoardController@updateBoard')->name('admin.update_board'); 
         });
     });   
 });
