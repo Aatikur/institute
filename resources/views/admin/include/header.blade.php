@@ -13,8 +13,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="icon" href="images/favicon.png" type="image/ico" />
 
-    <title>Institute</title>
-    {{-- <link rel="icon" href="{{ asset('logo/logo.png')}}" type="image/icon type"> --}}
+    <title></title>
+    <link rel="icon" href="{{ asset('web/assets/img/GCLM1.png')}}" type="image/icon type">
 
 
     <!-- Bootstrap -->
@@ -57,8 +57,8 @@
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
               <a href="{{route('admin.deshboard')}}" class="site_title">
-                Institute
-                {{-- <img src="{{ asset('logo/logo.png')}}" height="50" style=" width: 90%;"> --}}
+                
+                <img src="{{ asset('web/assets/img/GCLM.png')}}" height="50" style=" width: 60%;">
               </a>
             </div>
 

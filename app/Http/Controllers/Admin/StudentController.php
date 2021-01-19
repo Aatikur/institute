@@ -31,6 +31,9 @@ class StudentController extends Controller
             })->addColumn('course', function ($row) {
                 return isset($row->student->course->name)?$row->student->course->name:'';
            
+            })->addColumn('enrollment_id', function ($row) {
+                return isset($row->student->enrollment_id)?$row->student->enrollment_id:'';
+           
             })->addColumn('status', function ($row) {
                if($row->student->is_exam_fee_paid == 2){
                    return '<a class="btn btn-success btn-sm">Exam Fee Paid</a>';
@@ -216,6 +219,9 @@ class StudentController extends Controller
             })->addColumn('course', function ($row) {
                 return isset($row->student->course->name)?$row->student->course->name:'';
            
+            })->addColumn('enrollment_id', function ($row) {
+                return isset($row->student->enrollment_id)?$row->student->enrollment_id:'';
+           
             })->addColumn('status', function ($row) {
                if($row->student->is_admit_generated == 2){
                    return '<a class="btn btn-success btn-sm">Generated</a>';
@@ -241,7 +247,7 @@ class StudentController extends Controller
             
              })->addColumn('marksheet_action', function ($row) {
                 $btn ='';
-                if($row->student->is_marksheet_generated == 1){
+                if($row->student->is_marksheet_generated == 1 && $row->student->is_admit_generated == 2){
                      $btn .='<a  href="'.route('admin.marksheet_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Marksheet</a>';
                 }else{
                   $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
@@ -257,14 +263,14 @@ class StudentController extends Controller
             
              })->addColumn('certificate_action', function ($row) {
                 $btn ='';
-                if($row->student->is_certificate_generated == 1){
+                if($row->student->is_certificate_generated == 1 && $row->student->is_marksheet_generated == 2){
                      $btn .='<a  href="'.route('admin.certificate_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Certificate</a>';
                 }else{
                   $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
                   $btn .= '<a href="'.route('admin.view_certificate',['id'=>$row->id]).'" class="btn btn-primary btn-sm">View</a>';
                 }
                 return $btn;
-             })->rawColumns(['branch','course','status','action','marksheet_status','certificate_status','certificate_action','marksheet_action'])
+             })->rawColumns(['branch','course','status','action','enrollment_id','marksheet_status','certificate_status','certificate_action','marksheet_action'])
             ->make(true);
     }
 

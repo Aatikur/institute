@@ -20,6 +20,7 @@
                               <th>Student Name</th>
                               <th>Branch Name</th>
                               <th>Course</th>
+                              <th>Enrollment ID</th>
                               <th>Admit Card Status</th>
                               <th>Admit Card Action</th>
                               <th>Marksheet Status</th>
@@ -55,6 +56,7 @@
           {data: 'name', name: 'name',searchable: true},
           {data: 'branch', name: 'branch',searchable: true},
           {data: 'course', name: 'course',searchable: true},
+          {data: 'enrollment_id', name: 'enrollment_id',searchable: true},
           {data: 'status', name: 'status',searchable: true},
           {data: 'action', name: 'action',searchable: true},
           {data: 'marksheet_status', name: 'marksheet_status',searchable: true},
