@@ -18,19 +18,19 @@
             </div>
             <div style="margin: 0px 30px 0px 30px;">
                <div style="width: 100%; overflow: auto;">
-                  <h2 style="font-weight: 500;width: 60%; float:left; font-size: 18px;"><strong style="font-family:lucida calligraphy;">Student's Name : <span style="font-family:Arial;">Vishal Nag</span> </strong> </h2>
-                  <h2 style="font-weight: 500;width: 40%; float:right; font-size: 18px;"><strong style="font-family:lucida calligraphy;">Reg. No : <span style="font-family:Arial;">GCLM1234</span> </strong> </h2>
+                  <h2 style="font-weight: 500;width: 60%; float:left; font-size: 18px;"><strong style="font-family:lucida calligraphy;">Student's Name : <span style="font-family:Arial;">{{$student_details->name}}</span> </strong> </h2>
+                  <h2 style="font-weight: 500;width: 40%; float:right; font-size: 18px;"><strong style="font-family:lucida calligraphy;">Reg. No : <span style="font-family:Arial;">{{$student_details->student->reg_no}}</span> </strong> </h2>
                </div>
                <div style="width: 100%; overflow: auto;">
-                  <h2 style="font-weight: 500;width: 60%; float:left; font-size: 18px; margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Mother's Name : <span style="font-family:Arial;">Vishal Nag</span> </strong> </h2>
-                  <h2 style="font-weight: 500;width: 40%; float:right; font-size: 18px;margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Duration : <span style="font-family:Arial;">One Year</span> </strong> </h2>
+                  <h2 style="font-weight: 500;width: 60%; float:left; font-size: 18px; margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Mother's Name : <span style="font-family:Arial;">{{$student_details->mother_name}}</span> </strong> </h2>
+                  <h2 style="font-weight: 500;width: 40%; float:right; font-size: 18px;margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Duration : <span style="font-family:Arial;">{{$student_details->student->duration}}</span> </strong> </h2>
                </div>
                <div style="width: 100%; overflow: auto;">
-                  <h2 style="font-weight: 500;width: 60%; float:left; font-size: 18px; margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Father's Name : <span style="font-family:Arial;">Vishal Nag</span> </strong> </h2>
-                  <h2 style="font-weight: 500;width: 40%; float:right; font-size: 18px;margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Examination : <span style="font-family:Arial;">JUNE- 2021</span> </strong> </h2>
+                  <h2 style="font-weight: 500;width: 60%; float:left; font-size: 18px; margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Father's Name : <span style="font-family:Arial;">{{$student_details->father_name}}</span> </strong> </h2>
+                  <h2 style="font-weight: 500;width: 40%; float:right; font-size: 18px;margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Examination : <span style="font-family:Arial;">{{$student_details->student->exam_date}}</span> </strong> </h2>
                </div>
                <div style="width: 100%; overflow: auto;">
-                  <h2 style="font-weight: 500; float:left; font-size: 18px; margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Course Name : <span style="font-family:Arial;">Computer Advance Diploma </span> </strong> </h2>
+                  <h2 style="font-weight: 500; float:left; font-size: 18px; margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Course Name : <span style="font-family:Arial;">{{$student_details->student->course->name}} </span> </strong> </h2>
                </div>
                <div style="width: 100%; overflow: auto;">
                   <table style="width:100%;border: 2px solid #fe5a17;">
@@ -61,22 +61,22 @@
                      </thead>
                      <tbody>
                         <tr>
-                           <td style="width: 45%;font-family:lucida calligraphy;font-weight: 700; font-size:15px">Computer Advance Diploma Courses</td>
+                           <td style="width: 45%;font-family:lucida calligraphy;font-weight: 700; font-size:15px">{!!$student_details->student->course->detail!!}</td>
                            <td style="width: 45%;font-family:lucida calligraphy;font-weight: 700;">
                               <table style="width: 100%;">
                                  <tbody>
                                     <tr>
-                                       <td style="font-family: system-ui;font-weight: 500;">50</td>
-                                       <td style="font-family: system-ui;font-weight: 500;">50</td>
-                                       <td style="font-family: system-ui;font-weight: 500;">50</td>
-                                       <td style="font-family: system-ui;font-weight: 500;">50</td>
+                                       <td style="font-family: system-ui;font-weight: 500;">{{$marks->theory_full_marks}}</td>
+                                       <td style="font-family: system-ui;font-weight: 500;">{{$marks->theory_marks_obtained}}</td>
+                                       <td style="font-family: system-ui;font-weight: 500;">{{$marks->prac_full_marks}}</td>
+                                       <td style="font-family: system-ui;font-weight: 500;">{{$marks->prac_marks_obtained}}</td>
                                     </tr>
                                  </tbody>
                               </table>
                            </td>
-                           <td style="width: 10%;font-family:lucida calligraphy;font-weight: 700; text-align: center;">100</td>
+                           <td style="width: 10%;font-family:lucida calligraphy;font-weight: 700; text-align: center;">{{$marks->total_marks_obtained}}</td>
                         </tr>
-                        <tr>
+                        {{-- <tr>
                            <td style="width: 45%;font-family:lucida calligraphy;font-weight: 700; font-size:15px">Computer Advance Diploma </td>
                            <td style="width: 45%;font-family:lucida calligraphy;font-weight: 700;">
                               <table style="width: 100%;">
@@ -139,7 +139,7 @@
                               </table>
                            </td>
                            <td style="width: 10%;font-family:lucida calligraphy;font-weight: 700; text-align: center;">100</td>
-                        </tr>
+                        </tr> --}}
                         <tr style="background-color: #f95416; height: 1px;">
                            <td style="width: 45%;text-align: center;font-family:lucida calligraphy;font-weight: 700; font-size:15px"></td>
                            <td style="width: 45%;font-family:lucida calligraphy;font-weight: 700;">
@@ -150,7 +150,7 @@
                            <td style="width: 45%;text-align: center;font-weight: 700; font-size:15px">Grand Total</td>
                            <td style="width: 45%;font-family:lucida calligraphy;font-weight: 700;">
                            </td>
-                           <td style="width: 10%;;font-weight: 700; text-align: center;">100</td>
+                           <td style="width: 10%;;font-weight: 700; text-align: center;">{{$marks->grand_total}}</td>
                         </tr>
                         <tr style="background-color: #f95416; height: 1px;">
                            <td style="width: 45%;text-align: center;font-family:lucida calligraphy;font-weight: 700; font-size:15px"></td>
@@ -159,9 +159,9 @@
                            <td style="width: 10%;font-family:lucida calligraphy;font-weight: 700; text-align: center;"></td>
                         </tr>
                         <tr style=" background-color: #175beb;color: #fff;">
-                           <td style="width: 45%;font-weight: 700; font-size:17px;padding: 10px;">Percentage: 84%</td>
+                           <td style="width: 45%;font-weight: 700; font-size:17px;padding: 10px;">Percentage: {{$marks->percentage}} %</td>
                            <td style="width: 45%;text-align: center;font-weight: 700;">Grade</td>
-                           <td style="width: 10%;font-weight: 700; text-align: center;">"A+"</td>
+                           <td style="width: 10%;font-weight: 700; text-align: center;">{{$student_details->student->grade}}</td>
                         </tr>
                      </tbody>
                   </table>
@@ -198,7 +198,7 @@
                   </table>
                </div>
                <div style="width: 75%; float:left;margin-top: 20px;">
-                  <h4 style="font-weight: 500; "><strong >Date of Issue: <span>18-01-2021</span></strong></h4>
+                  <h4 style="font-weight: 500; "><strong >Date of Issue: <span>{{$student_details->student->marksheet_date_of_issue}}</span></strong></h4>
                </div>
                <div style="width: 25%;float: right;margin-top: 20px;">
                   <h4 style="font-weight: 500;"><strong>Authorised Signature</strong></h4>

@@ -61,6 +61,10 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
             Route::get('/add/certificate/form/{id}', 'StudentController@certificateForm')->name('admin.certificate_form'); 
             Route::put('/generate/certificate/{id}', 'StudentController@addCertificate')->name('admin.add_certificate'); 
             Route::get('/view/certificate/{id}', 'StudentController@viewCertificate')->name('admin.view_certificate'); 
+
+            Route::get('/add/marksheet/form/{id}', 'StudentController@marksheetForm')->name('admin.marksheet_form'); 
+            Route::put('/generate/marksheet/{id}', 'StudentController@addMarksheet')->name('admin.add_marksheet'); 
+            Route::get('/view/marksheet/{id}', 'StudentController@viewMarksheet')->name('admin.view_marksheet'); 
         });
 
         Route::group(['prefix' => 'payment'], function () {

@@ -11,6 +11,7 @@ use App\Models\StudentQualification;
 use App\Models\BranchWallet;
 use App\Models\WalletHistory;
 use App\Models\Board;
+use App\Models\Marks;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
@@ -29,6 +30,9 @@ class StudentController extends Controller
            
             })->addColumn('course', function ($row) {
                 return isset($row->student->course->name)?$row->student->course->name:'';
+           
+            })->addColumn('enrollment_id', function ($row) {
+                return isset($row->student->enrollment_id)?$row->student->enrollment_id:'';
            
             })->addColumn('status', function ($row) {
                if($row->student->is_exam_fee_paid == 2){
@@ -215,6 +219,9 @@ class StudentController extends Controller
             })->addColumn('course', function ($row) {
                 return isset($row->student->course->name)?$row->student->course->name:'';
            
+            })->addColumn('enrollment_id', function ($row) {
+                return isset($row->student->enrollment_id)?$row->student->enrollment_id:'';
+           
             })->addColumn('status', function ($row) {
                if($row->student->is_admit_generated == 2){
                    return '<a class="btn btn-success btn-sm">Generated</a>';
@@ -238,6 +245,15 @@ class StudentController extends Controller
                  return '<a class="btn btn-warning btn-sm">Not Generated</a>';
                 }
             
+             })->addColumn('marksheet_action', function ($row) {
+                $btn ='';
+                if($row->student->is_marksheet_generated == 1 && $row->student->is_admit_generated == 2){
+                     $btn .='<a  href="'.route('admin.marksheet_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Marksheet</a>';
+                }else{
+                  $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
+                  $btn .= '<a href="'.route('admin.view_marksheet',['id'=>$row->id]).'" class="btn btn-primary btn-sm">View</a>';
+                }
+                return $btn;
              })->addColumn('certificate_status', function ($row) {
                 if($row->student->is_certificate_generated == 2){
                     return '<a class="btn btn-success btn-sm">Generated</a>';
@@ -247,14 +263,14 @@ class StudentController extends Controller
             
              })->addColumn('certificate_action', function ($row) {
                 $btn ='';
-                if($row->student->is_certificate_generated == 1){
+                if($row->student->is_certificate_generated == 1 && $row->student->is_marksheet_generated == 2){
                      $btn .='<a  href="'.route('admin.certificate_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Certificate</a>';
                 }else{
                   $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
                   $btn .= '<a href="'.route('admin.view_certificate',['id'=>$row->id]).'" class="btn btn-primary btn-sm">View</a>';
                 }
                 return $btn;
-             })->rawColumns(['branch','course','status','action','marksheet_status','certificate_status','certificate_action'])
+             })->rawColumns(['branch','course','status','action','enrollment_id','marksheet_status','certificate_status','certificate_action','marksheet_action'])
             ->make(true);
     }
 
@@ -300,8 +316,6 @@ class StudentController extends Controller
 
     public function addCertificate(Request $request,$id){
         $this->validate($request, [
-            'duration'=>'required',
-            'grade'=>'required',
             'training_from'=>'required',
             'training_to'=>'required',
             'date_of_issue'=>'required',
@@ -309,8 +323,6 @@ class StudentController extends Controller
         ]);
 
         $student = Student::where('id',$id)->first();
-        $student->duration = $request->input('duration');
-        $student->grade = $request->input('grade');
         $student->training_to = $request->input('training_to');
         $student->training_from = $request->input('training_from');
         $student->date_of_issue = $request->input('date_of_issue');
@@ -324,6 +336,57 @@ class StudentController extends Controller
     public function viewCertificate($id){
         $student_details = StudentDetail::findorFail($id);
         return view('web.student.student-certificate',compact('student_details'));
+
+    }
+
+    public function marksheetForm($id){
+        $student_details = StudentDetail::where('id',$id)->first();
+        return view('admin.student.marksheet_form',compact('student_details'));
+
+    }
+
+    public function addmarksheet(Request $request,$id){
+        $this->validate($request, [
+            'duration'=>'required',
+            'grade'=>'required',
+            'theory_full_marks'=>'required|numeric',
+            'theory_marks_obtained'=>'required|numeric',
+            'prac_full_marks'=>'required|numeric',
+            'prac_marks_obtained'=>'required|numeric',
+            'total_marks'=>'required|numeric',
+            'grand_total'=>'required|numeric',
+            'percentage'=>'required|numeric',
+            'date_of_issue'=>'required',
+
+        ]);
+
+        $student = Student::where('id',$id)->first();
+        $student->duration = $request->input('duration');
+        $student->grade = $request->input('grade');
+        $student->marksheet_date_of_issue = $request->input('date_of_issue');
+        $student->is_marksheet_generated = 2;
+        if($student->save()){
+            $marks = new Marks();
+            $marks->student_id = $student->id;
+            $marks->total_marks_obtained = $request->input('total_marks');
+            $marks->theory_marks_obtained = $request->input('theory_marks_obtained');
+            $marks->theory_full_marks = $request->input('theory_full_marks');
+            $marks->prac_full_marks = $request->input('prac_full_marks');
+            $marks->percentage = $request->input('percentage');
+            $marks->grand_total = $request->input('grand_total');
+            $marks->prac_marks_obtained = $request->input('prac_marks_obtained');
+            $marks->save();
+        }
+
+        return redirect()->route('admin.exam_fee_paid_list');
+
+
+    }
+
+    public function viewMarksheet($id){
+        $student_details = StudentDetail::findorFail($id);
+        $marks = Marks::where('student_id',$id)->first();
+        return view('web.student.student-marksheet',compact('student_details','marks'));
 
     }
 

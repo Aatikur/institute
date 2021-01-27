@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Institute</title>
-    <link rel="icon" href="{{ asset('/logo/favicon.png')}}" type="image/icon type">
+    <link rel="icon" href="{{ asset('web/assets/img/GCLM.png')}}" type="image/icon type">
 
     <!-- Bootstrap -->
     <link href="{{asset('admin/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -77,8 +77,8 @@
                 <br />
 
                 <div>
-                  <h1>Institute
-                    {{-- <img src="{{ asset('logo/logo.png')}}" height="80"> --}}
+                  <h1>
+                    <img src="{{ asset('web/assets/img/GCLM.png')}}" height="80">
                   </h1>
                   <p>©2020 All Rights Reserved. </p>
                 </div>
