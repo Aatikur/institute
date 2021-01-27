@@ -42,8 +42,8 @@ class StudentController extends Controller
                }
            
             })->addColumn('action', function ($row) {
-                $btn = '<a href="'.route('admin.branch_wallet_history',['id'=>$row->id]).'" class="btn btn-primary">View</a>';
-                return $btn .= '<a href="'.route('admin.edit_student_form',['student_id'=>$row->id]).'" class="btn btn-info">Edit</a>';
+                // $btn = '<a href="'.route('admin.branch_wallet_history',['id'=>$row->id]).'" class="btn btn-primary">View</a>';
+                return $btn = '<a href="'.route('admin.edit_student_form',['student_id'=>$row->id]).'" class="btn btn-info">Edit</a>';
             })->rawColumns(['branch','action','course','status'])
             ->make(true);
     }
@@ -219,6 +219,9 @@ class StudentController extends Controller
             })->addColumn('course', function ($row) {
                 return isset($row->student->course->name)?$row->student->course->name:'';
            
+            })->addColumn('dob', function ($row) {
+                return isset($row->dob)?$row->dob:'';
+           
             })->addColumn('enrollment_id', function ($row) {
                 return isset($row->student->enrollment_id)?$row->student->enrollment_id:'';
            
@@ -270,7 +273,7 @@ class StudentController extends Controller
                   $btn .= '<a href="'.route('admin.view_certificate',['id'=>$row->id]).'" class="btn btn-primary btn-sm">View</a>';
                 }
                 return $btn;
-             })->rawColumns(['branch','course','status','action','enrollment_id','marksheet_status','certificate_status','certificate_action','marksheet_action'])
+             })->rawColumns(['branch','dob','course','status','action','enrollment_id','marksheet_status','certificate_status','certificate_action','marksheet_action'])
             ->make(true);
     }
 

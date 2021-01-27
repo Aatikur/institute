@@ -21,6 +21,7 @@
                               <th>Branch Name</th>
                               <th>Course</th>
                               <th>Enrollment ID</th>
+                              <th>DOB</th>
                               <th>Admit Card Status</th>
                               <th>Admit Card Action</th>
                               <th>Marksheet Status</th>
@@ -57,6 +58,7 @@
           {data: 'branch', name: 'branch',searchable: true},
           {data: 'course', name: 'course',searchable: true},
           {data: 'enrollment_id', name: 'enrollment_id',searchable: true},
+          {data: 'dob', name: 'dob',searchable: true},
           {data: 'status', name: 'status',searchable: true},
           {data: 'action', name: 'action',searchable: true},
           {data: 'marksheet_status', name: 'marksheet_status',searchable: true},
