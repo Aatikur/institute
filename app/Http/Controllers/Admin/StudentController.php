@@ -234,7 +234,7 @@ class StudentController extends Controller
                 if($row->student->is_admit_generated == 1){
                      $btn .='<a  href="'.route('admin.admit_Card_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Admit Card</a>';
                 }else{
-                  $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
+                //   $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
                   $btn .= '<a href="'.route('admin.view_admit',['id'=>$row->id]).'" class="btn btn-primary btn-sm">View</a>';
                 }
                 return $btn;
@@ -250,7 +250,7 @@ class StudentController extends Controller
                 if($row->student->is_marksheet_generated == 1 && $row->student->is_admit_generated == 2){
                      $btn .='<a  href="'.route('admin.marksheet_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Marksheet</a>';
                 }else{
-                  $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
+                //   $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
                   $btn .= '<a href="'.route('admin.view_marksheet',['id'=>$row->id]).'" class="btn btn-primary btn-sm">View</a>';
                 }
                 return $btn;
@@ -266,7 +266,7 @@ class StudentController extends Controller
                 if($row->student->is_certificate_generated == 1 && $row->student->is_marksheet_generated == 2){
                      $btn .='<a  href="'.route('admin.certificate_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Certificate</a>';
                 }else{
-                  $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
+                //   $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
                   $btn .= '<a href="'.route('admin.view_certificate',['id'=>$row->id]).'" class="btn btn-primary btn-sm">View</a>';
                 }
                 return $btn;

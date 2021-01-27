@@ -16,13 +16,13 @@
          <div class="contact_address">
             <h2>Address:</h2>
             <p>
-               Hatigaon, ghoramara, Shivam path,
-               Nera Durga Mandir
-               City- Guwahati (Kamrup-M)<br />
-               Pin-781038<br />
-               Phone Number : 7001796663<br />
+               College Road (West) 
+               Dhubri,Assam<br/>
+               City- Dhubri <br />
+               Pin-783325<br />
+               Phone Number : 7002116136<br />
                <br />
-               E-mail : info@nces.co.in / support@nces.co.in <br />
+               E-mail : gclm36@gmail.com <br />
                <br />
                We are open : Monday - Saturday, 9.00AM 9.00PM
             </p>
