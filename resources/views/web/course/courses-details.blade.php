@@ -1,5 +1,9 @@
-<?php include("include/header.php")?>
-<!------------header end------------>
+@extends('web.template.master')
+
+
+
+@section('content')
+
 <div class="marquee_hld">
    <marquee scrollamount="4">An ISO 9001 : 2015 Certified Autonomous Body | The Best Institute of Information Technology Education & Development.</marquee>
 </div>
@@ -69,4 +73,9 @@
       </div>
    </div>
 </div>
-<?php include("include/footer.php")?>
+<!------------body end------------>
+@endsection
+
+@section('script')
+
+@endsection

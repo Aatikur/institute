@@ -58,22 +58,21 @@
          </div>
          <!------------navigation start------------>
          <div class="navigation">
-            <div class="" style="margin-left: 18%;">
+            <div class="" style="margin-left: 9%;">
                <div id='cssmenu'>
                   <ul>
-                     <li><a href="{{ route('web.index') }}" class="active">Home</a></li>
+                     <li><a href="{{ route('web.index') }}" >Home</a></li>
                      <li>
                         <a href="javascript:void(0);" >About Us</a>
                         <ul>
                            <li><a href="{{ route('web.about.about') }}">About GCLM</a></li>
                            <li><a href="{{ route('web.about.chairman-message') }}">Chairman Message</a></li>
                            <li><a href="{{ route('web.about.mission-vission') }}">Mission & Vission</a></li>
-                           <li><a href="{{ route('web.about.bank-details') }}">Bank Details</a></li>
                         </ul>
                      </li>
                      <li><a href="javascript:void(0);" >Courses</a>
                         <ul>
-                           <li><a href="courses.php">Computer Advance Diploma Courses</a></li>
+                           <li><a href="{{route('web.course.courses')}}">Computer Advance Diploma Courses</a></li>
                            <li><a href="#">Computer Certificate Courses</a></li>
                            <li><a href="#">Computer Diploma Courses</a></li>
                            <li><a href="#">E-Learning : Live Courses</a></li>
@@ -91,8 +90,9 @@
                            <li><a href="{{ route('web.franchise.centers') }}">Authorized Centers</a></li>
                         </ul>
                      </li>
+                     <li><a href="{{ route('web.bank.bank-details') }}">Bank Details</a></li>
                      <li><a href="{{ route('web.center.center-login') }}" >Login</a></li>
-                     <li><a href="#" >Downloads</a></li>
+                     <li><a href="#!" >Downloads</a></li>
                      <li>
                         <a href="javascript:void(0);" >Student</a>
                         <ul>
@@ -104,7 +104,9 @@
                            <li><a href="{{ route('web.student.student-marksheet') }}">Student Marksheet</a></li>
                         </ul>
                      </li>
+                     <li><a href="#!" >Gallery</a></li>
                      <li><a href="{{ route('web.contact.contact') }}" >Contact Us</a></li>
+                    
                   </ul>
                </div>
             </div>

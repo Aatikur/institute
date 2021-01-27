@@ -1,20 +1,22 @@
 <!------------footer start------------>
 <div class="footer">
    <ul class="footer_nav">
-      <li><a href="index.php">Home</a></li>
-      <li><a href="about-gclm.php">About Us</a></li>
-      <li><a href="#">Courses</a></li>
-      <li><a href="why-gclm.php">Franchise/ASC</a></li>
-      <li><a href="#">Downloads</a></li>
-      <li><a href="#">Student</a></li>
-      <li><a href="contact-us.php">Contact Us</a></li>
+      <li><a href="{{ route('web.index') }}">Home</a></li>
+      <li><a href="{{ route('web.about.about') }}">About Us</a></li>
+      <li><a href="{{route('web.course.courses')}}">Courses</a></li>
+      <li><a href="{{ route('web.franchise.why-gclm') }}">Franchise/ASC</a></li>
+      <li><a href="{{ route('web.bank.bank-details') }}">Bank Details</a></li>
+      <li><a href="#!">Downloads</a></li>
+      <li><a href="{{route('web.student.registration-process')}}">Student</a></li>
+      <li><a href="#!" >Gallery</a></li>
+      <li><a href="{{ route('web.contact.contact') }}">Contact Us</a></li>
    </ul>
    <div class="footer_bottom_panel">
       <div class="social_media">
          <a href="#" target="_blank">
-         <img src="{{  asset('web/assets/img/footer/facebook-ftr.png')}}" height="48" alt="facebook" /></a>
-         <a href="#" target="_blank"><img src="{{  asset('web/assets/img/footer/twitter-ftr.png')}}" height="48" alt="twitter" /></a>
-         <a href="#" target="_blank"><img src="{{  asset('web/assets/img/footer/googleplus-ftr.png')}}" height="48" alt="googleplus" /></a>
+         <img src="{{asset('web/assets/img/footer/facebook-ftr.png')}}" height="48" alt="facebook" /></a>
+         <a href="#" target="_blank"><img src="{{asset('web/assets/img/footer/twitter-ftr.png')}}" height="48" alt="twitter" /></a>
+         <a href="#" target="_blank"><img src="{{asset('web/assets/img/footer/googleplus-ftr.png')}}" height="48" alt="googleplus" /></a>
       </div>
       <p class="visitorClass"></p>
       <p>GLOBALFAST COMPUTER LITERACY MISSION &copy; 2020. Design by

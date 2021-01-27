@@ -16,25 +16,22 @@
          </h4>
          <div class="content_details_holder bank_details">
             <p>
-               Name of The Bank <span>- ICICI BANK.</span>
+               Name of The Bank <span>- STATE BANK OF INDIA.</span>
             </p>
             <p>
-               A/C Name <span>- GLOBALFAST COMPUTER LITERACY MISSION PRIVATE LIMITED</span>
+               A/C Name <span>- GLOBALFAST COMPUTER LITERACY MISSION </span>
             </p>
             <p>
-               A/C No <span>- 12345678909</span>
+               A/C No <span>- 32401604331</span>
             </p>
             <p>
-               Branch Name <span>- SAHAPUR.</span>
+               Branch Name <span>- KISMATHASDAH.</span>
             </p>
             <p>
-               Branch Code <span>- 123</span>
+               Branch Code <span>- 08286</span>
             </p>
             <p>
-               MICR Code <span>- 712229102</span>
-            </p>
-            <p>
-               IFSC Code <span>- ICIC0002609</span>
+               IFSC Code <span>- SBIN0008286</span>
             </p>
             <div class="wi-payOnline-btn">
                <a href="#" target="_blank">PAY ONLINE</a>

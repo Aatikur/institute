@@ -24,13 +24,13 @@
                VISION
             </h5>
             <p>
-               Indending to provide students  and professionals with all types of Educational services, in a smart but low cost consuming way, so that we can reach every sector of our society in a academy.
+               Indending to provide students and professionals with all types of Educational services, in a smart but low cost consuming way, so that we can reach every sector of our society in a academy.
             </p>
             <h5>
                Our Strategy
             </h5>
             <p>
-            Globalfast Computer Literacy Mission (GCLM) provide good quality computer training to our society with good quality teaching support to our students with affordablle course fee. We Structured our courses according to present inforrmation techanology industry.
+               Globalfast Computer Literacy Mission (GCLM) provide good quality computer training to our society with good quality teaching support to our students with affordable course fee. We Structured our courses according to present information technology industry.
             </p>
             <p>Vision Implementation Journey</p>
             <p>Identifying the nation&#39;s best potential and nurturing them into well groomed professional.</p>

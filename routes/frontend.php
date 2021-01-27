@@ -20,9 +20,20 @@ Route::get('/Mission/Vission', function () {
     return view('web.about.mission-vission');
 })->name('web.about.mission-vission');
 
+// ------- bank --------
 Route::get('/Bank/Details', function () {
-    return view('web.about.bank-details');
-})->name('web.about.bank-details');
+    return view('web.bank.bank-details');
+})->name('web.bank.bank-details');
+
+// ------- crouse --------
+Route::get('/Course', function () {
+    return view('web.course.courses');
+})->name('web.course.courses');
+
+
+Route::get('/CourseDetails', function () {
+    return view('web.course.courses-details');
+})->name('web.course.courses-details');
 
 
 // ------- Franchise --------
