@@ -48,7 +48,7 @@
                                             <input type="text" class="form-control"readonly="readonly" value="{{$student->student->course->name }}">
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12 mb-3" id="doc_div">
-                                            <label for="amount">Course Fees<span><b style="color: red"> * </b></span></label>
+                                            <label for="amount">Exam Fees<span><b style="color: red"> * </b></span></label>
                                             <input type="number" class="form-control"readonly="readonly" value="{{$student->student->course->exam_fees }}">
                                         </div>
                                     
