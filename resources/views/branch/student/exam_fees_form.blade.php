@@ -31,7 +31,7 @@
 
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3" style="text-align: center;">
-                    @if($student->is_exam_fee_paid == 1)
+                    @if($student->student->is_exam_fee_paid == '1')
                         <form method="POST" action="{{ route('branch.pay_exam_fees',['id'=>$student->student_id]) }}" >
                             @method('put')
                             @csrf
