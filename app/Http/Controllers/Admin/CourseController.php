@@ -19,15 +19,15 @@ class CourseController extends Controller
 
     public function addCourse(Request $request){
        
-        // $this->validate($request, [
-        //     'name'=>'required',
-        //     'course_code'=>'required',
-        //     'eligibity'=>'required',
-        //     'duration'=>'required',
-        //     'course_fees'=>'required',
-        //     'exam_fees'=>'required',
-        //     'details'=>'required',
-        // ]);
+        $this->validate($request, [
+            'name'=>'required',
+            'course_code'=>'required',
+            'eligibility'=>'required',
+            'duration'=>'required',
+            'course_fees'=>'required',
+            'exam_fees'=>'required',
+            'details'=>'required',
+        ]);
         $course = new Course();
         $course->name = $request->input('name');
         $course->course_code = $request->input('course_code');
@@ -67,12 +67,13 @@ class CourseController extends Controller
         $this->validate($request, [
             'name'=>'required',
             'course_code'=>'required',
-            'eligibity'=>'required',
+            'eligibility'=>'required',
             'duration'=>'required',
             'course_fees'=>'required',
             'exam_fees'=>'required',
             'details'=>'required',
         ]);
+        
         $course_name = $request->input('name');
         $course_code = $request->input('course_code');
         $duration =  $request->input('duration');
@@ -89,9 +90,9 @@ class CourseController extends Controller
         $course_data->detail =  $details;
         $course_data->course_fees =  $course_fees;
         $course_data->exam_fees =  $exam_fees;
-        $course_data->save();
         if($course_data->save()){
-            return redirect()->back()->with('message','Updated Successfully');
+            
+            return redirect()->back()->with('message','Course Details Updated Successfully');
         }else{
             return redirect()->back()->with('error','Something Went Wrong');
         }

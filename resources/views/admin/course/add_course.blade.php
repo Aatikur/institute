@@ -37,9 +37,9 @@
                         <div class="form-group">
                             {{ Form::label('course_name', 'Course Name')}}
                             {{ Form::text('name',null,array('class' => 'form-control','placeholder'=>'Enter Course Name')) }}
-                            @if($errors->has('course_name'))
+                            @if($errors->has('name'))
                                 <span class="invalid-feedback" role="alert" style="color:red">
-                                    <strong>{{ $errors->first('course_name') }}</strong>
+                                    <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @enderror
                         </div>
