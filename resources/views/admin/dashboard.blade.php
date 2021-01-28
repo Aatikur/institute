@@ -13,11 +13,11 @@
         <span class="count_top"><i class="fa fa-clock-o"></i> Total Branch</span>
         <div class="count green">{{ $branch_cnt }}</div>
       </div>
-      {{-- <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count"  style="text-align: center">
-          <span class="count_top"><i class="fa fa-user"></i> Total Products</span>
-          <div class="count green">10</div>
-      </div>
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count"  style="text-align: center">
+          <span class="count_top"><i class="fa fa-user"></i> Total Students</span>
+          <div class="count green">{{$student_cnt}}</div>
+      </div>
+       {{-- <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count"  style="text-align: center">
         <span class="count_top"><i class="fa fa-user"></i> Total Categories</span>
         <div class="count green">10</div>
       </div>

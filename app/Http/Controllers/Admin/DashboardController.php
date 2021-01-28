@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Course;
+use App\Models\Student;
 use App\Models\Branch;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,7 +16,8 @@ class DashboardController extends Controller
     {
         $course_cnt = Course::count();
         $branch_cnt = Branch::count();
-        return view('admin.dashboard',compact('course_cnt','branch_cnt'));
+        $student_cnt = Student::count();
+        return view('admin.dashboard',compact('course_cnt','branch_cnt','student_cnt'));
     }
 
 //     public function changePasswordForm()
