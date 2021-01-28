@@ -22,7 +22,7 @@ class BranchController extends Controller
 
     public function addBranch(Request $request){
         $this->validate($request, [
-            'email'=>'required',
+            'email'=>'required|unique:branch,email',
             'mobile'=>'required',
             'password'=>'required|min:8|same:password_confirmation',
             'cnt_name'=>'required',

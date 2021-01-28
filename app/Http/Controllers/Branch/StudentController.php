@@ -102,6 +102,7 @@ class StudentController extends Controller
             }
             $student_details = new StudentDetail();
             $student_details->student_id =$student->id;
+            $student_details->branch_id = Auth::user()->id;
             $student_details->name = $request->input('student_name');
             $student->branch_id = Auth::user()->id;
             $student_details->father_name = $request->input('father_name');
@@ -179,7 +180,7 @@ class StudentController extends Controller
 
     public function StudentListAjax(Request $request)
     {
-        return datatables()->of(StudentDetail::get())
+        return datatables()->of(StudentDetail::where('branch_id',Auth::user()->id)->get())
             ->addIndexColumn()
             ->addColumn('course_name', function ($row) {
                 
