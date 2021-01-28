@@ -69,6 +69,7 @@ class StudentController extends Controller
         $student =  new Student();
         $student->course_id = $request->input('course');
         $student->is_reg_fee_paid = 2;
+        $student->branch_id = Auth::user()->id;
         $student->reg_fee_paid_date = Carbon::today();
         if($student->save()){
             $wallet_history->comment = 'Course Fees Of Amount="'.$request->input('course_fees').'" Paid For Student ID="'.$student->id.'"';
@@ -104,7 +105,7 @@ class StudentController extends Controller
             $student_details->student_id =$student->id;
             $student_details->branch_id = Auth::user()->id;
             $student_details->name = $request->input('student_name');
-            $student->branch_id = Auth::user()->id;
+           
             $student_details->father_name = $request->input('father_name');
             $student_details->mother_name = $request->input('mother_name');
             if(!empty($request->input('hus_name'))){
