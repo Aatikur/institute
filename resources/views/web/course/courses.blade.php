@@ -11,7 +11,7 @@
    <div class="inner_wrap">
       <div class="content_holder">
          <h4>
-            <img src="{{asset('web/assets/img/icon/courses-icon3.png')}}" alt="course" align="absmiddle">COURSES OFFERED ({{$course->name}})                                            
+            <img src="{{asset('web/assets/img/icon/courses-icon3.png')}}" alt="course" align="absmiddle">COURSES OFFERED ({{$category->name}})                                            
          </h4>
          <div class="content_details_holder">
             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="table_holder">

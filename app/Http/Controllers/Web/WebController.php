@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\CourseCategory;
 use App\Models\Student;
 use App\Models\StudentDetail;
 use App\Models\Marks;
@@ -74,7 +75,8 @@ class WebController extends Controller
 
     public function courses($category_id){
         $courses = Course::where('category_id',$category_id)->where('status',1)->get();
-        return view('web.course.courses',compact('courses'));
+        $category = CourseCategory::findOrFail($category_id);
+        return view('web.course.courses',compact('courses','category'));
     }
 
     public function courseDetails($course_id){
