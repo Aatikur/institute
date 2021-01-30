@@ -10,6 +10,10 @@ class Course extends Model
     protected $table = 'course';
     protected $primarykey = 'id';
     protected $fillable = [
-        'name','duration','course_code','eligibility','detail','course_fees','exam_fees','status'
+        'name','duration','course_code','eligibility','detail','course_fees','exam_fees','status','category_id'
     ];
+
+    public function category(){
+        return $this->belongsTo('App\Models\Course','category_id','id');
+    }
 }

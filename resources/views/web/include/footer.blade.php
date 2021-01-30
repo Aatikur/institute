@@ -3,7 +3,7 @@
    <ul class="footer_nav">
       <li><a href="{{ route('web.index') }}">Home</a></li>
       <li><a href="{{ route('web.about.about') }}">About Us</a></li>
-      <li><a href="{{route('web.course.courses')}}">Courses</a></li>
+      <li><a href="#">Courses</a></li>
       <li><a href="{{ route('web.franchise.why-gclm') }}">Franchise/ASC</a></li>
       <li><a href="{{ route('web.bank.bank-details') }}">Bank Details</a></li>
       <li><a href="#!">Downloads</a></li>

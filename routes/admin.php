@@ -12,6 +12,11 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
         Route::post('logout', 'LoginController@logout')->name('admin.logout');
         
         Route::group(['prefix'=>'course'],function(){
+            Route::get('category/list','CourseController@courseCategoryList')->name('admin.course_category_list');
+            Route::get('category/add/form', 'CourseController@addCategoryForm')->name('admin.add_category_form');
+            Route::post('add/category','CourseController@addCategory')->name('admin.add_category'); 
+            Route::get('category/status/{category_id}/{status}','CourseController@categoryStatus')->name('admin.category_status'); 
+            
             Route::get('/list', 'CourseController@courseList')->name('admin.course_list'); 
             Route::get('add/form', 'CourseController@addCourseForm')->name('admin.add_course_form');
             Route::post('add','CourseController@addCourse')->name('admin.add_course'); 
@@ -79,6 +84,20 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
             Route::get('list', 'BoardController@boardList')->name('admin.board_list'); 
             Route::get('edit/form/{id}', 'BoardController@boardEditForm')->name('admin.board_edit_form'); 
             Route::put('update/{id}', 'BoardController@updateBoard')->name('admin.update_board'); 
+        });
+
+        Route::group(['prefix'=>'gallery'],function(){
+            Route::get('list','GalleryController@galleryList')->name('admin.gallery_list');
+            Route::get('add/form','GalleryController@addImageForm')->name('admin.add_image_form');
+            Route::post('add','GalleryController@addImage')->name('admin.add_image');
+            Route::get('delete/{id}','GalleryController@deleteImage')->name('admin.delete_image');
+        });
+
+        Route::group(['prefix'=>'documents'],function(){
+            Route::get('list','GalleryController@galleryList')->name('admin.docs_list');
+            Route::get('add/form','GalleryController@addImageForm')->name('admin.add_doc_form');
+            Route::post('add','GalleryController@addImage')->name('admin.insert_doc');
+            Route::get('delete/{id}','GalleryController@deleteImage')->name('admin.delete_doc');
         });
     });   
 });

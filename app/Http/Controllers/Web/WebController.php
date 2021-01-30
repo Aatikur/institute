@@ -71,4 +71,14 @@ class WebController extends Controller
             return redirect()->back()->with('error','Invalid Enrollment Id Or Certificate Not Generated Yet!');
         }
     }
+
+    public function courses($category_id){
+        $courses = Course::where('category_id',$category_id)->where('status',1)->get();
+        return view('web.course.courses',compact('courses'));
+    }
+
+    public function courseDetails($course_id){
+        $course_details =Course::findOrFail($course_id);
+        return view('web.course.courses-details',compact('course_details'));
+    }
 }

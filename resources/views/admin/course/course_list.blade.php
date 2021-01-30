@@ -19,6 +19,7 @@
                             <tr>
                               <th>Sl</th>
                               <th>Name</th>
+                              <th>Course Category</th>
                               <th>Course Code</th>
                               <th>Eligibility</th>
                               <th>Course Fee</th>
@@ -38,6 +39,7 @@
                                     <tr>
                                       <td>{{$count++}}</td>
                                       <td>{{$item->name}}</td>
+                                      <td>{{$item->category->name??null}}</td>
                                       <td>{{$item->course_code}}</td>
                                       <td>{{$item->eligibility}}</td>
                                       <td>{{$item->course_fees}}</td>

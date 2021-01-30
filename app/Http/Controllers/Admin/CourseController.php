@@ -5,16 +5,52 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\CourseCategory;
 
 class CourseController extends Controller
 {
+    public function courseCategoryList(){
+        $category = CourseCategory::get();
+        return view('admin.course.course_category_list',compact('category'));
+    }
+
+    public function addCategoryForm(){
+        return view('admin.course.add_course_category');
+    }
+
+    public function addCategory(Request $request){
+        $this->validate($request, [
+            'name'=>'required'
+        ]);
+        $category = new CourseCategory();
+        $category->name = $request->input('name');
+        if($category->save()){
+            return redirect()->back()->with('message','Category Added Successfully');
+        }else{
+            return redirect()->back()->with('error','Something Went Wrong!');
+        }
+    }
+
+    public function categoryStatus($category_id,$status){
+
+        $category_status = CourseCategory::where('id',$category_id)->first();
+        $category_status->status=$status;
+        $category_status->save();
+        if($category_status->save()){
+            return redirect()->back()->with('message','Status Updated Successfully');
+        }else{
+            return redirect()->back()->with('error','Something Went Wrong!');
+        }
+
+    }
     public function courseList(){
         $courses = Course::get();
         return view('admin.course.course_list',compact('courses'));
     }
 
     public function addCourseForm(){
-        return view('admin.course.add_course');
+        $category = CourseCategory::where('status',1)->get();
+        return view('admin.course.add_course',compact('category'));
     }
 
     public function addCourse(Request $request){
@@ -27,9 +63,11 @@ class CourseController extends Controller
             'course_fees'=>'required',
             'exam_fees'=>'required',
             'details'=>'required',
+            'category'=>'required|numeric',
         ]);
         $course = new Course();
         $course->name = $request->input('name');
+        $course->category_id = $request->input('category');
         $course->course_code = $request->input('course_code');
         $course->duration = $request->input('duration');
         $course->eligibility = $request->input('eligibility');
@@ -59,7 +97,8 @@ class CourseController extends Controller
 
     public function editCourseForm($course_id){
         $course = Course::where('id',$course_id)->first();
-        return view('admin.course.add_course',compact('course'));
+        $category=CourseCategory::where('status',1)->get();
+        return view('admin.course.add_course',compact('course','category'));
 
     }
 
@@ -72,6 +111,7 @@ class CourseController extends Controller
             'course_fees'=>'required',
             'exam_fees'=>'required',
             'details'=>'required',
+            'category'=>'required|numeric',
         ]);
         
         $course_name = $request->input('name');
@@ -89,6 +129,7 @@ class CourseController extends Controller
         $course_data->eligibility =  $eligibility;
         $course_data->detail =  $details;
         $course_data->course_fees =  $course_fees;
+        $course_data->category_id =  $request->input('category');
         $course_data->exam_fees =  $exam_fees;
         if($course_data->save()){
             

@@ -43,6 +43,20 @@
                                 </span>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="category">Select Course Category</label>
+                            <select class="form-control" name="category" id="category">
+                                @if(isset($course) && !empty($course))
+                                    @foreach($category as $items)
+                                        <option value="{{$items->id}}" {{$items->id ==$course->category_id?'selected':''}}>{{$items->name}}</option>
+                                    @endforeach
+                                @else
+                                    @foreach($category as $items)
+                                        <option value="{{$items->id}}">{{$items->name}}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
                        
                         <div class="form-group">
                             {{ Form::label('course_code', 'Course Code')}}

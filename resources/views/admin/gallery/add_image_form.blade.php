@@ -10,7 +10,7 @@
             <div class="x_panel">
 
                 <div class="x_title">
-                        <h2>Update Board Signature</h2>
+                        <h2>Add Gallery Image</h2>
                    <div class="clearfix"></div>
                 </div>
 
@@ -24,21 +24,29 @@
 
                 <div>
                     <div class="x_content">
-                        <form method="post" action="{{route('admin.update_board',['id'=>$board_details->id])}}" enctype="multipart/form-data">
-                            @method('put')
+                        <form method="post" action="{{route('admin.add_image')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <input type="file" name="sign" id="imgprev" class="form-control">
-                                <img id="preview" style="width:150px;height:150px;" src="{{  asset('images/board/'.$board_details->sign)}}">
-                                @if($errors->has('sign'))
+                                <input type="text" name="caption" placeholder="Enter Image Caption" class="form-control">
+                                
+                                @if($errors->has('caption'))
                                     <span class="invalid-feedback" role="alert" style="color:red">
-                                        <strong>{{ $errors->first('sign') }}</strong>
+                                        <strong>{{ $errors->first('caption') }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <input type="file" name="image" id="imgprev" class="form-control">
+                                <img id="preview" style="width:150px;height:150px;">
+                                @if($errors->has('image'))
+                                    <span class="invalid-feedback" role="alert" style="color:red">
+                                        <strong>{{ $errors->first('image') }}</strong>
                                     </span>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 {{ Form::submit('Save', array('class'=>'btn btn-success')) }}
-                                <a href="{{route('admin.board_list')}}" class="btn btn-warning">Back</a>
+                                <a href="{{route('admin.gallery_list')}}" class="btn btn-warning">Back</a>
                             </div> 
                         </form>
                     </div>

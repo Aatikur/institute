@@ -25,15 +25,15 @@ Route::get('/Bank/Details', function () {
     return view('web.bank.bank-details');
 })->name('web.bank.bank-details');
 
-// ------- crouse --------
-Route::get('/Course', function () {
-    return view('web.course.courses');
-})->name('web.course.courses');
+// // ------- crouse --------
+// Route::get('/Course', function () {
+//     return view('web.course.courses');
+// })->name('web.course.courses');
 
 
-Route::get('/CourseDetails', function () {
-    return view('web.course.courses-details');
-})->name('web.course.courses-details');
+// Route::get('/CourseDetails', function () {
+//     return view('web.course.courses-details');
+// })->name('web.course.courses-details');
 
 
 // ------- Franchise --------
@@ -106,5 +106,7 @@ Route::group(['namespace'=>'Web'],function(){
     Route::post('/Student/Admit/Card','WebController@studentAdmitCard')->name('web.admit.card');
     Route::post('/Student/Marksheet','WebController@studentMarksheet')->name('web.marksheet');
     Route::post('/Student/Certificate','WebController@studentCertificate')->name('web.cerificate');
+    Route::get('course/{category_id}','WebController@courses')->name('web.courses');
+    Route::get('course/details/{course_id}','WebController@courseDetails')->name('web.course_details');
     
 });

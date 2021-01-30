@@ -72,13 +72,15 @@
                      </li>
                      <li><a href="javascript:void(0);" >Courses</a>
                         <ul>
-                           <li><a href="{{route('web.course.courses')}}">Computer Advance Diploma Courses</a></li>
-                           <li><a href="#">Computer Certificate Courses</a></li>
+                           @foreach($header_data['category'] as $data)
+                              <li><a href="{{route('web.courses',['category_id'=>$data->id])}}">{{$data->name}}</a></li>
+                           @endforeach
+                           {{-- <li><a href="#">Computer Certificate Courses</a></li>
                            <li><a href="#">Computer Diploma Courses</a></li>
                            <li><a href="#">E-Learning : Live Courses</a></li>
                            <li><a href="#">Paramedical Courses (Skill Development)</a></li>
                            <li><a href="#">Spoken English</a></li>
-                           <li><a href="#">Vocational Courses</a></li>
+                           <li><a href="#">Vocational Courses</a></li> --}}
                         </ul>
                      </li>
                      <li>

@@ -10,7 +10,7 @@
             <div class="x_panel">
 
                 <div class="x_title">
-                        <h2>Update Board Signature</h2>
+                        <h2>Add Course Category</h2>
                    <div class="clearfix"></div>
                 </div>
 
@@ -24,21 +24,21 @@
 
                 <div>
                     <div class="x_content">
-                        <form method="post" action="{{route('admin.update_board',['id'=>$board_details->id])}}" enctype="multipart/form-data">
-                            @method('put')
+                        <form method="post" action="{{route('admin.add_category')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <input type="file" name="sign" id="imgprev" class="form-control">
-                                <img id="preview" style="width:150px;height:150px;" src="{{  asset('images/board/'.$board_details->sign)}}">
-                                @if($errors->has('sign'))
+                                <input type="text" name="name" placeholder="Enter Category Name" class="form-control">
+                                
+                                @if($errors->has('name'))
                                     <span class="invalid-feedback" role="alert" style="color:red">
-                                        <strong>{{ $errors->first('sign') }}</strong>
+                                        <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @enderror
                             </div>
+                            
                             <div class="form-group">
                                 {{ Form::submit('Save', array('class'=>'btn btn-success')) }}
-                                <a href="{{route('admin.board_list')}}" class="btn btn-warning">Back</a>
+                                <a href="{{route('admin.course_category_list')}}" class="btn btn-warning">Back</a>
                             </div> 
                         </form>
                     </div>

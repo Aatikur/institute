@@ -21,61 +21,14 @@
                      <td align="center" valign="middle">Courses</td>
                      <td width="15%" align="center" valign="middle">Code</td>
                   </tr>
-                  <tr class="courses_list">
-                     <td align="center" valign="middle"><a href="{{route('web.course.courses-details')}}"><img src="{{asset('web/assets/img/icon/courses-icon.png')}}" alt="courses" align="absmiddle"></a></td>
-                     <td align="left" valign="middle"><a href="{{route('web.course.courses-details')}}">Advance Diploma in  Information Technology (ADIT)</a></td>
-                     <td align="center" valign="middle">GCLM 11</td>
-                  </tr>
-                  <tr class="courses_list2">
-                     <td align="center" valign="middle"><a href="#"><img src="{{asset('web/assets/img/icon/courses-icon.png')}}" alt="courses" align="absmiddle"></a></td>
-                     <td align="left" valign="middle"><a href="#">Advance  Diploma In Web Technology (ADWT) </a></td>
-                     <td align="center" valign="middle">GCLM 17</td>
-                  </tr>
-                  <tr class="courses_list">
-                     <td align="center" valign="middle"><a href="#"><img src="{{asset('web/assets/img/icon/courses-icon.png')}}" alt="courses" align="absmiddle"></a></td>
-                     <td align="left" valign="middle"><a href="#">Advance Diploma In Software Application (ADSA)</a></td>
-                     <td align="center" valign="middle">GCLM 19</td>
-                  </tr>
-                  <tr class="courses_list2">
-                     <td align="center" valign="middle"><a href="#"><img src="{{asset('web/assets/img/icon/courses-icon.png')}}" alt="courses" align="absmiddle"></a></td>
-                     <td align="left" valign="middle"><a href="#">COMPUTER  TEACHER'S  TRANING (CTT)</a></td>
-                     <td align="center" valign="middle">GCLM 20</td>
-                  </tr>
-                  <tr class="courses_list">
-                     <td align="center" valign="middle"><a href="#"><img src="{{asset('web/assets/img/icon/courses-icon.png')}}" alt="courses" align="absmiddle"></a></td>
-                     <td align="left" valign="middle"><a href="#">Advance Diploma in Financial Accounting (ADFA)</a></td>
-                     <td align="center" valign="middle">GCLM 37</td>
-                  </tr>
-                  <tr class="courses_list2">
-                     <td align="center" valign="middle"><a href="#"><img src="{{asset('web/assets/img/icon/courses-icon.png')}}" alt="courses" align="absmiddle"></a></td>
-                     <td align="left" valign="middle"><a href="#">Advance Diploma in Hardware &amp; Networking Engineering (ADHNE)</a></td>
-                     <td align="center" valign="middle">GCLM 43</td>
-                  </tr>
-                  <tr class="courses_list">
-                     <td align="center" valign="middle"><a href="#"><img src="{{asset('web/assets/img/icon/courses-icon.png')}}" alt="courses" align="absmiddle"></a></td>
-                     <td align="left" valign="middle"><a href="#">Advance Diploma in Computer Application (ADCA)</a></td>
-                     <td align="center" valign="middle">GCLM-53</td>
-                  </tr>
-                  <tr class="courses_list2">
-                     <td align="center" valign="middle"><a href="#"><img src="{{asset('web/assets/img/icon/courses-icon.png')}}" alt="courses" align="absmiddle"></a></td>
-                     <td align="left" valign="middle"><a href="#">Advance Diploma In Office Management &amp; Publishing (ADOMP)</a></td>
-                     <td align="center" valign="middle">GCLM-54</td>
-                  </tr>
-                  <tr class="courses_list">
-                     <td align="center" valign="middle"><a href="#"><img src="{{asset('web/assets/img/icon/courses-icon.png')}}" alt="courses" align="absmiddle"></a></td>
-                     <td align="left" valign="middle"><a href="#">Master Diploma in Financial Accounting (MDFA)</a></td>
-                     <td align="center" valign="middle">GCLM-77</td>
-                  </tr>
-                  <tr class="courses_list2">
-                     <td align="center" valign="middle"><a href="#"><img src="{{asset('web/assets/img/icon/courses-icon.png')}}" alt="courses" align="absmiddle"></a></td>
-                     <td align="left" valign="middle"><a href="#">Professional Advance Diploma in Computer Application (PADCA)</a></td>
-                     <td align="center" valign="middle">GCLM-79</td>
-                  </tr>
-                  <tr class="courses_list">
-                     <td align="center" valign="middle"><a href="#"><img src="{{asset('web/assets/img/icon/courses-icon.png')}}" alt="courses" align="absmiddle"></a></td>
-                     <td align="left" valign="middle"><a href="#">Advanced Diploma In Multimedia (ADM)</a></td>
-                     <td align="center" valign="middle">GCLM-85</td>
-                  </tr>
+                  @foreach($courses as $course)
+                     <tr class="courses_list">
+                        <td align="center" valign="middle"><a href="{{route('web.course_details',['course_id'=>$course->id])}}"><img src="{{asset('web/assets/img/icon/courses-icon.png')}}" alt="courses" align="absmiddle"></a></td>
+                        <td align="left" valign="middle"><a href="{{route('web.course_details',['course_id'=>$course->id])}}">{{$course->name}}</a></td>
+                        <td align="center" valign="middle">{{$course->course_code}}</td>
+                     </tr>
+                  @endforeach
+                
                </tbody>
             </table>
          </div>
