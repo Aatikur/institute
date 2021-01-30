@@ -34,8 +34,8 @@
    <div class="hme_callnow_outer">
       <div class="inner_wrap">
          <h2>Call Now</h2>
-         <div class="hme_callnow"><img src="https://www.nces.co.in/images/call.png" height="35" align="absmiddle" alt="call"> Franchise Enquiry: 8293008624</div>
-         <div class="hme_callnow"><img src="https://www.nces.co.in/images/helpline.png" height="35" align="absmiddle" alt="call"> Helpline: 7001796663</div>
+         <div class="hme_callnow"><img src="https://www.nces.co.in/images/call.png" height="35" align="absmiddle" alt="call"> Franchise Enquiry: <a href="tel:7002116136" style="color: #fff">+91-7002116136</a></div>
+         <div class="hme_callnow"><img src="https://www.nces.co.in/images/helpline.png" height="35" align="absmiddle" alt="call"> Helpline: <a href="tel:7002116136" style="color: #fff">+91-7002116136</a></div>
       </div>
    </div>
    <!------------Affiliation start------------>      
