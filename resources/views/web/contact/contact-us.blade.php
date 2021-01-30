@@ -20,10 +20,8 @@
                Dhubri,Assam<br/>
                City- Dhubri <br />
                Pin-783325<br />
-               Phone Number : 7002116136<br />
-               <br />
+               Phone Number : +91-7002116136 <br />
                E-mail : gclm36@gmail.com <br />
-               <br />
                We are open : Monday - Saturday, 9.00AM 9.00PM
             </p>
          </div>

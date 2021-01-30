@@ -41,7 +41,7 @@
       <div id="header">
          <div class="header_top_panel">
             <div class="inner_wrap">
-               <p><img src="{{  asset('web/assets/img/header/email.png')}}" width="17" height="12" alt="email" /> Email: <a href="mailto:gclm36@gmail.com">gclm36@gmail.com</a> | Call: 8293008624 / 7001796663</p>
+               <p><img src="{{  asset('web/assets/img/header/email.png')}}" width="17" height="12" alt="email" /> Email: <a href="mailto:gclm36@gmail.com">gclm36@gmail.com</a> | Call:  <a href="tel:7002116136">+91-7002116136</a></p>
                <div class="hdr_social_media">
                   <a href="#" target="_blank">
                   <img src="{{  asset('web/assets/img/header/facebook-hdr.png')}}" alt="facebook" /></a>
