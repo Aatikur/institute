@@ -496,7 +496,7 @@ p, h1, h2, h3, h4, h5, h6, span, div, li, td, samp {
 	padding:0;
 }
 .hdr_right_logo {
-	margin:15px 0 0 0;
+	margin:0px 0 0 0;
 	float:right;
 }
 /* -- HEADER ENDS HERE -- */
