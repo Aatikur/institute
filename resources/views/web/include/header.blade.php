@@ -53,7 +53,7 @@
          <div class="header_block_holder">
             <div class="inner_wrap">
                <div class="logo"><a href="{{ route('web.index') }}"><img src="{{  asset('web/assets/img/GCLM.png')}}" alt="logo"></a></div>
-               <div class="hdr_right_logo"></div>
+               <div class="hdr_right_logo"><a href="{{ route('web.index') }}"><img src="{{  asset('web/assets/img/GCLM-right.png')}}" alt="logo"></a></div>
             </div>
          </div>
          <!------------navigation start------------>
