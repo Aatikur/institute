@@ -92,7 +92,7 @@
                   <li><a href="{{ route('admin.payment_request_list') }}"><i class="fa fa-google-wallet"></i> Payment Request </span></a></li>
                   <li><a href="{{ route('admin.exam_fee_paid_list') }}"><i class="fa fa-list-alt"></i> Exam Fees </span></a></li>
                   <li><a href="{{ route('admin.board_list') }}"><i class="fa fa-hand-rock-o"></i> Board Signature </span></a></li>
-                  <li><a href="{{ route('admin.gallery_list') }}"><i class="fa fa-picture-o"></i> Gallery </span></a></li>
+                  {{-- <li><a href="{{ route('admin.gallery_list') }}"><i class="fa fa-picture-o"></i> Gallery </span></a></li> --}}
                   {{-- <li><a href="{{ route('admin.docs_list') }}"><i class="fa fa-file"></i> Documents Upload </span></a></li> --}}
                 </ul>
               </div>
