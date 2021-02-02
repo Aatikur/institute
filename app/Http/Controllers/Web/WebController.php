@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\BranchDetails;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\CourseCategory;
@@ -82,5 +83,19 @@ class WebController extends Controller
     public function courseDetails($course_id){
         $course_details =Course::findOrFail($course_id);
         return view('web.course.courses-details',compact('course_details'));
+    }
+
+    public function getBranch($state){
+        $centers = BranchDetails::leftJoin('branch','branch.id','=','branch_details.branch_id')
+                                ->where('center_state',$state)
+                                ->select('branch_details.*','branch.status as status')
+                                ->get();
+        $all_centers = BranchDetails::get();
+        return view('web.franchise.centers',compact('centers','all_centers'));
+    }
+    public function allBranch() {
+        $centers = BranchDetails::orderBy('center_state')->get();
+        $all_centers = BranchDetails::get();
+        return view('web.franchise.centers',compact('centers','all_centers'));
     }
 }

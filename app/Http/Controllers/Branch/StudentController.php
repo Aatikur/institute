@@ -245,7 +245,7 @@ class StudentController extends Controller
     public function payExamFees($id){
         $student = Student::where('id',$id)->first();
         $wallet = BranchWallet::where('branch_id',Auth::user()->id)->first();
-        if($wallet->amount > $student->course->exam_fees){
+        if($wallet->amount > $student->course->exam_fees && $student->is_exam_fee_paid == 1){
             $wallet->amount = $wallet->amount  - $student->course->exam_fees;
             if($wallet->save()){
                 $wallet_history = new WalletHistory();
@@ -260,6 +260,8 @@ class StudentController extends Controller
                 $student->exam_fee_paid_date  = Carbon::now();
             }
 
+        }else{
+            return redirect()->back()->with('error','Not Enough Funds Available In Branch Wallet');
         }
 
         if($student->save()){

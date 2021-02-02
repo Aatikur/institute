@@ -62,6 +62,8 @@ class BranchController extends Controller
             $branch_details->center_city = $request->input('center_city');
             $branch_details->center_state	 = $request->input('center_state');
             $branch_details->center_district = $request->input('center_district');
+            $center_code = $this->generateCenterCode($branch->id);
+            $branch_details->center_code = $center_code;
             $branch_details->save();
             if($branch_details->save()){
                 $wallet =  new BranchWallet();
@@ -271,5 +273,10 @@ class BranchController extends Controller
         $img = Image::make($image->getRealPath());
         $img->save($destinationPath . '/' . $image_name);
         return $image_name;
+    }
+
+    public function generateCenterCode($branch_id){
+        $center_code ='GCLM-BC-'.$branch_id;
+        return $center_code;
     }
 }

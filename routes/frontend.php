@@ -1,4 +1,8 @@
 <?php
+
+use App\Models\BranchDetails;
+use App\Models\Document;
+use App\Models\Gallery;
 use Illuminate\Support\Facades\Route;
 
 // ------- Index --------
@@ -49,9 +53,6 @@ Route::get('/Apply/Online', function () {
     return view('web.franchise.apply-online');
 })->name('web.franchise.apply-online');
 
-Route::get('/Centers', function () {
-    return view('web.franchise.centers');
-})->name('web.franchise.centers');
 
 //------- Student --------
 Route::get('/Student/Verification', function () {
@@ -108,15 +109,20 @@ Route::group(['namespace'=>'Web'],function(){
     Route::post('/Student/Certificate','WebController@studentCertificate')->name('web.cerificate');
     Route::get('course/{category_id}','WebController@courses')->name('web.courses');
     Route::get('course/details/{course_id}','WebController@courseDetails')->name('web.course_details');
+    Route::get('get/branch/{state}','WebController@getBranch')->name('web.get_branch');
+    
+    Route::get('/Centers', 'WebController@allBranch')->name('web.franchise.centers');
     
 });
 
 // ------- download --------
 Route::get('/Download', function () {
-    return view('web.download.download');
+    $docs = Document::latest()->get();
+    return view('web.download.download',compact('docs'));
 })->name('web.download.download');
 
 // ------- gallery --------
 Route::get('/Gallery', function () {
-    return view('web.gallery.gallery');
+    $gallery = Gallery::latest()->get();
+    return view('web.gallery.gallery',compact('gallery'));
 })->name('web.gallery.gallery');

@@ -307,7 +307,8 @@ class StudentController extends Controller
 
     public function viewAdmit($id){
         $student_details = StudentDetail::findorFail($id);
-        return view('web.student.student-admit',compact('student_details'));
+        $board = Board::first();
+        return view('web.student.student-admit',compact('student_details','board'));
 
     }
 

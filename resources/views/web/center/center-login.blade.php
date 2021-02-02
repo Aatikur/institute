@@ -29,9 +29,9 @@
                   <input name="password" id="password" type="password" Placeholder="Password"   oninvalid="this.setCustomValidity('Please Enrter Password')">
                   <span class="error msg_holder"></span>
                </div>
-               <div class="contact_forms_element" style="margin-bottom:20px;">
+               {{-- <div class="contact_forms_element" style="margin-bottom:20px;">
                   <a class="forgot_password" href="{{ route('web.center.center-forgot-password') }}"><img src="{{  asset('web/assets/img/icon/forgot-password.png')}}" height="30" alt=" ">Forgot Password?</a>
-               </div>
+               </div> --}}
                <div class="contact_forms_element2">
                   <input name="submit" id="submit" type="submit" value="Login">&nbsp;
                </div>
