@@ -18,16 +18,41 @@ class DocsController extends Controller
         return view('admin.docs.add_doc');
     }
 
-    public function insertDoc(Request $request){
+    
+
+    public function addDoc(Request $request){
         $this->validate($request, [
-            'name'=>'required',
-            'file'=>'required|mime:pdf,doc,docx',
+            'title'   => 'required',
+            'doc'=> 'required|mimes:doc,pdf,docx|max:10240',
         ]);
+        $fileName = null;
+        if ($request->hasFile('doc')) 
+        {
+          $file = $request->file('doc');
+          $fileName = time().'.'.$request->file('doc')->extension();  
+          $request->file('doc')->move(public_path('uploads'), $fileName);
+        }
+       
 
+          $docs = new Document();
+          $docs->name = $request->input('title');
+          $docs->file = $fileName;
+          if($docs->save()){
+              return redirect()->back()->with('message','Docs Uploaded Successfully');
+          }else{
+            return redirect()->back()->with('error','Something went wrong');
+          }   
     }
 
-    public function deleteDoc($doc_id){
-        $doc = Document::findorFail($doc_id);
+    public function deleteDoc($id){
 
+        $doc_details =Document::where('id',$id)->first();
+        File::delete(public_path('uploads/'.$doc_details->file));
+    
+        Document::where('id',$id)->delete();
+        return redirect()->back();
     }
+
+  
+    
 }

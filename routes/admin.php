@@ -96,8 +96,8 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
         Route::group(['prefix'=>'documents'],function(){
             Route::get('list','DocsController@docList')->name('admin.docs_list');
             Route::get('add/form','DocsController@addDocForm')->name('admin.add_doc_form');
-            Route::post('add','DocsController@addImage')->name('admin.insert_doc');
-            Route::get('delete/{id}','DocsController@deleteImage')->name('admin.delete_doc');
+            Route::post('add','DocsController@addDoc')->name('admin.insert_doc');
+            Route::get('delete/{id}','DocsController@deleteDoc')->name('admin.delete_doc');
         });
     });   
 });
