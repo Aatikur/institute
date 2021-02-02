@@ -110,3 +110,13 @@ Route::group(['namespace'=>'Web'],function(){
     Route::get('course/details/{course_id}','WebController@courseDetails')->name('web.course_details');
     
 });
+
+// ------- download --------
+Route::get('/Download', function () {
+    return view('web.download.download');
+})->name('web.download.download');
+
+// ------- gallery --------
+Route::get('/Gallery', function () {
+    return view('web.gallery.gallery');
+})->name('web.gallery.gallery');
