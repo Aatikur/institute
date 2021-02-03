@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['namespace' => 'Branch','prefix'=>'branch'],function(){
-    Route::get('/login','LoginController@index')->name('branch.login_form');    
+    // Route::get('/login','LoginController@index')->name('branch.login_form');    
     Route::post('login/submit', 'LoginController@branchLogin')->name('branch.login_submit');
 
     Route::group(['middleware'=>'auth:branch',],function(){
