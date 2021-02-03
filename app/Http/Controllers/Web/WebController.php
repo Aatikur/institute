@@ -230,30 +230,30 @@ class WebController extends Controller
         
         $image_name = time() . date('Y-M-d') . '.' . $image->getClientOriginalExtension();
        
-        if($status =1){
-            $destinationPath = base_path() . '/public/images/docs/center/';
+        if($status ==1){
+            $destinationPath = base_path() . '/public/images/docs/center';
             
-        }else if($status =2){
-            $destinationPath = base_path() . '/public/images/docs/voter/';
+        }else if($status ==2){
+            $destinationPath = base_path() . '/public/images/docs/voter';
             
-        }else if($status = 3){
-            $destinationPath = base_path() . '/public/images/docs/pan/';
+        }else if($status == 3){
+            $destinationPath = base_path() . '/public/images/docs/pan';
             
-        }else if($status =4){
-            $destinationPath = base_path() . '/public/images/docs/trade/';
+        }else if($status ==4){
+            $destinationPath = base_path() . '/public/images/docs/trade';
             
-        }else if($status = 5){
-            $destinationPath = base_path() . '/public/images/docs/theoryroom/';
+        }else if($status == 5){
+            $destinationPath = base_path() . '/public/images/docs/theoryroom';
            
-        }else if($status = 6){
-            $destinationPath = base_path() . '/public/images/docs/practicalroom/';
+        }else if($status == 6){
+            $destinationPath = base_path() . '/public/images/docs/practicalroom';
            
-        }else if($status =7){
-            $destinationPath = base_path() . '/public/images/docs/officeroom/';
+        }else if($status ==7){
+            $destinationPath = base_path() . '/public/images/docs/officeroom';
            
         }else{
-            if($status = 8){
-            $destinationPath = base_path() . '/public/images/docs/frontside/';
+            if($status == 8){
+            $destinationPath = base_path() . '/public/images/docs/frontside';
           } 
         
 
