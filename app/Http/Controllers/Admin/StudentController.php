@@ -390,7 +390,8 @@ class StudentController extends Controller
     public function viewMarksheet($id){
         $student_details = StudentDetail::findorFail($id);
         $marks = Marks::where('student_id',$id)->first();
-        return view('web.student.student-marksheet',compact('student_details','marks'));
+        $board = Board::first();
+        return view('web.student.student-marksheet',compact('student_details','marks','board'));
 
     }
 
