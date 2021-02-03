@@ -112,6 +112,7 @@ Route::group(['namespace'=>'Web'],function(){
     Route::get('get/branch/{state}','WebController@getBranch')->name('web.get_branch');
     
     Route::get('/Centers', 'WebController@allBranch')->name('web.franchise.centers');
+    Route::post('/add/branch', 'WebController@addBranch')->name('web.franchise.add_branch');
     
 });
 

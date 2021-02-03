@@ -28,12 +28,15 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
 
         Route::group(['prefix'=>'branch'],function(){
             Route::get('/list', 'BranchController@branchList')->name('admin.branch_list'); 
+            Route::get('/request/list', 'BranchController@branchRequestList')->name('admin.branch_request_list'); 
             Route::get('add/form', 'BranchController@addBranchForm')->name('admin.add_branch_form');
             Route::post('add','BranchController@addBranch')->name('admin.add_branch'); 
             Route::get('status/{branch_id}/{status}','BranchController@status')->name('admin.branch_status');
             Route::get('edit/form/{id}', 'BranchController@editBranchForm')->name('admin.edit_branch_form');
             Route::post('update/{id}','BranchController@updateBranch')->name('admin.update_branch');
             Route::get('change/password/form/{id}','BranchController@changePasswordForm')->name('admin.change_password_form');
+            Route::get('add/password/form/{id}','BranchController@addpasswordForm')->name('admin.add_password_form');
+            Route::put('password/add/{id}','BranchController@addpassword')->name('admin.add_password');
             Route::put('change/password/{id}','BranchController@changePassword')->name('admin.change_branch_password');
         });
 

@@ -12,8 +12,12 @@ use Image;
 class BranchController extends Controller
 {
     public function branchList(){
-        $branch=Branch::get();
+        $branch=Branch::where('status','=',1)->orWhere('status', '=', 2)->get();
         return view('admin.branch.branch_list',compact('branch'));
+    }
+    public function branchRequestList(){
+        $branch=Branch::where('status',3)->get();
+        return view('admin.branch.branch_request',compact('branch'));
     }
 
     public function addBranchForm(){
@@ -102,27 +106,48 @@ class BranchController extends Controller
     }
 
     public function changePasswordForm($id){
+        try {
+            $id = decrypt($id);
+        } catch (DecryptException $e) {
+            return redirect()->back();
+        }
         return view('admin.branch.change_password',compact('id'));
+    }
+    public function addpasswordForm($id){
+        return view('admin.branch.add_password_form',compact('id'));
     }
 
     public function changePassword(Request $request,$id)
     {
         $this->validate($request, [
            
-            'current_password' => ['required', 'string'],
+            // 'current_password' => ['required', 'string'],
             'new_password' => ['required', 'string', 'min:8', 'same:confirm_password'],
         ]);
 
         $user = Branch::where('id',$id)->first();
         
-        if(Hash::check($request->input('current_password'), $user->password)){
+       
+        Branch::where('id',$id)->update([
+            'password'=>Hash::make($request->input('new_password')),
+        ]);
+        return redirect()->back()->with('message','Branch Password Updated Successfully');
+      
+    }
+
+    public function addPassword(Request $request,$id)
+    {
+        $this->validate($request, [
+           
+            'new_password' => ['required', 'string', 'min:8', 'same:confirm_password'],
+        ]);
+
+        $user = Branch::where('id',$id)->first();
             Branch::where('id',$id)->update([
                 'password'=>Hash::make($request->input('new_password')),
             ]);
-            return redirect()->back()->with('message','Branch Password Updated Successfully');
-        }else{
-            return redirect()->back()->with('error','Sorry Current Password Does Not Correct');
-        }
+            return redirect()->back()->with('message','Branch Password Added Successfully');
+     
     }
     public function updateBranch(Request $request,$id){
         

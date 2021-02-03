@@ -18,25 +18,15 @@
           <div>
               <div class="x_content">               
                 
-                {{ Form::open(['method' => 'put','route'=>['admin.change_branch_password',$id]])}}                  
+                {{ Form::open(['method' => 'put','route'=>['admin.add_password',$id]])}}                  
                     <div class="well" style="overflow: auto">
-                      <center><h3>Change Password</h3></center>
+                      <center><h3>Add Password</h3></center>
                       <div class="form-row mb-10">
                         <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
-                          {{-- <div class="form-row">
-                            <div class="col-sm-12">
-                              <label class="control-label">Current Password</label>
-                              <input type="password"  name="current_password" id="swidth" class="form-control" placeholder="Current Password" required="">
-                              @if($errors->has('current_password'))
-                                  <span class="invalid-feedback" role="alert" style="color:red">
-                                      <strong>{{ $errors->first('current_password') }}</strong>
-                                  </span>
-                              @enderror
-                            </div>
-                        </div> --}}
+                          
                           <div class="form-row">
                               <div class="col-sm-12">
-                                  <label class="control-label">New Password</label>
+                                  <label class="control-label"> Password</label>
                                   <input type="password" name="new_password"  id="sheigth" class="form-control" placeholder="New Password" required="">
                                   @if($errors->has('new_password'))
                                     <span class="invalid-feedback" role="alert" style="color:red">
