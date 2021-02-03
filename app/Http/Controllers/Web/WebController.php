@@ -120,9 +120,9 @@ class WebController extends Controller
             'center_address'=>'required',
             'center_district'=>'required',
             'affil_by'=>'required',
-            'tel_no'=>'required|numeric',
-            'theory_room'=>'required',
-            'prac_room'=>'required',
+            'tel_no'=>'required|numeric|min:10',
+            'theory_room'=>'required|numeric',
+            'prac_room'=>'required|numeric',
             'no_of_comps'=>'required|numeric',
             'no_of_faculties'=>'required|numeric',
             'no_of_colleges'=>'required|numeric',
@@ -214,7 +214,7 @@ class WebController extends Controller
                 $branch_details->save();
             }
             if($branch_details->save()){
-                return redirect()->back()->with('message','New Branch Created Successfully');
+                return redirect()->back()->with('message','Your Branch Request Has Been Registered Successfully');
             }else{
                 return redirect()->back()->with('error','Something Went Wrong!');
             }
