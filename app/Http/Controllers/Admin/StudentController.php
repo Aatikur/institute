@@ -11,6 +11,7 @@ use App\Models\StudentQualification;
 use App\Models\BranchWallet;
 use App\Models\WalletHistory;
 use App\Models\Board;
+use App\Models\BranchDetails;
 use App\Models\Marks;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -294,12 +295,13 @@ class StudentController extends Controller
             
              })->addColumn('certificate_action', function ($row) {
                 $btn ='';
-                if($row->student->is_certificate_generated == 1 && $row->student->is_marksheet_generated == 2){
+                if($row->student->is_certificate_generated == 1 && $row->student->is_marksheet_generated == 2 && $row->student->is_admit_generated == 2){
                      $btn .='<a  href="'.route('admin.certificate_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Certificate</a>';
-                }else{
-                //   $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
-                  $btn .= '<a href="'.route('admin.view_certificate',['id'=>$row->id]).'" class="btn btn-primary btn-sm">View</a>';
                 }
+                    if($row->student->is_certificate_generated == 2){
+                        $btn .= '<a href="'.route('admin.view_certificate',['id'=>$row->id]).'" class="btn btn-primary btn-sm">View</a>';
+                    }
+                
                 return $btn;
              })->rawColumns(['branch','dob','course','status','action','enrollment_id','marksheet_status','certificate_status','certificate_action','marksheet_action'])
             ->make(true);
@@ -315,8 +317,7 @@ class StudentController extends Controller
     public function addAdminCard(Request $request,$id){
         $this->validate($request, [
             'center'=>'required',
-            'exam_Date'=>'required',
-            'reg_no'=>'required',
+            'exam_Date'=>'required',    
             'year'=>'required',
 
         ]);
@@ -325,14 +326,26 @@ class StudentController extends Controller
         $student->center = $request->input('center');
         $student->exam_date = $request->input('exam_Date');
         $student->year = $request->input('year');
-        $student->reg_no = $request->input('reg_no');
+        $student->reg_no = $this->generateRegistration($id,$student->branch_id);
         $student->is_admit_generated = 2;
         if($student->save()){
             return redirect()->route('admin.exam_fee_paid_list')->with('message','Student Admit Generated Successfully');
         }
 
     }
-
+    private function generateRegistration($student_id,$branch_id){
+      $branch = BranchDetails::where('branch_id',$branch_id)->first();
+      $dist = $branch->center_district;
+      
+      $string = 'GCLM'.substr(strtoupper($dist),0,3);
+      $leng=strlen($string);
+      $length =  6-strlen((string)$branch_id);
+      $reg = str_pad($string, $length+$leng, "0"); 
+    
+      $reg_no = $reg.$student_id;
+      return $reg_no;
+        
+    }
     public function viewAdmit($id){
         $student_details = StudentDetail::findorFail($id);
         $board = Board::first();

@@ -30,12 +30,12 @@
                   <h4 style="font-weight: 500;width: 60%; float:left;margin-top: 0px;"><strong>Examination to be held on :</strong> {{$student_details->student->exam_date??null}}</h4>
                </div>
                
-               <div style="width: 70%; float:left;margin-top: 40px;">
-                  <img src="{{ asset('images/student/thumb/'.$student_details->sign) }}" alt="test" style="width: 150px;">
-                  <h4 style="font-weight: 500; "><strong >Signature of Candidate</strong></h4>
+               <div style="width: 70%; float:left;margin-top: 20px;">
+                  <img src="{{ asset('images/student/thumb/'.$student_details->sign) }}" alt="test" style="width: 150px; height:38px;">
+                  <h4 style="font-weight: 500; margin-top: 0px;"><strong >Signature of Candidate</strong></h4>
                </div>
                <div style="width: 30%;float: right;margin-top: 20px;">
-                  <img src="{{ asset('images/board/thumb/'.$board->sign) }}" alt="test" style="width: 150px;">
+                  <img src="{{ asset('images/board/thumb/'.$board->sign) }}" alt="test" style="width: 150px;height:38px;">
                   <h4 style="font-weight: 500;margin-top: 0px;"><strong>Authorised Signature</strong></h4>
                </div>
                <img src="{{asset('web/assets/img/GCLM.png')}}" alt="watermark"  style="position: absolute;top: 30%;width: 37%;left: 33%;z-index: -1; opacity: 0.3;">

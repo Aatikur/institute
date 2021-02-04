@@ -43,7 +43,7 @@
                                     <input type="text"  class="form-control" readonly="readonly"  value="{{ $student_details->father_name }}" >
                                   
                                 </div>
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
+                                {{-- <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="reg_no">Registration Number<span><b style="color: red"> * </b></span></label>
                                     <input type="text"  class="form-control" name="reg_no" >
                                     @if($errors->has('reg_no'))
@@ -51,7 +51,7 @@
                                             <strong>{{ $errors->first('reg_no') }}</strong>
                                         </span>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="year">Year</label>
                                     <input type="text"  class="form-control" name="year">
