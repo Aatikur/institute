@@ -58,7 +58,7 @@
             <div class="navbar nav_title" style="border: 0;">
               <a href="{{route('admin.deshboard')}}" class="site_title">
                 
-                <img src="{{ asset('web/assets/img/GCLM.png')}}" height="50" style=" width: 60%;">
+                <img src="{{ asset('web/assets/img/GCLM.png')}}" height="50" style=" width: 97%;">
               </a>
             </div>
 
@@ -97,7 +97,7 @@
                   <li><a href="{{ route('admin.student_list') }}"><i class="fa fa-users"></i> Student </span></a></li>
                   <li><a href="{{ route('admin.payment_request_list') }}"><i class="fa fa-google-wallet"></i> Payment Request </span></a></li>
                   <li><a href="{{ route('admin.exam_fee_paid_list') }}"><i class="fa fa-list-alt"></i> Exam Fees </span></a></li>
-                  <li><a href="{{ route('admin.board_list') }}"><i class="fa fa-hand-rock-o"></i> Board Signature </span></a></li>
+                  <li><a href="{{ route('admin.board_list') }}"><i class="fa fa-hand-rock-o"></i> Authorises Signature </span></a></li>
                   <li><a href="{{ route('admin.gallery_list') }}"><i class="fa fa-picture-o"></i> Gallery </span></a></li>
                   <li><a href="{{ route('admin.docs_list') }}"><i class="fa fa-file"></i> Documents Upload </span></a></li>
                 </ul>

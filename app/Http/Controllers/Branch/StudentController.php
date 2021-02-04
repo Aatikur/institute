@@ -32,7 +32,7 @@ class StudentController extends Controller
             'father_name'=>'required',
             'mother_name'=>'required',
             'mob_no'=>'required|numeric|digits:10',
-            
+            'sign'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'dob'=>'required|date',
             'state'=>'required',
             'city'=>'required',
@@ -111,6 +111,8 @@ class StudentController extends Controller
             if(!empty($request->input('hus_name'))){
                 $student_details->husband_name = $request->input('hus_name');
             }
+           
+                
             $student_details->address = $request->input('address');
             $student_details->city = $request->input('city');
             $student_details->state_code = $request->input('state');
@@ -143,7 +145,20 @@ class StudentController extends Controller
                     $student_details->save();
                 }
             }
-            
+            if ($request->hasFile('sign')) {
+                $image = $request->file('sign');
+                $image_name = time() . date('Y-M-d') . '.' . $image->getClientOriginalExtension();
+                $destinationPath = base_path() . '/public/images/student/';
+                $img = Image::make($image->getRealPath());
+                $img->save($destinationPath . '/' . $image_name);
+                $destination = base_path() . '/public/images/student/thumb';
+                $img = Image::make($image->getRealPath());
+                $img->resize(600, 600, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($destination . '/' . $image_name);
+                $student_details->sign = $image_name;
+                $student_details->save();
+            }
             if($student_details){
                 return redirect()->back()->with('message','Student Registered Successfully');
             }else{

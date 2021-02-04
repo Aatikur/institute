@@ -24,10 +24,16 @@
 
                 <div>
                     <div class="x_content">
-                        <form method="post" action="{{route('admin.add_category')}}" enctype="multipart/form-data">
+                        @if(isset($category) && !empty($category) )
+                            <form method="post" action="{{route('admin.update_category',['id'=>$category->id])}}" enctype="multipart/form-data">
+                                @method('put')
+                        @else
+                            <form method="post" action="{{route('admin.add_category')}}" enctype="multipart/form-data">
+                        @endif
+
                             @csrf
                             <div class="form-group">
-                                <input type="text" name="name" placeholder="Enter Category Name" class="form-control">
+                                <input type="text" name="name" placeholder="Enter Category Name" value="{{isset($category->name)?$category->name:old('name')}}" class="form-control">
                                 
                                 @if($errors->has('name'))
                                     <span class="invalid-feedback" role="alert" style="color:red">
@@ -37,7 +43,11 @@
                             </div>
                             
                             <div class="form-group">
-                                {{ Form::submit('Save', array('class'=>'btn btn-success')) }}
+                                @if(isset($category) && !empty($category) )
+                                    {{ Form::submit('Save', array('class'=>'btn btn-success')) }}
+                                @else
+                                    {{ Form::submit('Submit', array('class'=>'btn btn-success')) }}
+                                @endif
                                 <a href="{{route('admin.course_category_list')}}" class="btn btn-warning">Back</a>
                             </div> 
                         </form>

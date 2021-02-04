@@ -22,9 +22,13 @@ class WalletController extends Controller
                 
                 return isset($row->branchDetails->center_name)?$row->branchDetails->center_name:'';
            
+            })->addColumn('center_code', function ($row) {
+                
+                return isset($row->branchDetails->center_code)?$row->branchDetails->center_code:'';
+           
             })->addColumn('action', function ($row) {
                 return $btn = '<a href="'.route('admin.branch_wallet_history',['id'=>$row->id]).'" class="btn btn-info">View Wallet History</a>';
-            })->rawColumns(['branch','action'])
+            })->rawColumns(['branch','action','center_code'])
             ->make(true);
     }
 

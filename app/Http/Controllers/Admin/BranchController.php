@@ -8,6 +8,7 @@ use App\Models\Branch;
 use App\Models\BranchDetails;
 use App\Models\BranchWallet;
 use Hash;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Image;
 class BranchController extends Controller
 {
@@ -40,7 +41,25 @@ class BranchController extends Controller
             'center_city'=>'required',
             'center_state'=>'required',
             'center_address'=>'required',
-            'center_district'=>'required'
+            'center_district'=>'required',
+            'affil_by'=>'required',
+            'tel_no'=>'required|numeric',
+            'theory_room'=>'required',
+            'prac_room'=>'required',
+            'no_of_comps'=>'required|numeric',
+            'no_of_faculties'=>'required|numeric',
+            'no_of_colleges'=>'required|numeric',
+            'no_of_schools'=>'required|numeric',
+            'com_specs'=>'required',
+            'center_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'course'=>'required|numeric',
+            'voter_card'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'pan_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'theo_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'prac_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'off_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'front_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'trade_licence'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             
         ]);
             
@@ -73,6 +92,70 @@ class BranchController extends Controller
                 $wallet =  new BranchWallet();
                 $wallet->branch_id = $branch->id;
                 $wallet->save();
+            }
+            $center_photo =  $request->file('center_photo');
+            if(!empty($center_photo)){
+            
+                $center = $this->uploadDocs($center_photo,1);
+            }
+            
+            $voter_card = $request->file('voter_card');
+            if(!empty($voter_card)){
+            $voter= $this->uploadDocs($voter_card,2);
+            }
+
+            $pan = $request->file('pan_photo');
+            if(!empty($pan)){
+                $pann = $this->uploadDocs($pan,3);
+            }
+
+            $trade = $request->file('trade_licence');
+            if(!empty($trade)){
+                $trd=$this->uploadDocs($trade,4);
+            }
+            
+            $theory_room = $request->file('theo_photo');
+            if(!empty($theory_room)){
+                $thery=$this->uploadDocs($theory_room,5); 
+            }    
+
+            $prac_room = $request->file('prac_photo');
+            if(!empty($prac_room)){
+                $prac=$this->uploadDocs($prac_room,6);
+            }
+            
+            $office =  $request->file('off_photo');
+            if(!empty($office)){
+                $off=$this->uploadDocs($office,7);
+            }
+            
+            $front =  $request->file('front_photo');
+            if(!empty($front)){
+                $fr= $this->uploadDocs($front,8);
+            }
+            if(!empty($center)){
+                $branch_details->center_photo = $center;  
+            }
+            if(!empty($voter)){
+            $branch_details->voter_card = $voter;
+            }
+            if(!empty($pann)){
+            $branch_details->pan_card = $pann;
+            }
+            if(!empty($trd)){
+            $branch_details->trade_licence = $trd;
+            }
+            if(!empty($thery)){
+            $branch_details->theory_room_photo = $thery;
+            }
+            if(!empty($prac)){
+            $branch_details->practical_room_photo = $prac;
+            }
+            if(!empty($off)){
+                $branch_details->office_room_photo = $off;
+            }
+            if(!empty($fr)){
+                $branch_details->front_side_photo = $fr;
             }
             if($branch_details->save()){
                 return redirect()->back()->with('message','New Branch Created Successfully');
@@ -149,6 +232,8 @@ class BranchController extends Controller
             return redirect()->back()->with('message','Branch Password Added Successfully');
      
     }
+
+    
     public function updateBranch(Request $request,$id){
         
         $this->validate($request, [
@@ -175,7 +260,7 @@ class BranchController extends Controller
             'no_of_colleges'=>'required|numeric',
             'no_of_schools'=>'required|numeric',
             'com_specs'=>'required',
-            'center_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'center_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'course'=>'required|numeric',
             'voter_card'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'pan_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',

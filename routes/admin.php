@@ -14,6 +14,8 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
         Route::group(['prefix'=>'course'],function(){
             Route::get('category/list','CourseController@courseCategoryList')->name('admin.course_category_list');
             Route::get('category/add/form', 'CourseController@addCategoryForm')->name('admin.add_category_form');
+            Route::get('category/edit/form/{id}', 'CourseController@editCategory')->name('admin.edit_category');
+            Route::put('update/category/{id}', 'CourseController@updateCategory')->name('admin.update_category');
             Route::post('add/category','CourseController@addCategory')->name('admin.add_category'); 
             Route::get('category/status/{category_id}/{status}','CourseController@categoryStatus')->name('admin.category_status'); 
             
@@ -34,6 +36,8 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
             Route::get('status/{branch_id}/{status}','BranchController@status')->name('admin.branch_status');
             Route::get('edit/form/{id}', 'BranchController@editBranchForm')->name('admin.edit_branch_form');
             Route::post('update/{id}','BranchController@updateBranch')->name('admin.update_branch');
+            Route::get('upload/doc/{branch_id}','BranchController@uploadDocForm')->name('admin.upload_doc');
+            
             Route::get('change/password/form/{id}','BranchController@changePasswordForm')->name('admin.change_password_form');
             Route::get('add/password/form/{id}','BranchController@addpasswordForm')->name('admin.add_password_form');
             Route::put('password/add/{id}','BranchController@addpassword')->name('admin.add_password');

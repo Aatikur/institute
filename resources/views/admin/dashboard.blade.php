@@ -31,10 +31,10 @@
 
   <div class="row">
 
-    {{-- <div class="col-md-12">
+     <div class="col-md-12">
       <div class="x_panel">
         <div class="x_title">
-            <h2>Category List</h2>
+            <h2>Last 10 Branches</h2>
             <div class="clearfix"></div>
         </div>
         <div>
@@ -44,24 +44,30 @@
               <thead>
                 <tr>
                     <th>SL No.</th>
-                    <th>Slot Number</th>
-                    <th>Number</th>
-                    <th>Action</th>
+                    <th>Branch Name</th>
+                    <th>Branch Email</th>
+                    <th>Branch Code</th>
+                    <th>Branch Status</th>
                 </tr>
               </thead>
               <tbody class="form-text-element">
-                  @if (isset($slots) && !empty($slots))
-                    @php
-                        $count = 1;
-                    @endphp
-                      @foreach ($slots as $item)
+                  @if (isset($branch) && !empty($branch))
+                  
+                      @foreach ($branch as $item)
                         <tr>
-                          <td>{{$count++}}</td>
-                          <td>{{$item->slot_no}}</td>
-                          <td>{{$item->number}}</td>
-                          <td>
-                          <a class="btn btn-warning" href="{{route('admin.slot_edit',['slot_id'=>$item->id])}}">Edit</a>
-                          <a class="btn btn-danger" href="{{route('admin.slot_delete',['slot_id'=>$item->id])}}">Delete</a>
+                          <td>{{$loop->iteration}}</td>
+                          <td>{{$item->center_name}}</td>
+                          <td>{{$item->branch->email}}</td>
+                          <td>{{$item->center_code}}</td>
+                          <td>@if($item->branch->status ==1)
+                              <a class="btn btn-success btn-xs">Active</a>
+                            @elseif($item->branch->status ==2)
+                              <a class="btn btn-danger btn-xs">Inactive</a>
+                              
+                            @else
+                            <a class="btn btn-info btn-xs">Requested</a>
+                            @endif
+                       
                           </td>
                         </tr>
                       @endforeach
@@ -69,10 +75,11 @@
               </tbody>
             </table>
             </div>
+            <a class="btn btn-sm btn-primary">View More</a>
           </div>
         </div>
       </div>
-    </div> --}}
+    </div> 
   </div>
 </div>
  @endsection

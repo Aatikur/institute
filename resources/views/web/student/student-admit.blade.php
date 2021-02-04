@@ -31,6 +31,7 @@
                </div>
                
                <div style="width: 70%; float:left;margin-top: 40px;">
+                  <img src="{{ asset('images/student/thumb/'.$student_details->sign) }}" alt="test" style="width: 150px;">
                   <h4 style="font-weight: 500; "><strong >Signature of Candidate</strong></h4>
                </div>
                <div style="width: 30%;float: right;margin-top: 20px;">

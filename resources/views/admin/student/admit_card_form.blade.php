@@ -107,6 +107,12 @@
                                     <img style="width:150px;height:150px;" src="{{ asset('images/board/thumb/'.$board->sign) }}" id="preview"/>
                                 </div>
                             </div>
+                            <div class="form-row mb-10">
+                                <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
+                                    <label for="profile" >Student Signature <span><b style="color: red"> * </b></span></label>
+                                    <img style="width:150px;height:150px;" src="{{ asset('images/student/thumb/'.$student_details->sign) }}" id="preview"/>
+                                </div>
+                            </div>
                         </div>
                        
                         <div class="form-group">    

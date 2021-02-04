@@ -36,7 +36,7 @@
                                           <a  class="btn btn-xs btn-danger">Disabled</a>
                                         @endif
                                       <td>
-                                        <a href="{{ route('admin.edit_course_form',['course_id'=>$item->id]) }}" class="btn btn-sm btn-warning">Edit</a>
+                                        <a href="{{ route('admin.edit_category',['id'=>$item->id]) }}" class="btn btn-sm btn-warning">Edit</a>
                                         @if ($item->status == '1')
                                           <a href="{{ route('admin.category_status',['category_id'=>$item->id,'status'=>2]) }}" class="btn btn-sm btn-danger">Disable</a>
                                         @else

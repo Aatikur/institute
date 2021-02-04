@@ -14,6 +14,8 @@ use App\Models\Board;
 use App\Models\Marks;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use File;
+use Image;
 
 class StudentController extends Controller
 {
@@ -79,7 +81,6 @@ class StudentController extends Controller
             'father_name'=>'required',
             'mother_name'=>'required',
             'mob_no'=>'required|numeric|digits:10',
-            
             'dob'=>'required|date',
             'state'=>'required',
             'city'=>'required',
@@ -89,6 +90,7 @@ class StudentController extends Controller
             'category'=>'required|numeric',
             'gender'=>'required|numeric',
             'medium'=>'required|numeric',
+            'sign'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'profile'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'exam'=>'array|required|min:1',
             'board'=>'array|required|min:1',
@@ -170,9 +172,8 @@ class StudentController extends Controller
             if($student_details->save()){
                 if ($request->hasFile('profile')) {
                     $cat_prev_image = $student_details->image;
-
-                    $prev_img_delete_path = base_path().'/public/images/student/'.$cat_prev_image->image;
-                    $prev_img_delete_path_thumb = base_path().'/public/images/student/thumb/'.$cat_prev_image->image;
+                    $prev_img_delete_path = base_path().'/public/images/student/'.$cat_prev_image;
+                    $prev_img_delete_path_thumb = base_path().'/public/images/student/thumb/'.$cat_prev_image;
                     if ( File::exists($prev_img_delete_path)) {
                         File::delete($prev_img_delete_path);
                     }
@@ -193,6 +194,33 @@ class StudentController extends Controller
                         $constraint->aspectRatio();
                     })->save($destination . '/' . $image_name);
                     $student_details->image = $image_name;
+                    $student_details->save();
+                }
+                if ($request->hasFile('sign')) {
+                    $cat_prev_image = $student_details->sign;
+
+                    $prev_img_delete_path = base_path().'/public/images/student/'.$cat_prev_image;
+                    $prev_img_delete_path_thumb = base_path().'/public/images/student/thumb/'.$cat_prev_image;
+                    if ( File::exists($prev_img_delete_path)) {
+                        File::delete($prev_img_delete_path);
+                    }
+
+                    if ( File::exists($prev_img_delete_path_thumb)) {
+                        File::delete($prev_img_delete_path_thumb);
+                    }
+        
+
+                    $image = $request->file('sign');
+                    $image_name = time() . date('Y-M-d') . '.' . $image->getClientOriginalExtension();
+                    $destinationPath = base_path() . '/public/images/student/';
+                    $img = Image::make($image->getRealPath());
+                    $img->save($destinationPath . '/' . $image_name);
+                    $destination = base_path() . '/public/images/student/thumb';
+                    $img = Image::make($image->getRealPath());
+                    $img->resize(600, 600, function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->save($destination . '/' . $image_name);
+                    $student_details->sign = $image_name;
                     $student_details->save();
                 }
             }
