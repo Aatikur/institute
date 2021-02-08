@@ -203,7 +203,7 @@
                <div style="width: 25%;float: right;margin-top: 20px;">
                   <h4 style="font-weight: 500;"><strong>Authorised Signature</strong></h4>
                </div>
-               <img src="{{asset('web/assets/img/GCLM.png')}}" alt="watermark"  style="position: absolute;top: 55%;width: 60%;left: 20%;z-index: -1; opacity: 0.3;">
+               <img src="{{asset('web/assets/img/watermark.png')}}" alt="watermark"  style="position: absolute;top: 55%;width: 60%;left: 20%;z-index: -1; opacity: 0.3;">
             </div>
          </div>
          <div style="text-align: center"><button onclick="window.print()"class="btn btn-success">Print</button></div>

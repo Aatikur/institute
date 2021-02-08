@@ -80,9 +80,9 @@ Route::get('/Online/Certificate', function () {
 })->name('web.student.certificate-online');
 
 
-// Route::get('/Student/Certificate', function () {
-//     return view('web.student.student-certificate');
-// })->name('web.student.student-certificate');
+Route::get('/Student/Certificate', function () {
+    return view('web.student.student-certificate');
+})->name('web.student.student-certificate');
 
 // Route::get('/Student/Marksheet', function () {
 //     return view('web.student.student-marksheet');
