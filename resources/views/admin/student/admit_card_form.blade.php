@@ -43,7 +43,7 @@
                                     <input type="text"  class="form-control" readonly="readonly"  value="{{ $student_details->father_name }}" >
                                   
                                 </div>
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
+                                {{-- <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="reg_no">Registration Number<span><b style="color: red"> * </b></span></label>
                                     <input type="text"  class="form-control" name="reg_no" >
                                     @if($errors->has('reg_no'))
@@ -51,7 +51,7 @@
                                             <strong>{{ $errors->first('reg_no') }}</strong>
                                         </span>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="year">Year</label>
                                     <input type="text"  class="form-control" name="year">
@@ -105,6 +105,12 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
                                     <label for="profile" >Authorised Signatory <span><b style="color: red"> * </b></span></label>
                                     <img style="width:150px;height:150px;" src="{{ asset('images/board/thumb/'.$board->sign) }}" id="preview"/>
+                                </div>
+                            </div>
+                            <div class="form-row mb-10">
+                                <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
+                                    <label for="profile" >Student Signature <span><b style="color: red"> * </b></span></label>
+                                    <img style="width:150px;height:150px;" src="{{ asset('images/student/thumb/'.$student_details->sign) }}" id="preview"/>
                                 </div>
                             </div>
                         </div>

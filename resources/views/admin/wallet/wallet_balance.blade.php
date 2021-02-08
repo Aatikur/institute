@@ -18,6 +18,7 @@
                             <tr>
                               <th>Sl</th>
                               <th>Branch Name</th>
+                              <th>Center Code</th>
                               <th>Amount</th>
                               <th>Action</th>
                             </tr>
@@ -47,6 +48,7 @@
       columns: [
           {data: 'DT_RowIndex', name: 'DT_RowIndex'},
           {data: 'branch', name: 'branch',searchable: true},
+          {data: 'center_code', name: 'center_code',searchable: true},
           {data: 'amount', name: 'amount',searchable: true},
           {data: 'action', name: 'action',searchable: true},
         ]

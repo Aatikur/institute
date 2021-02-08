@@ -11,9 +11,12 @@ use App\Models\StudentQualification;
 use App\Models\BranchWallet;
 use App\Models\WalletHistory;
 use App\Models\Board;
+use App\Models\BranchDetails;
 use App\Models\Marks;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use File;
+use Image;
 
 class StudentController extends Controller
 {
@@ -79,7 +82,6 @@ class StudentController extends Controller
             'father_name'=>'required',
             'mother_name'=>'required',
             'mob_no'=>'required|numeric|digits:10',
-            
             'dob'=>'required|date',
             'state'=>'required',
             'city'=>'required',
@@ -89,6 +91,7 @@ class StudentController extends Controller
             'category'=>'required|numeric',
             'gender'=>'required|numeric',
             'medium'=>'required|numeric',
+            'sign'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'profile'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'exam'=>'array|required|min:1',
             'board'=>'array|required|min:1',
@@ -170,9 +173,8 @@ class StudentController extends Controller
             if($student_details->save()){
                 if ($request->hasFile('profile')) {
                     $cat_prev_image = $student_details->image;
-
-                    $prev_img_delete_path = base_path().'/public/images/student/'.$cat_prev_image->image;
-                    $prev_img_delete_path_thumb = base_path().'/public/images/student/thumb/'.$cat_prev_image->image;
+                    $prev_img_delete_path = base_path().'/public/images/student/'.$cat_prev_image;
+                    $prev_img_delete_path_thumb = base_path().'/public/images/student/thumb/'.$cat_prev_image;
                     if ( File::exists($prev_img_delete_path)) {
                         File::delete($prev_img_delete_path);
                     }
@@ -193,6 +195,33 @@ class StudentController extends Controller
                         $constraint->aspectRatio();
                     })->save($destination . '/' . $image_name);
                     $student_details->image = $image_name;
+                    $student_details->save();
+                }
+                if ($request->hasFile('sign')) {
+                    $cat_prev_image = $student_details->sign;
+
+                    $prev_img_delete_path = base_path().'/public/images/student/'.$cat_prev_image;
+                    $prev_img_delete_path_thumb = base_path().'/public/images/student/thumb/'.$cat_prev_image;
+                    if ( File::exists($prev_img_delete_path)) {
+                        File::delete($prev_img_delete_path);
+                    }
+
+                    if ( File::exists($prev_img_delete_path_thumb)) {
+                        File::delete($prev_img_delete_path_thumb);
+                    }
+        
+
+                    $image = $request->file('sign');
+                    $image_name = time() . date('Y-M-d') . '.' . $image->getClientOriginalExtension();
+                    $destinationPath = base_path() . '/public/images/student/';
+                    $img = Image::make($image->getRealPath());
+                    $img->save($destinationPath . '/' . $image_name);
+                    $destination = base_path() . '/public/images/student/thumb';
+                    $img = Image::make($image->getRealPath());
+                    $img->resize(600, 600, function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->save($destination . '/' . $image_name);
+                    $student_details->sign = $image_name;
                     $student_details->save();
                 }
             }
@@ -266,12 +295,13 @@ class StudentController extends Controller
             
              })->addColumn('certificate_action', function ($row) {
                 $btn ='';
-                if($row->student->is_certificate_generated == 1 && $row->student->is_marksheet_generated == 2){
+                if($row->student->is_certificate_generated == 1 && $row->student->is_marksheet_generated == 2 && $row->student->is_admit_generated == 2){
                      $btn .='<a  href="'.route('admin.certificate_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Certificate</a>';
-                }else{
-                //   $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
-                  $btn .= '<a href="'.route('admin.view_certificate',['id'=>$row->id]).'" class="btn btn-primary btn-sm">View</a>';
                 }
+                    if($row->student->is_certificate_generated == 2){
+                        $btn .= '<a href="'.route('admin.view_certificate',['id'=>$row->id]).'" class="btn btn-primary btn-sm">View</a>';
+                    }
+                
                 return $btn;
              })->rawColumns(['branch','dob','course','status','action','enrollment_id','marksheet_status','certificate_status','certificate_action','marksheet_action'])
             ->make(true);
@@ -287,8 +317,7 @@ class StudentController extends Controller
     public function addAdminCard(Request $request,$id){
         $this->validate($request, [
             'center'=>'required',
-            'exam_Date'=>'required',
-            'reg_no'=>'required',
+            'exam_Date'=>'required',    
             'year'=>'required',
 
         ]);
@@ -297,17 +326,30 @@ class StudentController extends Controller
         $student->center = $request->input('center');
         $student->exam_date = $request->input('exam_Date');
         $student->year = $request->input('year');
-        $student->reg_no = $request->input('reg_no');
+        $student->reg_no = $this->generateRegistration($id,$student->branch_id);
         $student->is_admit_generated = 2;
         if($student->save()){
             return redirect()->route('admin.exam_fee_paid_list')->with('message','Student Admit Generated Successfully');
         }
 
     }
-
+    private function generateRegistration($student_id,$branch_id){
+      $branch = BranchDetails::where('branch_id',$branch_id)->first();
+      $dist = $branch->center_district;
+      
+      $string = 'GCLM'.substr(strtoupper($dist),0,3);
+      $leng=strlen($string);
+      $length =  6-strlen((string)$branch_id);
+      $reg = str_pad($string, $length+$leng, "0"); 
+    
+      $reg_no = $reg.$student_id;
+      return $reg_no;
+        
+    }
     public function viewAdmit($id){
         $student_details = StudentDetail::findorFail($id);
-        return view('web.student.student-admit',compact('student_details'));
+        $board = Board::first();
+        return view('web.student.student-admit',compact('student_details','board'));
 
     }
 
@@ -389,7 +431,8 @@ class StudentController extends Controller
     public function viewMarksheet($id){
         $student_details = StudentDetail::findorFail($id);
         $marks = Marks::where('student_id',$id)->first();
-        return view('web.student.student-marksheet',compact('student_details','marks'));
+        $board = Board::first();
+        return view('web.student.student-marksheet',compact('student_details','marks','board'));
 
     }
 

@@ -11,35 +11,67 @@
                <img src="{{  asset('web/assets/img/icon/franchise.png')}}" width="53" height="41" alt="franchise" align="absmiddle">Franchise                                                    
             </h4>
          </div>
+         @if (Session::has('message'))
+            <div class="alert alert-success" >{{ Session::get('message') }}</div>
+         @endif
+         @if (Session::has('error'))
+            <div class="alert alert-danger">{{ Session::get('error') }}</div>
+         @endif
          <p><span class="error"> </span>
          </p>
          <br>
          <div class="content_details_holder">
-            <form action="apply-online-email.php" method="post" name="form1" id="form1" class="franchise_forms" enctype="multipart/form-data">
+            <form action="{{route('web.franchise.add_branch')}}" method="post" name="form1" id="form1" class="franchise_forms" enctype="multipart/form-data">
+               @csrf
+               <div class="franchise_forms_element">
+                  <label>Branch Email(Will be used as Login Id) *</label>
+                  <input name="email" id="email" type="text" value="{{old('email')}}">
+                  @if($errors->has('email'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('email') }}</strong>
+                     </span>
+                  @enderror
+               </div>
                <div class="franchise_forms_element">
                   <label>Contact Person *</label>
-                  <input name="name" id="name" type="text">
-                  <span class="error msg_holder" id="nameInfo"></span>
+                  <input name="cnt_name" id="name" type="text" value="{{old('cnt_name')}}">
+                  @if($errors->has('cnt_name'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('cnt_name') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>Email Address *</label>
-                  <input name="email" id="email" type="text">
-                  <span class="error msg_holder" id="emailInfo"></span>
+                  <input name="cnt_email" id="email" type="text" value="{{old('cnt_email')}}">
+                  @if($errors->has('cnt_email'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('cnt_email') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>Residence Address *</label>
-                  <input name="residenceaddress" id="residenceaddress" type="text">
-                  <span class="error msg_holder" id="residenceaddressInfo"></span>
+                  <input name="cnt_address" id="residenceaddress" type="text" value="{{old('cnt_address')}}">
+                  @if($errors->has('cnt_address'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('cnt_address') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>City</label>
-                  <input name="city" id="city" type="text">
-                  <span class="error msg_holder"> </span>
+                  <input name="cnt_city" id="city" type="text" value="{{old('cnt_city')}}">
+                  @if($errors->has('cnt_city'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('cnt_city') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>State</label>
-                  <select name="state" id="state">
-                     <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                  <input type="text" name="cnt_state" id="state" value="{{old('state')}}" >
+                     {{-- <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
                      <option value="Andhra Pradesh">Andhra Pradesh</option>
                      <option value="Assam">Assam</option>
                      <option value="Bihar">Bihar</option>
@@ -77,41 +109,65 @@
                      <option value="Chhattisgarh">Chhattisgarh</option>
                      <option value="Jharkhand">Jharkhand</option>
                      <option value="Uttarakhand">Uttarakhand</option>
-                  </select>
-                  <span class="error msg_holder"> </span>
+                  </select> --}}
+                  @if($errors->has('cnt_state'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('cnt_state') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>Date Of Birth *</label>
-                  <input name="dob" id="dob" type="text" class="hasDatepicker">
-                  <span class="error msg_holder" id="dobInfo"> </span>
+                  <input name="cnt_dob" id="dob" type="text" class="hasDatepicker">
+                  @if($errors->has('cnt_dob'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('cnt_dob') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>Qualification *</label>
-                  <input name="qualification" id="qualification" type="text">
-                  <span class="error msg_holder" id="qualificationInfo"></span>
+                  <input name="cnt_qctn" id="qualification" type="text" value="{{old('cnt_qctn')}}">
+                  @if($errors->has('cnt_qctn'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('cnt_qctn') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="innerheading_div">
                   <h5>Center Information</h5>
                </div>
                <div class="franchise_forms_element">
                   <label>Center Name *</label>
-                  <input name="centername" id="centername" type="text">
-                  <span class="error msg_holder" id="centernameInfo"></span>
+                  <input name="center_name" id="centername" type="text" value="{{old('center_name')}}">
+                  @if($errors->has('center_name'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('center_name') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>Center Address *</label>
-                  <input name="centeraddress" id="centeraddress" type="text">
-                  <span class="error msg_holder" id="centeraddressInfo"></span>
+                  <input name="center_address" id="centeraddress" type="text" value="{{old('center_address')}}">
+                  @if($errors->has('center_address'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('center_address') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>Center City / Town *</label>
-                  <input name="centercity" id="centercity" type="text">
-                  <span class="error msg_holder" id="centercityInfo"></span>
+                  <input name="center_city" id="centercity" type="text" value="{{old('center_city')}}">
+                  @if($errors->has('center_city'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('center_city') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>Center State *</label>
-                  <select name="centerstate" id="centerstate" onchange="changeDistrict(this);">
-                     <option value="">Select State</option>
+                  <input name="center_state" type="text" id="centerstate" value="{{old('center_state')}}" >
+                     {{-- <option value="">Select State</option>
                      <option value="Andaman and Nicobar">Andaman and Nicobar</option>
                      <option value="Andhra Pradesh">Andhra Pradesh</option>
                      <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -147,126 +203,210 @@
                      <option value="Uttar Pradesh">Uttar Pradesh</option>
                      <option value="Uttarakhand">Uttarakhand</option>
                      <option value="West Bengal">West Bengal</option>
-                  </select>
-                  <span class="error msg_holder" id="centerstateInfo"></span>
+                  </select> --}}
+                  @if($errors->has('center_state'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('center_state') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element" id="districts">
                   <label>Center District *</label>
                   <!-- <select name="centerdistrict" id="centerdistrict">
                      <option value="">Select District</option>
                   </select> -->
-                  <input name="centerdistrict" id="centerdistrict" type="text">
-                  <span class="error msg_holder" id="centerdistrictInfo"></span>
+                  <input name="center_district" id="centerdistrict" type="text" value="{{old('center_district')}}">
+                  @if($errors->has('center_district'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('center_district') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>Centre Affiliated by *</label>
-                  <input name="centeraffiliatedby" id="centeraffiliatedby" type="text">
-                  <span class="error msg_holder" id="centeraffiliatedbyInfo"></span>
+                  <input name="affil_by" id="centeraffiliatedby" type="text" value="{{old('affil_by')}}">
+                  @if($errors->has('affil_by'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('affil_by') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>Ph No. With STD code *</label>
-                  <input name="phone" id="phone" type="text">
-                  <span class="error msg_holder" id="phoneInfo"></span>
+                  <input name="tel_no" id="phone" type="text" value="{{old('tel_no')}}">
+                  @if($errors->has('tel_no'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('tel_no') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>Total Space</label>
-                  <input name="totalspace" id="totalspace" type="text">
-                  <span class="error msg_holder"> </span>
+                  <input name="total_space" id="totalspace" type="text" value="{{old('total_space')}}">
+                   @if($errors->has('cnt_name'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('cnt_name') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>Theory Room </label>
-                  <input name="theoryroom" id="theoryroom" type="text">
-                  <span class="error msg_holder"> </span>
+                  <input name="theory_room" id="theoryroom" type="text" value="{{old('theory_room')}}">
+                   @if($errors->has('cnt_name'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('cnt_name') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>Practical Room</label>
-                  <input name="practicalroom" id="practicalroom" type="text">
-                  <span class="error msg_holder"> </span>
+                  <input name="prac_room" id="practicalroom" type="text" value="{{old('prac_room')}}">
+                   @if($errors->has('prac_room'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('prac_room') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>Number of Computer * </label>
-                  <input name="numberofcomputer" id="numberofcomputer" type="text">
-                  <span class="error msg_holder" id="numberofcomputerInfo"></span>
+                  <input name="no_of_comps" id="numberofcomputer" type="text" value="{{old('no_of_comps')}}">
+                  @if($errors->has('no_of_comps'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('no_of_comps') }}</strong>
+                     </span>
+               `  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>Number Of Faculties * </label>
-                  <input name="numberoffaculties" id="numberoffaculties" type="text">
-                  <span class="error msg_holder" id="numberoffacultiesInfo"></span>
+                  <input name="no_of_faculties" id="numberoffaculties" type="text" value="{{old('no_of_faculties')}}">
+                  @if($errors->has('no_of_faculties'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('no_of_faculties') }}</strong>
+                     </span>
+               `  @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>Computer Spec. Assembled/Branded)* </label>
-                  <input name="computerspec" id="computerspec" type="text">
-                  <span class="error msg_holder" id="computerspecInfo"></span>
+                  <input name="com_specs" id="computerspec" type="text" value="{{old('com_specs')}}">
+                  @if($errors->has('com_specs'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('com_specs') }}</strong>
+                     </span>
+            `     @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>No. of Colleges</label>
-                  <input name="colleges" id="colleges" type="text">
-                  <span class="error msg_holder"></span>
+                  <input name="no_of_colleges" id="colleges" type="text" value="{{old('no_of_colleges')}}">
+                  @if($errors->has('no_of_colleges'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('no_of_colleges') }}</strong>
+                     </span>
+         `        @enderror
                </div>
                <div class="franchise_forms_element">
                   <label>No. of High Schools</label>
-                  <input name="highschool" id="highschool" type="text">
-                  <span class="error msg_holder"> </span>
+                  <input name="no_of_schools" id="highschool" type="text" value="{{old('no_of_schools')}}">
+                   @if($errors->has('no_of_schools'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('no_of_schools') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element2">
                   <h5>Courses interested</h5>
                   <div class="default" style="margin-top:10px;">
                      <label>
-                     <input name="courses[]" id="softwarecourses" type="checkbox" value="Software Courses">
+                     <input name="course" id="softwarecourses" type="radio" value="1">
                      Software Courses
                      </label>
                      <label>
-                     <input name="courses[]" id="hardwarecourses" type="checkbox" value="Hardware Courses">
+                     <input name="course" id="hardwarecourses" type="radio" value="2">
                      Hardware Courses
                      </label>
                      <label>
-                     <input name="courses[]" id="universitycourses" type="checkbox" value="University Courses">
+                     <input name="course" id="universitycourses" type="radio" value="3">
                      University Courses
                      </label>
                   </div>
-                  <span class="error msg_holder"> </span>
+                   @if($errors->has('course'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('course') }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="franchise_forms_element2">
                   <h5>Upload Documents (** Max file size should be 200KB.)</h5>
                   <div class="franchise_forms_element3">
                      <label class="document-upload">Colour Passport Size Photograph of The Head of The Center</label>
-                     <input name="head" id="head" type="file">
-                     <span class="error msg_holder"> </span>
+                     <input name="center_photo" id="head" type="file">
+                      @if($errors->has('center_photo'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('center_photo') }}</strong>
+                     </span>
+                  @enderror
                   </div>
                   <div class="franchise_forms_element3">
                      <label class="document-upload">Voter Card of The Center Head (Both Side in One Page)</label>
-                     <input name="voter" id="voter" type="file">
-                     <span class="error msg_holder"> </span>
+                     <input name="voter_card" id="voter" type="file">
+                      @if($errors->has('voter_card'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('voter_card') }}</strong>
+                     </span>
+                  @enderror
                   </div>
                   <div class="franchise_forms_element3">
                      <label class="document-upload">Pan Card of The Center Head</label>
-                     <input name="pan" id="pan" type="file">
-                     <span class="error msg_holder"> </span>
+                     <input name="pan_photo" id="pan" type="file">
+                      @if($errors->has('pan_photo'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('pan_photo') }}</strong>
+                     </span>
+                  @enderror
                   </div>
                   <div class="franchise_forms_element3">
                      <label class="document-upload">Trade License / Registration Certificate of The Center</label>
-                     <input name="trade" id="trade" type="file">
-                     <span class="error msg_holder"> </span>
+                     <input name="trade_licence" id="trade" type="file">
+                      @if($errors->has('trade_licence'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('trade_licence') }}</strong>
+                     </span>
+                  @enderror
                   </div>
                   <div class="franchise_forms_element3">
                      <label class="document-upload">Colour Photograph of Theory Room</label>
-                     <input name="theory" id="theory" type="file">
-                     <span class="error msg_holder"> </span>
+                     <input name="theo_photo" id="theory" type="file">
+                      @if($errors->has('theo_photo'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('theo_photo') }}</strong>
+                     </span>
+                  @enderror
                   </div>
                   <div class="franchise_forms_element3">
                      <label class="document-upload">Colour Photograph of Practical Room</label>
-                     <input name="practical" id="practical" type="file">
-                     <span class="error msg_holder"> </span>
+                     <input name="prac_photo" id="practical" type="file">
+                      @if($errors->has('prac_photo'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('prac_photo') }}</strong>
+                     </span>
+                  @enderror
                   </div>
                   <div class="franchise_forms_element3">
                      <label class="document-upload">Colour Photograph of Office Room</label>
-                     <input name="office" id="office" type="file">
-                     <span class="error msg_holder"> </span>
+                     <input name="off_photo" id="office" type="file">
+                      @if($errors->has('off_photo'))
+                     <span class="invalid-feedback" role="alert" style="color:red">
+                        <strong>{{ $errors->first('off_photo') }}</strong>
+                     </span>
+                  @enderror
                   </div>
                   <div class="franchise_forms_element3">
                      <label class="document-upload">Colour Photograph of Front Side of The Center</label>
-                     <input name="front" id="front" type="file">
-                     <span class="error msg_holder"> </span>
+                     <input name="front_photo" id="front" type="file">
+                     @if($errors->has('front_photo'))
+                        <span class="invalid-feedback" role="alert" style="color:red">
+                           <strong>{{ $errors->first('front_photo') }}</strong>
+                        </span>
+                     @enderror
                   </div>
                </div>
                <!-- <div class="franchise_forms_element2">

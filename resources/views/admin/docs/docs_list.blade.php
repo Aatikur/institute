@@ -29,15 +29,11 @@
                                     <tr>
                                       <td>{{$loop->iteration}}</td>
                                       <td>{{$item->name}}</td>
-                                      <td><a href="{{asset('')}}">View</a></td>
+                                      <td><a class="btn btn-xs btn-success" href="{{asset('uploads/'.$item->file)}}">View</a></td>
                                   
                                       <td>
-                                        <a href="{{ route('admin.edit_course_form',['course_id'=>$item->id]) }}" class="btn btn-sm btn-warning">Edit</a>
-                                        @if ($item->status == '1')
-                                          <a href="{{ route('admin.course_status',['course_id'=>$item->id,'status'=>2]) }}" class="btn btn-sm btn-danger">Disable</a>
-                                        @else
-                                          <a href="{{ route('admin.course_status',['course_id'=>$item->id,'status'=>1]) }}" class="btn btn-sm btn-primary">Enable</a>
-                                        @endif
+                                        <a href="{{ route('admin.delete_doc',['id'=>$item->id]) }}" class="btn btn-sm btn-danger">Delete</a>
+                                      
                                        
                                       </td>
                                     </tr>

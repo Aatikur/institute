@@ -174,7 +174,7 @@
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="affil_by" >Center Affiliated By <span><b style="color: red"> * </b></span></label>
-                                    <input type="text" class="form-control" name="affil_by" value="{{ old('affil_by') }}">
+                                    <input type="text" class="form-control" name="affil_by" value="{{ isset($branch_data->center_affiliated_by)?$branch_data->center_affiliated_by:old('affil_by') }}">
                                     @if($errors->has('affil_by'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('affil_by') }}</strong>
@@ -185,7 +185,7 @@
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="tel_no" >Ph No<span><b style="color: red"> * </b></span></label>
-                                    <input type="tel" class="form-control" name="tel_no" value="{{ old('tel_no') }}">
+                                    <input type="tel" class="form-control" name="tel_no" value="{{ isset($branch_data->ph_no)?$branch_data->ph_no:old('tel_no') }}">
                                     @if($errors->has('tel_no'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('tel_no') }}</strong>
@@ -196,7 +196,7 @@
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="theory_room" >Theory Room<span><b style="color: red"> * </b></span></label>
-                                    <input type="text" class="form-control" name="theory_room">
+                                    <input type="text" class="form-control" name="theory_room" value="{{ isset($branch_data->theory_room)?$branch_data->theory_room:old('theory_room') }}">
                                     @if($errors->has('theory_room'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('theory_room') }}</strong>
@@ -207,7 +207,7 @@
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="prac_room" >Pratical Room<span><b style="color: red"> * </b></span></label>
-                                    <input type="text" class="form-control" name="prac_room">
+                                    <input type="text" class="form-control" name="prac_room" value="{{ isset($branch_data->practical_room)?$branch_data->practical_room:old('prac_room') }}">
                                     @if($errors->has('prac_room'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('prac_room') }}</strong>
@@ -218,7 +218,7 @@
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="no_of_comps" >No Of Computers<span><b style="color: red"> * </b></span></label>
-                                    <input type="number" class="form-control" name="no_of_comps">
+                                    <input type="number" class="form-control" name="no_of_comps" value="{{ isset($branch_data->no_of_computers)?$branch_data->no_of_computers:old('no_of_comps') }}">
                                     @if($errors->has('no_of_comps'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('no_of_comps') }}</strong>
@@ -229,7 +229,7 @@
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="no_of_faculties" >No Of Faculties<span><b style="color: red"> * </b></span></label>
-                                    <input type="number" class="form-control" name="no_of_faculties">
+                                    <input type="number" class="form-control" name="no_of_faculties" value="{{ isset($branch_data->no_of_faculties)?$branch_data->no_of_faculties:old('no_of_faculties') }}">
                                     @if($errors->has('no_of_faculties'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('no_of_faculties') }}</strong>
@@ -240,7 +240,7 @@
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="no_of_colleges" >No Of Colleges<span><b style="color: red"> * </b></span></label>
-                                    <input type="number" class="form-control" name="no_of_colleges">
+                                    <input type="number" class="form-control" name="no_of_colleges" value="{{ isset($branch_data->no_of_colleges)?$branch_data->no_of_colleges:old('no_of_colleges') }}">
                                     @if($errors->has('no_of_colleges'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('no_of_colleges') }}</strong>
@@ -251,7 +251,7 @@
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="no_of_schools" >No Of Schools<span><b style="color: red"> * </b></span></label>
-                                    <input type="number" class="form-control" name="no_of_schools">
+                                    <input type="number" class="form-control" name="no_of_schools" value="{{ isset($branch_data->no_of_schools)?$branch_data->no_of_schools:old('no_of_schools') }}">
                                     @if($errors->has('no_of_schools'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('no_of_schools') }}</strong>
@@ -262,7 +262,7 @@
                             <div class="form-row mb-10">
                                 <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
                                     <label for="com_specs" >Computer Specs<span><b style="color: red"> * </b></span></label>
-                                    <textarea class="form-control" name="com_specs"></textarea>
+                                    <textarea class="form-control" name="com_specs"  >{{ isset($branch_data->computer_spec)?$branch_data->computer_spec:old('com_specs') }}</textarea>
                                     @if($errors->has('com_specs'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('com_specs') }}</strong>
@@ -274,10 +274,9 @@
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="course" >Course Interested<span><b style="color: red"> * </b></span></label>
                                     <select  class="form-control" name="course">
-                                        
-                                        <option value="1">Software</option>
-                                        <option value="2">Hardware</option>
-                                        <option value="3">University</option>
+                                        <option value="1" {{$branch_data->course_interested =='1'?'selected':''}}>Software</option>
+                                        <option value="2" {{$branch_data->course_interested =='2'?'selected':''}}>Hardware</option>
+                                        <option value="3" {{$branch_data->course_interested =='3'?'selected':''}}>University</option>
                                     </select>
                                     @if($errors->has('course'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
@@ -290,6 +289,9 @@
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="center_photo" >Center Photo<span><b style="color: red"> * </b></span></label>
                                     <input type="file" class="form-control" name="center_photo">
+                                    @if(!empty($branch_data->center_photo))
+                                        <img src="{{asset('images/docs/center/'.$branch_data->center_photo)}}" style="width:150px;height:150px;">
+                                    @endif
                                     @if($errors->has('center_photo'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('center_photo') }}</strong>
@@ -301,6 +303,9 @@
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="voter_card" >Voter Card Photo<span><b style="color: red"> * </b></span></label>
                                     <input type="file" class="form-control" name="voter_card">
+                                    @if(!empty($branch_data->voter_card))
+                                        <img src="{{asset('images/docs/voter/'.$branch_data->voter_card)}}" style="width:150px;height:150px;">
+                                    @endif
                                     @if($errors->has('voter_card'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('voter_card') }}</strong>
@@ -312,6 +317,9 @@
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="pan_photo" >PAN Card Photo<span><b style="color: red"> * </b></span></label>
                                     <input type="file" class="form-control" name="pan_photo">
+                                    @if(!empty($branch_data->pan_card))
+                                        <img src="{{asset('images/docs/pan/'.$branch_data->pan_card)}}" style="width:150px;height:150px;">
+                                    @endif
                                     @if($errors->has('pan_photo'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('pan_photo') }}</strong>
@@ -323,6 +331,9 @@
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="trade_licence" >Trade Licence Photo<span><b style="color: red"> * </b></span></label>
                                     <input type="file" class="form-control" name="trade_licence">
+                                    @if(!empty($branch_data->trade_licence))
+                                        <img src="{{asset('images/docs/trade/'.$branch_data->trade_licence)}}" style="width:150px;height:150px;">
+                                    @endif
                                     @if($errors->has('trade_licence'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('trade_licence') }}</strong>
@@ -334,6 +345,9 @@
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="theo_photo" >Theory Room Photo<span><b style="color: red"> * </b></span></label>
                                     <input type="file" class="form-control" name="theo_photo">
+                                    @if(!empty($branch_data->theory_room_photo))
+                                        <img src="{{asset('images/docs/theoryroom/'.$branch_data->theory_room_photo)}}" style="width:150px;height:150px;">
+                                    @endif
                                     @if($errors->has('theo_photo'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('theo_photo') }}</strong>
@@ -345,6 +359,9 @@
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="prac_photo" >Practical Room Photo<span><b style="color: red"> * </b></span></label>
                                     <input type="file" class="form-control" name="prac_photo">
+                                    @if(!empty($branch_data->practical_room_photo))
+                                        <img src="{{asset('images/docs/practicalroom/'.$branch_data->practical_room_photo)}}" style="width:150px;height:150px;">
+                                    @endif
                                     @if($errors->has('prac_photo'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('prac_photo') }}</strong>
@@ -356,6 +373,9 @@
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="off_photo" >Office Room Photo<span><b style="color: red"> * </b></span></label>
                                     <input type="file" class="form-control" name="off_photo">
+                                    @if(!empty($branch_data->office_room_photo))
+                                        <img src="{{asset('images/docs/officeroom/'.$branch_data->office_room_photo)}}" style="width:150px;height:150px;">
+                                    @endif
                                     @if($errors->has('off_photo'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('off_photo') }}</strong>
@@ -367,6 +387,9 @@
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="front_photo" >Front Side Photo<span><b style="color: red"> * </b></span></label>
                                     <input type="file" class="form-control" name="front_photo">
+                                    @if(!empty($branch_data->front_side_photo))
+                                        <img src="{{asset('images/docs/frontside/'.$branch_data->front_side_photo)}}" style="width:150px;height:150px;">
+                                    @endif
                                     @if($errors->has('front_photo'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('front_photo') }}</strong>

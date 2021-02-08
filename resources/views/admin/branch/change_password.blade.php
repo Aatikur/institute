@@ -23,7 +23,7 @@
                       <center><h3>Change Password</h3></center>
                       <div class="form-row mb-10">
                         <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
-                          <div class="form-row">
+                          {{-- <div class="form-row">
                             <div class="col-sm-12">
                               <label class="control-label">Current Password</label>
                               <input type="password"  name="current_password" id="swidth" class="form-control" placeholder="Current Password" required="">
@@ -33,7 +33,7 @@
                                   </span>
                               @enderror
                             </div>
-                        </div>
+                        </div> --}}
                           <div class="form-row">
                               <div class="col-sm-12">
                                   <label class="control-label">New Password</label>

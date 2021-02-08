@@ -246,6 +246,18 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="form-row mb-10">
+                                <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
+                                    <label for="sign" >Signature <span><b style="color: red"> * </b></span></label>
+                                    <input class="form-control" type="file" name="sign" id="signprev">
+                                    <img style="width:150px;height:150px;" src="{{ asset('images/student/thumb/'.$student_details->sign) }}" id="signpreview"/>
+                                    @if($errors->has('sign'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('sign') }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
                         <div class="well" style="overflow: auto" id="addDiv">
                             <h4>Qualification:</h4>
@@ -363,9 +375,24 @@ $('#course_chg').change(function(){
             reader.readAsDataURL(input.files[0]);
         }
     }
+    function readSign(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#signpreview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 
     $("#imgprev").change(function(){
         readURL(this);
+    });
+
+    $("#signprev").change(function(){
+        readSign(this);
     });
 
     $('#course_chg').change(function(){

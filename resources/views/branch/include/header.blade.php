@@ -13,7 +13,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="icon" href="images/favicon.png" type="image/ico" />
 
-    <title></title>
+    <title>GCLM</title>
     <link rel="icon" href="{{ asset('web/assets/img/GCLM.png')}}" type="image/icon type">
 
 

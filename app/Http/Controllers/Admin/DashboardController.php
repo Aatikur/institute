@@ -8,6 +8,7 @@ use App\Models\Admin;
 use App\Models\Course;
 use App\Models\Student;
 use App\Models\Branch;
+use App\Models\BranchDetails;
 use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends Controller
@@ -17,7 +18,8 @@ class DashboardController extends Controller
         $course_cnt = Course::count();
         $branch_cnt = Branch::count();
         $student_cnt = Student::count();
-        return view('admin.dashboard',compact('course_cnt','branch_cnt','student_cnt'));
+        $branch=BranchDetails::latest()->limit(10)->get();
+        return view('admin.dashboard',compact('course_cnt','branch_cnt','student_cnt','branch'));
     }
 
 //     public function changePasswordForm()

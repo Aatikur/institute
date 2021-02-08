@@ -14,7 +14,12 @@
       </div>
       <ul class="gallery_holder">
          <!--328px x 237px-->
-         <li>
+         @foreach($gallery as $items)
+            <li>
+               <div class="gallery_image"><img src="{{asset('images/gallery/'.$items->image)}}" width="100%" alt="gallery"></div>
+            </li>
+         @endforeach
+         {{-- <li>
             <div class="gallery_image"><img src="web/assets/img/gallery.png" width="100%" alt="gallery"></div>
          </li>
          <li>
@@ -28,10 +33,7 @@
          </li>
          <li>
             <div class="gallery_image"><img src="web/assets/img/gallery.png" width="100%" alt="gallery"></div>
-         </li>
-         <li>
-            <div class="gallery_image"><img src="web/assets/img/gallery.png" width="100%" alt="gallery"></div>
-         </li>
+         </li> --}}
       </ul>
    </div>
 </div>

@@ -201,7 +201,8 @@
                   <h4 style="font-weight: 500; "><strong >Date of Issue: <span>{{$student_details->student->marksheet_date_of_issue}}</span></strong></h4>
                </div>
                <div style="width: 25%;float: right;margin-top: 20px;">
-                  <h4 style="font-weight: 500;"><strong>Authorised Signature</strong></h4>
+                  <img src="{{ asset('images/board/thumb/'.$board->sign) }}" alt="test" style="width: 150px;">
+                  <h4 style="font-weight: 500;margin-top: 0px;"><strong>Authorised Signature</strong></h4>
                </div>
                <img src="{{asset('web/assets/img/watermark.png')}}" alt="watermark"  style="position: absolute;top: 55%;width: 60%;left: 20%;z-index: -1; opacity: 0.3;">
             </div>

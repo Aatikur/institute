@@ -24,7 +24,7 @@
 
                 <div>
                     <div class="x_content">
-                        <form method="post" action="{{route('admin.add_image')}}" enctype="multipart/form-data">
+                        <form method="post" action="{{route('admin.insert_doc')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <input type="text" name="title" placeholder="Enter Title" class="form-control">
@@ -36,8 +36,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="file" name="doc" id="imgprev" class="form-control">
-                                <embed id="preview">
+                                <input type="file" name="doc" class="form-control">
                                 @if($errors->has('doc'))
                                     <span class="invalid-feedback" role="alert" style="color:red">
                                         <strong>{{ $errors->first('doc') }}</strong>
@@ -46,7 +45,7 @@
                             </div>
                             <div class="form-group">
                                 {{ Form::submit('Save', array('class'=>'btn btn-success')) }}
-                                <a href="{{route('admin.gallery_list')}}" class="btn btn-warning">Back</a>
+                                <a href="{{route('admin.docs_list')}}" class="btn btn-warning">Back</a>
                             </div> 
                         </form>
                     </div>
@@ -60,23 +59,4 @@
 </div>
 @endsection
 @section('script')
- <script>
-   
-   
-   function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#preview').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $("#imgprev").change(function(){
-        readURL(this);
-    });
-</script>
  @endsection

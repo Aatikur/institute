@@ -13,7 +13,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="icon" href="images/favicon.png" type="image/ico" />
 
-    <title></title>
+    <title>GCLM</title>
     <link rel="icon" href="{{ asset('web/assets/img/GCLM1.png')}}" type="image/icon type">
 
 
@@ -58,7 +58,7 @@
             <div class="navbar nav_title" style="border: 0;">
               <a href="{{route('admin.deshboard')}}" class="site_title">
                 
-                <img src="{{ asset('web/assets/img/GCLM.png')}}" height="50" style=" width: 60%;">
+                <img src="{{ asset('web/assets/img/GCLM.png')}}" height="50" style=" width: 97%;">
               </a>
             </div>
 
@@ -86,14 +86,20 @@
                   <li><a href="{{ route('admin.deshboard')}}"><i class="fa fa-home"></i> Home </span></a></li>
                   <li><a href="{{ route('admin.course_category_list')}}"><i class="fa fa-home"></i> Course Category </span></a></li>
                   <li><a href="{{ route('admin.course_list') }}"><i class="fa fa-book"></i> Course </span></a></li>
-                  <li><a href="{{ route('admin.branch_list') }}"><i class="fa fa-wrench"></i> Branch </span></a></li>
+                  <li><a><i class="fa fa-product-hunt" aria-hidden="true"></i> Branches <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{ route('admin.branch_list') }}"><i class="fa fa-wrench"></i> Branch </span></a></li>
+                      <li><a href="{{route('admin.branch_request_list')}}"><i class="fa fa-wrench"></i> Requests </span></a></li>
+                    </ul>
+                  </li>
+                  
                   <li><a href="{{ route('admin.branch_wallet_balance') }}"><i class="fa fa-credit-card"></i> Wallet </span></a></li>
                   <li><a href="{{ route('admin.student_list') }}"><i class="fa fa-users"></i> Student </span></a></li>
                   <li><a href="{{ route('admin.payment_request_list') }}"><i class="fa fa-google-wallet"></i> Payment Request </span></a></li>
                   <li><a href="{{ route('admin.exam_fee_paid_list') }}"><i class="fa fa-list-alt"></i> Exam Fees </span></a></li>
-                  <li><a href="{{ route('admin.board_list') }}"><i class="fa fa-hand-rock-o"></i> Board Signature </span></a></li>
-                  {{-- <li><a href="{{ route('admin.gallery_list') }}"><i class="fa fa-picture-o"></i> Gallery </span></a></li> --}}
-                  {{-- <li><a href="{{ route('admin.docs_list') }}"><i class="fa fa-file"></i> Documents Upload </span></a></li> --}}
+                  <li><a href="{{ route('admin.board_list') }}"><i class="fa fa-hand-rock-o"></i> Authorises Signature </span></a></li>
+                  <li><a href="{{ route('admin.gallery_list') }}"><i class="fa fa-picture-o"></i> Gallery </span></a></li>
+                  <li><a href="{{ route('admin.docs_list') }}"><i class="fa fa-file"></i> Documents Upload </span></a></li>
                 </ul>
               </div>
 

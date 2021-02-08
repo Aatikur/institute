@@ -6,11 +6,10 @@
     <div class="row">
     	<div class="col-md-12 col-xs-12 col-sm-12" style="margin-top:50px;">
     	    <div class="x_panel">
-
+            <h2>Authorised Signature</h2>
     	        <div class="x_title">
-                    <h2>Board Signature  List</h2>
-                   
-    	        </div>
+                    
+              </div>
     	        <div>
     	            <div class="x_content">
                         <table id="course" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">

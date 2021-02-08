@@ -139,4 +139,23 @@ class CourseController extends Controller
         }
 
     }
+
+    public function editCategory($id){
+        $category = CourseCategory::findOrFail($id);
+        return view('admin.course.add_course_category',compact('category'));
+
+    }
+
+    public function updateCategory(Request $request,$id){
+        $this->validate($request,[
+            'name'=>'required'
+        ]);
+
+        $category = CourseCategory::where('id',$id)->first();
+        $category->name = $request->input('name');
+        if($category->save()){
+            return redirect()->back()->with('message','Category Updaqted Successfully');
+        }
+
+    }
 }
