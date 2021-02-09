@@ -198,30 +198,30 @@ class StudentController extends Controller
                     $student_details->save();
                 }
                 if ($request->hasFile('sign')) {
-                    $cat_prev_image = $student_details->sign;
+                    $prev_image = $student_details->sign;
 
-                    $prev_img_delete_path = base_path().'/public/images/student/'.$cat_prev_image;
-                    $prev_img_delete_path_thumb = base_path().'/public/images/student/thumb/'.$cat_prev_image;
-                    if ( File::exists($prev_img_delete_path)) {
-                        File::delete($prev_img_delete_path);
+                    $img_delete_path = base_path().'/public/images/student/'.$prev_image;
+                    $img_delete_path_thumb = base_path().'/public/images/student/thumb/'.$prev_image;
+                    if ( File::exists($img_delete_path)) {
+                        File::delete($img_delete_path);
                     }
 
-                    if ( File::exists($prev_img_delete_path_thumb)) {
-                        File::delete($prev_img_delete_path_thumb);
+                    if ( File::exists($img_delete_path_thumb)) {
+                        File::delete($img_delete_path_thumb);
                     }
         
 
-                    $image = $request->file('sign');
-                    $image_name = time() . date('Y-M-d') . '.' . $image->getClientOriginalExtension();
+                    $images = $request->file('sign');
+                    $images_name = time() . date('Y-M-d') . '.' . $images->getClientOriginalExtension();
                     $destinationPath = base_path() . '/public/images/student/';
-                    $img = Image::make($image->getRealPath());
-                    $img->save($destinationPath . '/' . $image_name);
+                    $imgs = Image::make($images->getRealPath());
+                    $imgs->save($destinationPath . '/' . $images_name);
                     $destination = base_path() . '/public/images/student/thumb';
-                    $img = Image::make($image->getRealPath());
+                    $img = Image::make($images->getRealPath());
                     $img->resize(600, 600, function ($constraint) {
                         $constraint->aspectRatio();
-                    })->save($destination . '/' . $image_name);
-                    $student_details->sign = $image_name;
+                    })->save($destination . '/' . $images_name);
+                    $student_details->sign = $images_name;
                     $student_details->save();
                 }
             }
@@ -263,15 +263,15 @@ class StudentController extends Controller
            
             })->addColumn('action', function ($row) {
                 $btn ='';
-                if($row->student->is_admit_generated == 1){
+                if($row->student->is_admit_generated == 1 && $row->student->is_exam_fee_paid == 2){
                      $btn .='<a  href="'.route('admin.admit_Card_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Admit Card</a>';
-                }else{
+                }if($row->student->is_admit_generated ==2){
                 //   $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
                   $btn .= '<a href="'.route('admin.view_admit',['id'=>$row->id]).'" class="btn btn-primary btn-sm">View</a>';
                 }
                 return $btn;
              })->addColumn('marksheet_status', function ($row) {
-                if($row->student->is_marksheet_generated == 2){
+                if($row->student->is_marksheet_generated == 2 ){
                     return '<a class="btn btn-success btn-sm">Generated</a>';
                 }else{
                  return '<a class="btn btn-warning btn-sm">Not Generated</a>';
@@ -279,9 +279,9 @@ class StudentController extends Controller
             
              })->addColumn('marksheet_action', function ($row) {
                 $btn ='';
-                if($row->student->is_marksheet_generated == 1 && $row->student->is_admit_generated == 2){
+                if($row->student->is_marksheet_generated == 1 && $row->student->is_admit_generated == 2 && $row->student->is_exam_fee_paid == 2){
                      $btn .='<a  href="'.route('admin.marksheet_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Marksheet</a>';
-                }else{
+                }if($row->student->is_marksheet_generated ==2){
                 //   $btn .= '<a class="btn btn-warning btn-sm">Edit Admit Card</a>';
                   $btn .= '<a href="'.route('admin.view_marksheet',['id'=>$row->id]).'" class="btn btn-primary btn-sm">View</a>';
                 }
@@ -295,7 +295,7 @@ class StudentController extends Controller
             
              })->addColumn('certificate_action', function ($row) {
                 $btn ='';
-                if($row->student->is_certificate_generated == 1 && $row->student->is_marksheet_generated == 2 && $row->student->is_admit_generated == 2){
+                if($row->student->is_certificate_generated == 1 && $row->student->is_marksheet_generated == 2 && $row->student->is_admit_generated == 2 && $row->student->is_exam_fee_paid == 2){
                      $btn .='<a  href="'.route('admin.certificate_form',['id'=>$row->id]).'" class="btn btn-success btn-sm">Generate Certificate</a>';
                 }
                     if($row->student->is_certificate_generated == 2){

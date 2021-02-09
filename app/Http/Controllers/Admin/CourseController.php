@@ -10,7 +10,7 @@ use App\Models\CourseCategory;
 class CourseController extends Controller
 {
     public function courseCategoryList(){
-        $category = CourseCategory::get();
+        $category = CourseCategory::latest()->get();
         return view('admin.course.course_category_list',compact('category'));
     }
 
@@ -44,7 +44,7 @@ class CourseController extends Controller
 
     }
     public function courseList(){
-        $courses = Course::get();
+        $courses = Course::latest()->get();
         return view('admin.course.course_list',compact('courses'));
     }
 

@@ -11,6 +11,7 @@ use App\Models\Course;
 use App\Models\CourseCategory;
 use App\Models\Student;
 use App\Models\StudentDetail;
+use App\Models\Board;
 use App\Models\Marks;
 use Image;
 use File;
@@ -28,8 +29,9 @@ class WebController extends Controller
         $student = Student::where('enrollment_id',$enrollment)->where('is_admit_generated',2)->first();
         if($student){
             $student_details = StudentDetail::where('student_id',$student->id)->where('dob',$dob)->first();
+            $board = Board::first();
             if($student_details){
-                return view('web.student.student-admit',compact('student_details'));
+                return view('web.student.student-admit',compact('student_details','board'));
             }else{
                 return redirect()->back()->with('error','Invalid Dob');
             }
@@ -81,7 +83,7 @@ class WebController extends Controller
 
     public function courses($category_id){
         $courses = Course::where('category_id',$category_id)->where('status',1)->get();
-        $category = CourseCategory::findOrFail($category_id);
+        $category = CourseCategory::where('status',1)->findOrFail($category_id);
         return view('web.course.courses',compact('courses','category'));
     }
 
