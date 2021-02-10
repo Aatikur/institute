@@ -23,8 +23,7 @@
                {!!$course_details->detail!!}
             </ul>
             &nbsp;<br>
-            Course fees -&nbsp;<span style="color: rgb(119, 119, 119); font-family: open_sansregular, Arial, Helvetica, sans-serif; font-size: 14.6666669845581px; line-height: 25px;">₹ {{$course_details->course_fees}}.</span><br>
-            Exam fees -&nbsp;<span style="color: rgb(119, 119, 119); font-family: open_sansregular, Arial, Helvetica, sans-serif; font-size: 14.6666669845581px; line-height: 25px;">₹ {{$course_details->exam_fees}}.</span><br>
+            Course fees -&nbsp;<span style="color: rgb(119, 119, 119); font-family: open_sansregular, Arial, Helvetica, sans-serif; font-size: 14.6666669845581px; line-height: 25px;">Contact Your Nearest GCLM Centre.</span>
             <p></p>
          </div>
       </div>
