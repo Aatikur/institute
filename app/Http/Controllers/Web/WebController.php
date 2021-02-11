@@ -50,9 +50,10 @@ class WebController extends Controller
         $student = Student::where('enrollment_id',$enrollment)->where('is_marksheet_generated',2)->first();
         if($student){
             $student_details = StudentDetail::where('student_id',$student->id)->where('dob',$dob)->first();
+            $board = Board::first();
             if($student_details){
                 $marks = Marks::where('student_id',$student->id)->first();
-                return view('web.student.student-marksheet',compact('student_details','marks'));
+                return view('web.student.student-marksheet',compact('student_details','marks','board'));
             }else{
                 return redirect()->back()->with('error','Invalid Dob');
             }
@@ -72,7 +73,8 @@ class WebController extends Controller
         if($student){
             $student_details = StudentDetail::where('student_id',$student->id)->where('dob',$dob)->first();
             if($student_details){
-                return view('web.student.student-admit',compact('student_details'));
+                $board = Board::first();
+                return view('web.student.student-admit',compact('student_details','board'));
             }else{
                 return redirect()->back()->with('error','Invalid Dob');
             }
