@@ -74,7 +74,7 @@ class WebController extends Controller
             $student_details = StudentDetail::where('student_id',$student->id)->where('dob',$dob)->first();
             if($student_details){
                 $board = Board::first();
-                return view('web.student.student-admit',compact('student_details','board'));
+                return view('web.student.student-certificate',compact('student_details','board'));
             }else{
                 return redirect()->back()->with('error','Invalid Dob');
             }
