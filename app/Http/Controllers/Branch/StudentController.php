@@ -221,14 +221,14 @@ class StudentController extends Controller
                 }
             })->addColumn('status', function ($row) {
                 $btn='';
-                if($row->student->status==1){
-                    $btn .= '<a href="' . route('branch.status',['id'=>$row->student_id,'status'=>2]).'"class="btn btn-danger btn-sm">Disable</a>';
+                // if($row->student->status==1){
+                //     $btn .= '<a href="' . route('branch.status',['id'=>$row->student_id,'status'=>2]).'"class="btn btn-danger btn-sm">Disable</a>';
                    
                
-                }else{
-                    $btn .= '<a href="' . route('branch.status',['id'=>$row->student_id,'status'=>1]).'"class="btn btn-primary btn-sm">Enable</a>';
+                // }else{
+                //     $btn .= '<a href="' . route('branch.status',['id'=>$row->student_id,'status'=>1]).'"class="btn btn-primary btn-sm">Enable</a>';
                   
-                }
+                // }
 
                 if($row->student->is_exam_fee_paid ==1){
                     $btn .= '<a href="' . route('branch.exam_fees_form',['id'=>$row->student_id,'status'=>1]).'"class="btn btn-success btn-sm">Exam</a>';

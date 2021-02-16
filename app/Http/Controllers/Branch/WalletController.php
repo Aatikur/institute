@@ -15,7 +15,8 @@ use Carbon\Carbon;
 class WalletController extends Controller
 {
     public function walletHistory(){
-        return view('branch.wallet.wallet_history');
+        $wallet = BranchWallet::where('branch_id',Auth::user()->id)->first();
+        return view('branch.wallet.wallet_history',compact('wallet'));
     }
 
     public function walletHistoryAjax(){

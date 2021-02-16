@@ -28,7 +28,7 @@
                                       <td>{{$loop->iteration}}</td>
                                       <td><img style="height:150px;width:150px;" src="{{asset('images/board/'.$item->sign)}}"></td>
                                       <td>
-                                        <a href="{{route('admin.board_edit_form',['id'=>$item->id])}}" class="btn btn-sm btn-warning">Edit</a>
+                                        <a href="{{route('admin.board_edit_form',['id'=>$item->id])}}" class="btn btn-sm btn-warning"  disabled onclick="return false">Edit</a>
                                       </td>
                                     </tr>
                                 @endforeach

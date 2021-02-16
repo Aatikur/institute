@@ -33,7 +33,7 @@ class PaymentController extends Controller
             })->addColumn('branch', function ($row) {
                 return $row->branchDetails->center_name;
              })->addColumn('date', function ($row) {
-                return $row->updated_at->format('h:i:s');
+                return $row->updated_at->format('d-m-y');
             })->addColumn('action', function ($row) {
                 $btn ='';
                 if($row->status ==1){

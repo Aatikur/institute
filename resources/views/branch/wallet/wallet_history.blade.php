@@ -8,7 +8,9 @@
     	    <div class="x_panel">
 
     	        <div class="x_title">
-                   
+                   <div style="text-align: right;">
+                      <p style="font-weight:bold;color:black">Wallet Amount</p>: <strong style="color:red;font-size:20px">₹ {{$wallet->amount}}</strong>
+                   </div>
               </div>
     	        <div>
     	            <div class="x_content">
