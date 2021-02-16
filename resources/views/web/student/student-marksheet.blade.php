@@ -4,17 +4,25 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Student Certificate</title>
+      <title>Student Marksheet</title>
       <link src={{asset("web/assets/lucida calligraphy italic.ttf")}}>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    </head>
    <style>
 
    </style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        window.print();
+    });
+  </script>
    <body>
       <div>
+       <div style="border: 4px solid; border-image: linear-gradient(to right, rgb(254 74 0), rgb(241 234 22),rgb(241 234 22),rgb(254 74 0)) ;
+         border-image-slice: 1; padding:5px">
          <div style="width:100%;margin: auto; background-image:url('{{asset('web/assets/img/gclm-bg.png')}}');background-size: 5%;padding-top: 10px; overflow: auto;">
             <div style="text-align: center">   
-               <img src="{{asset('web/assets/img/gclm-marks.png')}}" style="width: 100%;">
+               <img src="{{asset('web/assets/img/gclm-marks.png')}}" style="width: 80%;">
             </div>
             <div style="margin: 0px 30px 0px 30px;">
                <div style="width: 100%; overflow: auto;">
@@ -61,7 +69,7 @@
                      </thead>
                      <tbody>
                         <tr>
-                           <td style="width: 45%;font-family:lucida calligraphy;font-weight: 700; font-size:15px">{!!$student_details->student->course->detail!!}</td>
+                           <td style="width: 45%;font-family:lucida calligraphy;font-weight: 600; font-size:14px">{!!$student_details->student->course->detail!!}</td>
                            <td style="width: 45%;font-family:lucida calligraphy;font-weight: 700;">
                               <table style="width: 100%;">
                                  <tbody>
@@ -197,17 +205,23 @@
                      </tbody>
                   </table>
                </div>
-               <div style="width: 75%; float:left;margin-top: 20px;">
+               <div style="width: 75%; float:left;">
                   <h4 style="font-weight: 500; "><strong >Date of Issue: <span>{{$student_details->student->marksheet_date_of_issue}}</span></strong></h4>
+                                
+               <div style="margin-top: -8px;">   
+                  <img src="{{asset('web/assets/img/iso.png')}}" style="width: 8%;">
+                  <img src="{{asset('web/assets/img/uasl.png')}}" style="width: 15%;">
+            </div>
                </div>
-               <div style="width: 25%;float: right;margin-top: 20px;">
-                  <img src="{{ asset('images/board/thumb/'.$board->sign) }}" alt="test" style="width: 150px;">
+               <div style="width: 25%;float: right;margin-top: 25px;">
+                  <img src="{{ asset('images/board/thumb/'.$board->sign) }}" alt="test" style="width: 150px;height:40px;">
                   <h4 style="font-weight: 500;margin-top: 0px;"><strong>Authorised Signature</strong></h4>
                </div>
                <img src="{{asset('web/assets/img/watermark.png')}}" alt="watermark"  style="position: absolute;top: 55%;width: 60%;left: 20%;z-index: -1; opacity: 0.3;">
             </div>
          </div>
-         <div style="text-align: center"><button onclick="window.print()"class="btn btn-success">Print</button></div>
+        </div> 
+         <!--<div style="text-align: center"><button onclick="window.print()"class="btn btn-success">Print</button></div>-->
       </div>
    </body>
 </html>

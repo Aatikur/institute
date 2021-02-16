@@ -176,7 +176,7 @@ class StudentController extends Controller
         $branch_name = $branch->center_name;
         if(!empty($branch_name)){
             $branch = substr($branch_name,0,3);
-            $id = str_pad($branch, 5, '0',STR_PAD_RIGHT);
+            $id = str_pad('GCLM', 5, '0',STR_PAD_RIGHT);
             $enrollment_id = $id.$student_id;
             return $enrollment_id;
         }else{
@@ -273,6 +273,7 @@ class StudentController extends Controller
             if($wallet_history->save()){
                 $student->is_exam_fee_paid = 2;
                 $student->exam_fee_paid_date  = Carbon::now();
+                $student->save();
             }
 
         }else{
