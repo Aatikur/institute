@@ -36,7 +36,7 @@
                         <div class="well" style="overflow: auto">
                             <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                 <label for="branch_email">Branch Email<span><b style="color: red"> * </b></span></label>
-                                <input type="email" class="form-control" value="{{ $branch->email }}" name="branch_email"   >
+                                <input type="email" class="form-control" value="{{ $branch->email }}" name="branch_email" disabled  >
                                 @if($errors->has('branch_email'))
                                     <span class="invalid-feedback" role="alert" style="color:red">
                                         <strong>{{ $errors->first('branch_email') }}</strong>

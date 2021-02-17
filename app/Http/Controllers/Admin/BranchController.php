@@ -196,7 +196,6 @@ class BranchController extends Controller
     public function updateBranch(Request $request,$id){
         
         $this->validate($request, [
-            'branch_email'=>'required',
             'branch_mobile'=>'required',
             'cnt_name'=>'required',
             'cnt_email'=>'required',
@@ -218,7 +217,6 @@ class BranchController extends Controller
 
         ]);
         $branch = Branch::where('id',$id)->first();
-        $branch->email = $request->input('branch_email');
         $branch->mobile = $request->input('branch_mobile');
         $branch->save();
 
