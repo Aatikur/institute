@@ -209,7 +209,7 @@ class WebController extends Controller
             return redirect()->back()->with('error','Something Went Wrong!');
         }
         });
-        return redirect()->back()->with('message','Student Registered Successfully');
+        return redirect()->back()->with('message','Branch Registered Successfully');
     } catch (\Exception $e) {
         return redirect()->back()->with('error', 'Something went Wrong! Try after sometime!');
     }
