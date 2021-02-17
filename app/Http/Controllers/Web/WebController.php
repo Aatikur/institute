@@ -14,6 +14,7 @@ use App\Models\StudentDetail;
 use App\Models\Board;
 use App\Models\Marks;
 use Image;
+use DB;
 use File;
 use Illuminate\Support\Facades\Hash;
 
@@ -130,6 +131,9 @@ class WebController extends Controller
             'hs_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             
         ]);
+       
+        try {
+            DB::transaction(function () use ($request) {
         $branch = new Branch();
         $branch->email = $request->input('email');
         $branch->status =3;    
@@ -199,15 +203,16 @@ class WebController extends Controller
              
                
             }
-            if($branch_details->save()){
-                return redirect()->back()->with('message','Your Branch Request Has Been Registered Successfully');
-            }else{
-                return redirect()->back()->with('error','Something Went Wrong!');
-            }
+            $branch_details->save();
            
         }else{
             return redirect()->back()->with('error','Something Went Wrong!');
         }
+        });
+        return redirect()->back()->with('message','Student Registered Successfully');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Something went Wrong! Try after sometime!');
+    }
 
     }
 
