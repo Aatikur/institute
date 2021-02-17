@@ -118,14 +118,14 @@
                </div>
                <div class="franchise_forms_element">
                   <label>Date Of Birth *</label>
-                  <input name="cnt_dob" id="dob" type="text" class="hasDatepicker">
+               <input name="cnt_dob" id="dob" type="text" class="hasDatepicker" placeholder="dd-mm-yy">
                   @if($errors->has('cnt_dob'))
                      <span class="invalid-feedback" role="alert" style="color:red">
                         <strong>{{ $errors->first('cnt_dob') }}</strong>
                      </span>
                   @enderror
                </div>
-               <div class="franchise_forms_element">
+               <div class="franchise_forms_element ">
                   <label>Qualification *</label>
                   <input name="cnt_qctn" id="qualification" type="text" value="{{old('cnt_qctn')}}">
                   @if($errors->has('cnt_qctn'))
@@ -134,7 +134,7 @@
                      </span>
                   @enderror
                </div>
-               <div class="innerheading_div">
+               <div class="innerheading_div" style="margin-top: 20px;">
                   <h5>Center Information</h5>
                </div>
                <div class="franchise_forms_element">
@@ -232,7 +232,7 @@
                  @enderror
                </div>
              
-               <div class="franchise_forms_element2">
+               <div class="franchise_forms_element2" style="margin-top: 20px;">
                   <h5>Upload Documents (** Max file size should be 200KB.)</h5>
                   <div class="franchise_forms_element3">
                      <label class="document-upload"> Passport Size Photo</label>
@@ -256,7 +256,7 @@
                   
                  
                   <div class="franchise_forms_element3">
-                     <label class="document-upload">Adhar Card</label>
+                     <label class="document-upload">Aadhaar Card</label>
                      <input name="adhar_photo" id="practical" type="file">
                       @if($errors->has('adhar_photo'))
                      <span class="invalid-feedback" role="alert" style="color:red">

@@ -56,7 +56,7 @@
                         <div class="well" style="overflow: auto">
                             <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                 <label for="cnt_name">Contact Person Name<span><b style="color: red"> * </b></span></label>
-                                <input type="text" class="form-control" value="{{ $branch_data->contact_person }}" name="cnt_name"   >
+                                <input type="text" class="form-control" value="{{ isset($branch_data->contact_person)?$branch_data->contact_person:'' }}" name="cnt_name"   >
                                 @if($errors->has('cnt_name'))
                                     <span class="invalid-feedback" role="alert" style="color:red">
                                         <strong>{{ $errors->first('cnt_name') }}</strong>
