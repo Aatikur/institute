@@ -5,6 +5,7 @@
    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
    <!-- /Added by HTTrack -->
    <head>
+      <meta property="og:image" content="{{  asset('web/assets/img/GCLM.png')}}">
       <link rel="icon" href="{{  asset('web/assets/favicon.ico')}}" type="image/x-icon"/>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
      <link href="{{  asset('web/assets/css/style.css')}}" rel="stylesheet" type="text/css" />

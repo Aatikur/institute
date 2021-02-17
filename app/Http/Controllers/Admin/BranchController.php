@@ -29,7 +29,6 @@ class BranchController extends Controller
         $this->validate($request, [
             'email'=>'required|unique:branch,email',
             'mobile'=>'required',
-            'password'=>'required|min:8|same:password_confirmation',
             'cnt_name'=>'required',
             'cnt_email'=>'required',
             'cnt_state'=>'required',
@@ -53,13 +52,13 @@ class BranchController extends Controller
             'com_specs'=>'required',
             'center_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'course'=>'required|numeric',
-            'voter_card'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'pan_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'theo_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'prac_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'off_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'front_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'trade_licence'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'voter_card'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'pan_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'theo_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'prac_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'off_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'front_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'trade_licence'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             
         ]);
             

@@ -43,6 +43,7 @@ class StudentController extends Controller
             'gender'=>'required|numeric',
             'medium'=>'required|numeric',
             'profile'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'sign'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'exam'=>'array|required|min:1',
             'board'=>'array|required|min:1',
             'college'=>'array|required|min:1',

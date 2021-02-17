@@ -132,15 +132,15 @@ class WebController extends Controller
             'no_of_colleges'=>'required|numeric',
             'no_of_schools'=>'required|numeric',
             'com_specs'=>'required',
-            'center_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'center_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'course'=>'required|numeric',
-            'voter_card'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'pan_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'theo_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'prac_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'off_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'front_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'trade_licence'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'voter_card'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'pan_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'theo_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'prac_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'off_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'front_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'trade_licence'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             
         ]);
             
@@ -184,38 +184,69 @@ class WebController extends Controller
                 $branch_details->course_interested = $request->input('course');
                 
                 $center_photo =  $request->file('center_photo');
-                $center = $this->uploadDocs($center_photo,1);
+                if(!empty($center_photo)){
+                
+                    $center = $this->uploadDocs($center_photo,1);
+                }
                 
                 $voter_card = $request->file('voter_card');
+                if(!empty($voter_card)){
                 $voter= $this->uploadDocs($voter_card,2);
-        
+                }
+    
                 $pan = $request->file('pan_photo');
-                $pann = $this->uploadDocs($pan,3);
-        
+                if(!empty($pan)){
+                    $pann = $this->uploadDocs($pan,3);
+                }
+    
                 $trade = $request->file('trade_licence');
-                $trd=$this->uploadDocs($trade,4);
+                if(!empty($trade)){
+                    $trd=$this->uploadDocs($trade,4);
+                }
                 
                 $theory_room = $request->file('theo_photo');
-                $thery=$this->uploadDocs($theory_room,5);     
-        
+                if(!empty($theory_room)){
+                    $thery=$this->uploadDocs($theory_room,5); 
+                }    
+    
                 $prac_room = $request->file('prac_photo');
-                $prac=$this->uploadDocs($prac_room,6);
+                if(!empty($prac_room)){
+                    $prac=$this->uploadDocs($prac_room,6);
+                }
                 
                 $office =  $request->file('off_photo');
-                $off=$this->uploadDocs($office,7);
+                if(!empty($office)){
+                    $off=$this->uploadDocs($office,7);
+                }
                 
                 $front =  $request->file('front_photo');
-                $fr= $this->uploadDocs($front,8);
-               
-                $branch_details->center_photo = $center;  
+                if(!empty($front)){
+                    $fr= $this->uploadDocs($front,8);
+                }
+                if(!empty($center)){
+                    $branch_details->center_photo = $center;  
+                }
+                if(!empty($voter)){
                 $branch_details->voter_card = $voter;
+                }
+                if(!empty($pann)){
                 $branch_details->pan_card = $pann;
+                }
+                if(!empty($trd)){
                 $branch_details->trade_licence = $trd;
+                }
+                if(!empty($thery)){
                 $branch_details->theory_room_photo = $thery;
+                }
+                if(!empty($prac)){
                 $branch_details->practical_room_photo = $prac;
-                $branch_details->office_room_photo = $off;
-                $branch_details->front_side_photo = $fr;
-                $branch_details->save();
+                }
+                if(!empty($off)){
+                    $branch_details->office_room_photo = $off;
+                }
+                if(!empty($fr)){
+                    $branch_details->front_side_photo = $fr;
+                }
             }
             if($branch_details->save()){
                 return redirect()->back()->with('message','Your Branch Request Has Been Registered Successfully');
