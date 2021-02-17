@@ -179,11 +179,16 @@ class BranchController extends Controller
 
     public function addPassword(Request $request,$id)
     {
+        try {
+            $id = decrypt($id);
+        } catch (DecryptException $e) {
+            return redirect()->back();
+        }
+        
         $this->validate($request, [
            
             'new_password' => ['required', 'string', 'min:8', 'same:confirm_password'],
         ]);
-
         $user = Branch::where('id',$id)->first();
             Branch::where('id',$id)->update([
                 'password'=>Hash::make($request->input('new_password')),
