@@ -267,7 +267,7 @@
                                     <div class="col-md-2 col-sm-12 col-xs-12 mb-3">
                                         <label for="exam" >Exam Name <span><b style="color: red"> * </b></span></label>
                                         <input class="form-control" type="text" value="{{ $value->exam_name }}" name="exam[]">
-                                        <input type="hidden" name="quali_id[]" valfue="{{ $value->id }}"> 
+                                        <input type="hidden" name="quali_id[]" value="{{ $value->id }}"> 
                                         @if($errors->has('exam'))
                                             <span class="invalid-feedback" role="alert" style="color:red">
                                                 <strong>{{ $errors->first('exam') }}</strong>

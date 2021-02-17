@@ -116,7 +116,6 @@ class StudentController extends Controller
             $year = $request->input('year');
             $marks = $request->input('marks');
             $quali_id = $request->input('quali_id');
-           
             for($i=0;$i<count($exam);$i++){
                 if(isset($quali_id[$i]) && !empty($quali_id[$i])){
                     $qualification = StudentQualification::where('id',$quali_id[$i])->first();
