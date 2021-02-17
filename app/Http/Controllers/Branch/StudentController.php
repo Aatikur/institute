@@ -12,6 +12,7 @@ use App\Models\WalletHistory;
 use App\Models\BranchDetails;
 use App\Models\StudentQualification;
 use Auth;
+use DB;
 use Image;
 use Carbon\Carbon;
 class StudentController extends Controller
@@ -51,6 +52,8 @@ class StudentController extends Controller
             'marks'=>'array|required|min:1',
 
         ]);
+        try {
+            DB::transaction(function () use ($request) {
        
         $branch_wallet = BranchWallet::where('branch_id',Auth::user()->id)->first();
         $course = Course::where('id',$request->input('course'))->first();
@@ -160,12 +163,13 @@ class StudentController extends Controller
                 $student_details->sign = $image_name;
                 $student_details->save();
             }
-            if($student_details){
-                return redirect()->back()->with('message','Student Registered Successfully');
-            }else{
-                return redirect()->back()->with('error','Something Went Wrong!');
-            }
+           
 
+        }
+          });
+            return redirect()->back()->with('message','Student Registered Successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went Wrong! Try after sometime!');
         }
 
         

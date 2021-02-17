@@ -10,6 +10,7 @@ use App\Models\BranchWallet;
 use Hash;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Image;
+use DB;
 class BranchController extends Controller
 {
     public function branchList(){
@@ -61,6 +62,8 @@ class BranchController extends Controller
             'trade_licence'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             
         ]);
+        try {
+            DB::transaction(function () use ($request) {
             
         $branch = new Branch();
         $branch->email = $request->input('email');
@@ -156,14 +159,15 @@ class BranchController extends Controller
             if(!empty($fr)){
                 $branch_details->front_side_photo = $fr;
             }
-            if($branch_details->save()){
-                return redirect()->back()->with('message','New Branch Created Successfully');
-            }else{
-                return redirect()->back()->with('error','Something Went Wrong!');
-            }
+            $branch_details->save();
            
         }else{
             return redirect()->back()->with('error','Something Went Wrong!');
+        }
+        });
+        return redirect()->back()->with('message','Branch Added Successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went Wrong! Try after sometime!');
         }
 
     }
