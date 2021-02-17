@@ -14,7 +14,7 @@
     	        </div>
     	        <div>
     	            <div class="x_content">
-                        <table id="course" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <table id="barnch_list" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                           <thead>
                             <tr>
                               <th>Sl</th>
@@ -77,7 +77,7 @@
      
      <script type="text/javascript">
          $(function () {
-            var table = $('#category').DataTable();
+            var table = $('#barnch_list').DataTable();
         });
      </script>
     

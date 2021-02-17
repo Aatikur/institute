@@ -173,114 +173,11 @@
                         <div class="well" style="overflow: auto">
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="affil_by" >Center Affiliated By <span><b style="color: red"> * </b></span></label>
-                                    <input type="text" class="form-control" name="affil_by" value="{{ isset($branch_data->center_affiliated_by)?$branch_data->center_affiliated_by:old('affil_by') }}">
-                                    @if($errors->has('affil_by'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('affil_by') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="tel_no" >Ph No<span><b style="color: red"> * </b></span></label>
-                                    <input type="tel" class="form-control" name="tel_no" value="{{ isset($branch_data->ph_no)?$branch_data->ph_no:old('tel_no') }}">
-                                    @if($errors->has('tel_no'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('tel_no') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="theory_room" >Theory Room<span><b style="color: red"> * </b></span></label>
-                                    <input type="text" class="form-control" name="theory_room" value="{{ isset($branch_data->theory_room)?$branch_data->theory_room:old('theory_room') }}">
-                                    @if($errors->has('theory_room'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('theory_room') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="prac_room" >Pratical Room<span><b style="color: red"> * </b></span></label>
-                                    <input type="text" class="form-control" name="prac_room" value="{{ isset($branch_data->practical_room)?$branch_data->practical_room:old('prac_room') }}">
-                                    @if($errors->has('prac_room'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('prac_room') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="no_of_comps" >No Of Computers<span><b style="color: red"> * </b></span></label>
                                     <input type="number" class="form-control" name="no_of_comps" value="{{ isset($branch_data->no_of_computers)?$branch_data->no_of_computers:old('no_of_comps') }}">
                                     @if($errors->has('no_of_comps'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('no_of_comps') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="no_of_faculties" >No Of Faculties<span><b style="color: red"> * </b></span></label>
-                                    <input type="number" class="form-control" name="no_of_faculties" value="{{ isset($branch_data->no_of_faculties)?$branch_data->no_of_faculties:old('no_of_faculties') }}">
-                                    @if($errors->has('no_of_faculties'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('no_of_faculties') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="no_of_colleges" >No Of Colleges<span><b style="color: red"> * </b></span></label>
-                                    <input type="number" class="form-control" name="no_of_colleges" value="{{ isset($branch_data->no_of_colleges)?$branch_data->no_of_colleges:old('no_of_colleges') }}">
-                                    @if($errors->has('no_of_colleges'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('no_of_colleges') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="no_of_schools" >No Of Schools<span><b style="color: red"> * </b></span></label>
-                                    <input type="number" class="form-control" name="no_of_schools" value="{{ isset($branch_data->no_of_schools)?$branch_data->no_of_schools:old('no_of_schools') }}">
-                                    @if($errors->has('no_of_schools'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('no_of_schools') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
-                                    <label for="com_specs" >Computer Specs<span><b style="color: red"> * </b></span></label>
-                                    <textarea class="form-control" name="com_specs"  >{{ isset($branch_data->computer_spec)?$branch_data->computer_spec:old('com_specs') }}</textarea>
-                                    @if($errors->has('com_specs'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('com_specs') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="course" >Course Interested<span><b style="color: red"> * </b></span></label>
-                                    <select  class="form-control" name="course">
-                                        <option value="1" {{$branch_data->course_interested =='1'?'selected':''}}>Software</option>
-                                        <option value="2" {{$branch_data->course_interested =='2'?'selected':''}}>Hardware</option>
-                                        <option value="3" {{$branch_data->course_interested =='3'?'selected':''}}>University</option>
-                                    </select>
-                                    @if($errors->has('course'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('course') }}</strong>
                                         </span>
                                     @enderror
                                 </div>
@@ -301,14 +198,14 @@
                             </div>
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="voter_card" >Voter Card Photo<span><b style="color: red"> * </b></span></label>
-                                    <input type="file" class="form-control" name="voter_card">
-                                    @if(!empty($branch_data->voter_card))
-                                        <img src="{{asset('images/docs/voter/'.$branch_data->voter_card)}}" style="width:150px;height:150px;">
+                                    <label for="adhar_photo" >Adhar Card Photo<span><b style="color: red"> * </b></span></label>
+                                    <input type="file" class="form-control" name="adhar_photo">
+                                    @if(!empty($branch_data->adhar_card))
+                                        <img src="{{asset('images/docs/voter/'.$branch_data->adhar_card)}}" style="width:150px;height:150px;">
                                     @endif
-                                    @if($errors->has('voter_card'))
+                                    @if($errors->has('adhar_photo'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('voter_card') }}</strong>
+                                            <strong>{{ $errors->first('adhar_photo') }}</strong>
                                         </span>
                                     @enderror
                                 </div>
@@ -329,74 +226,20 @@
                             </div>
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="trade_licence" >Trade Licence Photo<span><b style="color: red"> * </b></span></label>
-                                    <input type="file" class="form-control" name="trade_licence">
-                                    @if(!empty($branch_data->trade_licence))
-                                        <img src="{{asset('images/docs/trade/'.$branch_data->trade_licence)}}" style="width:150px;height:150px;">
+                                    <label for="hs_photo" >H.S Certificate Photo<span><b style="color: red"> * </b></span></label>
+                                    <input type="file" class="form-control" name="hs_photo">
+                                    @if(!empty($branch_data->hs_certificate))
+                                        <img src="{{asset('images/docs/trade/'.$branch_data->hs_certificate)}}" style="width:150px;height:150px;">
                                     @endif
-                                    @if($errors->has('trade_licence'))
+                                    @if($errors->has('hs_photo'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('trade_licence') }}</strong>
+                                            <strong>{{ $errors->first('hs_photo') }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="theo_photo" >Theory Room Photo<span><b style="color: red"> * </b></span></label>
-                                    <input type="file" class="form-control" name="theo_photo">
-                                    @if(!empty($branch_data->theory_room_photo))
-                                        <img src="{{asset('images/docs/theoryroom/'.$branch_data->theory_room_photo)}}" style="width:150px;height:150px;">
-                                    @endif
-                                    @if($errors->has('theo_photo'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('theo_photo') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="prac_photo" >Practical Room Photo<span><b style="color: red"> * </b></span></label>
-                                    <input type="file" class="form-control" name="prac_photo">
-                                    @if(!empty($branch_data->practical_room_photo))
-                                        <img src="{{asset('images/docs/practicalroom/'.$branch_data->practical_room_photo)}}" style="width:150px;height:150px;">
-                                    @endif
-                                    @if($errors->has('prac_photo'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('prac_photo') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="off_photo" >Office Room Photo<span><b style="color: red"> * </b></span></label>
-                                    <input type="file" class="form-control" name="off_photo">
-                                    @if(!empty($branch_data->office_room_photo))
-                                        <img src="{{asset('images/docs/officeroom/'.$branch_data->office_room_photo)}}" style="width:150px;height:150px;">
-                                    @endif
-                                    @if($errors->has('off_photo'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('off_photo') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="front_photo" >Front Side Photo<span><b style="color: red"> * </b></span></label>
-                                    <input type="file" class="form-control" name="front_photo">
-                                    @if(!empty($branch_data->front_side_photo))
-                                        <img src="{{asset('images/docs/frontside/'.$branch_data->front_side_photo)}}" style="width:150px;height:150px;">
-                                    @endif
-                                    @if($errors->has('front_photo'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('front_photo') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
+                            
+                            
                         </div>
                         <div class="form-group">    
                             <button type="submit" class='btn btn-success'>Submit</button>
