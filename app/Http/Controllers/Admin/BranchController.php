@@ -10,6 +10,7 @@ use App\Models\BranchWallet;
 use Hash;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Image;
+use DB;
 class BranchController extends Controller
 {
     public function branchList(){
@@ -28,8 +29,6 @@ class BranchController extends Controller
     public function addBranch(Request $request){
         $this->validate($request, [
             'email'=>'required|unique:branch,email',
-            'mobile'=>'required',
-            'password'=>'required|min:8|same:password_confirmation',
             'cnt_name'=>'required',
             'cnt_email'=>'required',
             'cnt_state'=>'required',
@@ -42,32 +41,15 @@ class BranchController extends Controller
             'center_state'=>'required',
             'center_address'=>'required',
             'center_district'=>'required',
-            'affil_by'=>'required',
-            'tel_no'=>'required|numeric',
-            'theory_room'=>'required',
-            'prac_room'=>'required',
             'no_of_comps'=>'required|numeric',
-            'no_of_faculties'=>'required|numeric',
-            'no_of_colleges'=>'required|numeric',
-            'no_of_schools'=>'required|numeric',
-            'com_specs'=>'required',
             'center_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'course'=>'required|numeric',
-            'voter_card'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'pan_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'theo_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'prac_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'off_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'front_photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'trade_licence'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'pan_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'adhar_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'hs_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             
         ]);
-            
         $branch = new Branch();
-        $branch->email = $request->input('email');
-        $branch->password = Hash::make($request->input('password'));
-        $branch->mobile = $request->input('mobile');
-       
+        $branch->email = $request->input('email');  
         $branch->save();
         if($branch->save()){
 
@@ -87,78 +69,55 @@ class BranchController extends Controller
             $branch_details->center_district = $request->input('center_district');
             $center_code = $this->generateCenterCode($branch->id);
             $branch_details->center_code = $center_code;
+            $branch_details->no_of_computers = $request->input('no_of_comps');
             $branch_details->save();
             if($branch_details->save()){
                 $wallet =  new BranchWallet();
                 $wallet->branch_id = $branch->id;
                 $wallet->save();
-            }
-            $center_photo =  $request->file('center_photo');
-            if(!empty($center_photo)){
-            
-                $center = $this->uploadDocs($center_photo,1);
-            }
-            
-            $voter_card = $request->file('voter_card');
-            if(!empty($voter_card)){
-            $voter= $this->uploadDocs($voter_card,2);
-            }
-
-            $pan = $request->file('pan_photo');
-            if(!empty($pan)){
-                $pann = $this->uploadDocs($pan,3);
-            }
-
-            $trade = $request->file('trade_licence');
-            if(!empty($trade)){
-                $trd=$this->uploadDocs($trade,4);
-            }
-            
-            $theory_room = $request->file('theo_photo');
-            if(!empty($theory_room)){
-                $thery=$this->uploadDocs($theory_room,5); 
-            }    
-
-            $prac_room = $request->file('prac_photo');
-            if(!empty($prac_room)){
-                $prac=$this->uploadDocs($prac_room,6);
-            }
-            
-            $office =  $request->file('off_photo');
-            if(!empty($office)){
-                $off=$this->uploadDocs($office,7);
-            }
-            
-            $front =  $request->file('front_photo');
-            if(!empty($front)){
-                $fr= $this->uploadDocs($front,8);
-            }
-            if(!empty($center)){
-                $branch_details->center_photo = $center;  
-            }
-            if(!empty($voter)){
-            $branch_details->voter_card = $voter;
-            }
-            if(!empty($pann)){
-            $branch_details->pan_card = $pann;
-            }
-            if(!empty($trd)){
-            $branch_details->trade_licence = $trd;
-            }
-            if(!empty($thery)){
-            $branch_details->theory_room_photo = $thery;
-            }
-            if(!empty($prac)){
-            $branch_details->practical_room_photo = $prac;
-            }
-            if(!empty($off)){
-                $branch_details->office_room_photo = $off;
-            }
-            if(!empty($fr)){
-                $branch_details->front_side_photo = $fr;
+                
+                
+                $center_photo =  $request->file('center_photo');
+                if(!empty($center_photo)){
+                
+                    $center = $this->uploadDocs($center_photo,1);
+                }
+                
+                $adhar_card = $request->file('adhar_photo');
+                if(!empty($adhar_card)){
+                $adhar= $this->uploadDocs($adhar_card,2);
+                }
+    
+                $pan = $request->file('pan_photo');
+                if(!empty($pan)){
+                    $pann = $this->uploadDocs($pan,3);
+                }
+    
+                $hs_certificate = $request->file('hs_photo');
+                if(!empty($hs_certificate)){
+                    $hs_photo=$this->uploadDocs($hs_certificate,4);
+                }
+                
+              
+                
+                if(!empty($center)){
+                    $branch_details->center_photo = $center;  
+                }
+                if(!empty($adhar)){
+                $branch_details->adhar_card = $adhar;
+                }
+                if(!empty($pann)){
+                $branch_details->pan_card = $pann;
+                }
+                if(!empty($hs_photo)){
+                $branch_details->hs_certificate = $hs_photo;
+                }
+                
+             
+               
             }
             if($branch_details->save()){
-                return redirect()->back()->with('message','New Branch Created Successfully');
+                return redirect()->back()->with('message','Branch Has Been Registered Successfully');
             }else{
                 return redirect()->back()->with('error','Something Went Wrong!');
             }
@@ -220,11 +179,16 @@ class BranchController extends Controller
 
     public function addPassword(Request $request,$id)
     {
+        try {
+            $id = decrypt($id);
+        } catch (DecryptException $e) {
+            return redirect()->back();
+        }
+        
         $this->validate($request, [
            
             'new_password' => ['required', 'string', 'min:8', 'same:confirm_password'],
         ]);
-
         $user = Branch::where('id',$id)->first();
             Branch::where('id',$id)->update([
                 'password'=>Hash::make($request->input('new_password')),
@@ -237,7 +201,6 @@ class BranchController extends Controller
     public function updateBranch(Request $request,$id){
         
         $this->validate($request, [
-            'branch_email'=>'required',
             'branch_mobile'=>'required',
             'cnt_name'=>'required',
             'cnt_email'=>'required',
@@ -251,28 +214,14 @@ class BranchController extends Controller
             'center_state'=>'required',
             'center_district'=>'required',
             'center_address'=>'required',
-            'affil_by'=>'required',
-            'tel_no'=>'required|numeric',
-            'theory_room'=>'required',
-            'prac_room'=>'required',
             'no_of_comps'=>'required|numeric',
-            'no_of_faculties'=>'required|numeric',
-            'no_of_colleges'=>'required|numeric',
-            'no_of_schools'=>'required|numeric',
-            'com_specs'=>'required',
             'center_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'course'=>'required|numeric',
-            'voter_card'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'adhar_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'pan_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'theo_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'prac_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'off_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'front_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'trade_licence'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'hs_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
         ]);
         $branch = Branch::where('id',$id)->first();
-        $branch->email = $request->input('branch_email');
         $branch->mobile = $request->input('branch_mobile');
         $branch->save();
 
@@ -289,16 +238,7 @@ class BranchController extends Controller
         $branch_details->center_city = $request->input('center_city');
         $branch_details->center_state = $request->input('center_state');
         $branch_details->center_district = $request->input('center_district');
-        $branch_details->center_affiliated_by = $request->input('affil_by');
-        $branch_details->ph_no = $request->input('tel_no');
-        $branch_details->theory_room = $request->input('theory_room');
-        $branch_details->practical_room = $request->input('prac_room');
         $branch_details->no_of_computers = $request->input('no_of_comps');
-        $branch_details->no_of_faculties = $request->input('no_of_faculties');
-        $branch_details->no_of_colleges = $request->input('no_of_colleges');
-        $branch_details->no_of_schools = $request->input('no_of_schools');
-        $branch_details->computer_spec = $request->input('com_specs');
-        $branch_details->course_interested = $request->input('course');
         
         $center_photo =  $request->file('center_photo');
         if(!empty($center_photo)){
@@ -306,9 +246,9 @@ class BranchController extends Controller
             $center = $this->uploadDocs($center_photo,1);
         }
         
-        $voter_card = $request->file('voter_card');
-        if(!empty($voter_card)){
-        $voter= $this->uploadDocs($voter_card,2);
+        $adhar_card = $request->file('adhar_photo');
+        if(!empty($adhar_card)){
+        $adhar_card= $this->uploadDocs($adhar_card,2);
         }
 
         $pan = $request->file('pan_photo');
@@ -316,54 +256,27 @@ class BranchController extends Controller
             $pann = $this->uploadDocs($pan,3);
         }
 
-        $trade = $request->file('trade_licence');
-        if(!empty($trade)){
-            $trd=$this->uploadDocs($trade,4);
+        $hs_photo = $request->file('hs_photo');
+        if(!empty($hs_photo)){
+            $hs_photo=$this->uploadDocs($hs_photo,4);
         }
         
-        $theory_room = $request->file('theo_photo');
-        if(!empty($theory_room)){
-            $thery=$this->uploadDocs($theory_room,5); 
-        }    
-
-        $prac_room = $request->file('prac_photo');
-        if(!empty($prac_room)){
-            $prac=$this->uploadDocs($prac_room,6);
-        }
+    
         
-        $office =  $request->file('off_photo');
-        if(!empty($office)){
-            $off=$this->uploadDocs($office,7);
-        }
         
-        $front =  $request->file('front_photo');
-        if(!empty($front)){
-            $fr= $this->uploadDocs($front,8);
-        }
         if(!empty($center)){
             $branch_details->center_photo = $center;  
         }
-        if(!empty($voter)){
-        $branch_details->voter_card = $voter;
+        if(!empty($adhar_card)){
+        $branch_details->adhar_card = $adhar_card;
         }
         if(!empty($pann)){
         $branch_details->pan_card = $pann;
         }
-        if(!empty($trd)){
-        $branch_details->trade_licence = $trd;
+        if(!empty($hs_photo)){
+        $branch_details->hs_certificate = $hs_photo;
         }
-        if(!empty($thery)){
-        $branch_details->theory_room_photo = $thery;
-        }
-        if(!empty($prac)){
-        $branch_details->practical_room_photo = $prac;
-        }
-        if(!empty($off)){
-            $branch_details->office_room_photo = $off;
-        }
-        if(!empty($fr)){
-            $branch_details->front_side_photo = $fr;
-        }
+       
         $branch_details->save();
        
         

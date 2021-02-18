@@ -246,7 +246,7 @@
                             </div>
                             <div class="form-row mb-10">
                                 <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
-                                    <label for="sign" >Gignature Of Student <span><b style="color: red"> * </b></span></label>
+                                    <label for="sign" >Signature Of Student <span><b style="color: red"> * </b></span></label>
                                     <input class="form-control" type="file" name="sign">
                                     @if($errors->has('sign'))
                                         <span class="invalid-feedback" role="alert" style="color:red">

@@ -14,7 +14,7 @@
     	        </div>
     	        <div>
     	            <div class="x_content">
-                        <table id="course" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <table id="barnch_list" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                           <thead>
                             <tr>
                               <th>Sl</th>
@@ -48,11 +48,11 @@
                                         @else
                                           <a href="{{ route('admin.branch_status',['branch_id'=>$item->id,'status'=>1]) }}" class="btn btn-sm btn-primary">Enable</a>
                                         @endif
-                                        @if(!empty($item->password))
+                                        {{-- @if(!empty($item->password))
                                           <a href="{{ route('admin.change_password_form',['id'=>encrypt($item->id)]) }}" class="btn btn-sm btn-success">Change Password</a>
-                                       @else
-                                          <a href="{{ route('admin.add_password_form',['id'=>encrypt($item->id)]) }}" class="btn btn-sm btn-success">Add Password</a>
-                                       @endif
+                                       @else --}}
+                                          <a href="{{ route('admin.add_password_form',['id'=>encrypt($item->id)]) }}" class="btn btn-sm btn-success">Create Password</a>
+                                       {{-- @endif --}}
                                       </td>
                                     </tr>
                                 @endforeach
@@ -77,7 +77,7 @@
      
      <script type="text/javascript">
          $(function () {
-            var table = $('#category').DataTable();
+            var table = $('#barnch_list').DataTable();
         });
      </script>
     

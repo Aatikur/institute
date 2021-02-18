@@ -52,24 +52,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
-                                    <label for="password">Password<span><b style="color: red"> * </b></span></label>
-                                    <input type="password"  class="form-control" name="password" value="{{ old('password') }}" >
-                                    @if($errors->has('password'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
-                                    <label for="password_confirmation">Confirm Password<span><b style="color: red"> * </b></span></label>
-                                    <input type="password"  class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" >
-                                    @if($errors->has('password_confirmation'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                
                             </div>
                         </div>
                         </div>
@@ -294,24 +277,10 @@
                                     @enderror
                                 </div>
                             </div>
+                            
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="course" >Course Interested<span><b style="color: red"> * </b></span></label>
-                                    <select  class="form-control" name="course">
-                                        <option value="1" >Software</option>
-                                        <option value="2" >Hardware</option>
-                                        <option value="3" >University</option>
-                                    </select>
-                                    @if($errors->has('course'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('course') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="center_photo" >Center Photo<span><b style="color: red"> * </b></span></label>
+                                    <label for="center_photo" >Center Photo</label>
                                     <input type="file" class="form-control" name="center_photo">
                                    
                                     @if($errors->has('center_photo'))
@@ -323,19 +292,19 @@
                             </div>
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="voter_card" >Voter Card Photo<span><b style="color: red"> * </b></span></label>
-                                    <input type="file" class="form-control" name="voter_card">
+                                    <label for="adhar_photo" >Adhar Card Photo</label>
+                                    <input type="file" class="form-control" name="adhar_photo">
                                     
-                                    @if($errors->has('voter_card'))
+                                    @if($errors->has('adhar_photo'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('voter_card') }}</strong>
+                                            <strong>{{ $errors->first('adhar_photo') }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="pan_photo" >PAN Card Photo<span><b style="color: red"> * </b></span></label>
+                                    <label for="pan_photo" >PAN Card Photo</label>
                                     <input type="file" class="form-control" name="pan_photo">
                                    
                                     @if($errors->has('pan_photo'))
@@ -347,64 +316,18 @@
                             </div>
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="trade_licence" >Trade Licence Photo<span><b style="color: red"> * </b></span></label>
-                                    <input type="file" class="form-control" name="trade_licence">
+                                    <label for="hs_photo" >H.S Certificate Photo</label>
+                                    <input type="file" class="form-control" name="hs_photo">
                                   
-                                    @if($errors->has('trade_licence'))
+                                    @if($errors->has('hs_photo'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('trade_licence') }}</strong>
+                                            <strong>{{ $errors->first('hs_photo') }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="theo_photo" >Theory Room Photo<span><b style="color: red"> * </b></span></label>
-                                    <input type="file" class="form-control" name="theo_photo">
-                                   
-                                    @if($errors->has('theo_photo'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('theo_photo') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="prac_photo" >Practical Room Photo<span><b style="color: red"> * </b></span></label>
-                                    <input type="file" class="form-control" name="prac_photo">
-                                    
-                                    @if($errors->has('prac_photo'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('prac_photo') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="off_photo" >Office Room Photo<span><b style="color: red"> * </b></span></label>
-                                    <input type="file" class="form-control" name="off_photo">
-                                   
-                                    @if($errors->has('off_photo'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('off_photo') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="front_photo" >Front Side Photo<span><b style="color: red"> * </b></span></label>
-                                    <input type="file" class="form-control" name="front_photo">
-                                   
-                                    @if($errors->has('front_photo'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('front_photo') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
+                           
+                            
                         </div>
                       
 

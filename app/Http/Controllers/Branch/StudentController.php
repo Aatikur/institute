@@ -12,6 +12,7 @@ use App\Models\WalletHistory;
 use App\Models\BranchDetails;
 use App\Models\StudentQualification;
 use Auth;
+use DB;
 use Image;
 use Carbon\Carbon;
 class StudentController extends Controller
@@ -43,6 +44,7 @@ class StudentController extends Controller
             'gender'=>'required|numeric',
             'medium'=>'required|numeric',
             'profile'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'sign'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'exam'=>'array|required|min:1',
             'board'=>'array|required|min:1',
             'college'=>'array|required|min:1',
@@ -50,10 +52,12 @@ class StudentController extends Controller
             'marks'=>'array|required|min:1',
 
         ]);
+        try {
+            DB::transaction(function () use ($request) {
        
         $branch_wallet = BranchWallet::where('branch_id',Auth::user()->id)->first();
         $course = Course::where('id',$request->input('course'))->first();
-        if($branch_wallet->amount >= $course->course_fees){
+        if($branch_wallet->amount >= $course->reg_fees){
             $branch_wallet->amount = $branch_wallet->amount -  $request->input('course_fees');
             $branch_wallet->save();
             $wallet_history = new WalletHistory();
@@ -72,7 +76,7 @@ class StudentController extends Controller
         $student->branch_id = Auth::user()->id;
         $student->reg_fee_paid_date = Carbon::today();
         if($student->save()){
-            $wallet_history->comment = 'Course Fees Of Amount="'.$request->input('course_fees').'" Paid For Student ID="'.$student->id.'"';
+            $wallet_history->comment = 'Registration Fees Of Amount="'.$request->input('course_fees').'" Paid For Student ID="'.$student->id.'"';
                 $wallet_history->save();
             $enrollment_id = $this->generateEnrollmentId($student->id);
             if($enrollment_id == false){
@@ -159,12 +163,13 @@ class StudentController extends Controller
                 $student_details->sign = $image_name;
                 $student_details->save();
             }
-            if($student_details){
-                return redirect()->back()->with('message','Student Registered Successfully');
-            }else{
-                return redirect()->back()->with('error','Something Went Wrong!');
-            }
+           
 
+        }
+          });
+            return redirect()->back()->with('message','Student Registered Successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went Wrong! Try after sometime!');
         }
 
         
@@ -176,7 +181,7 @@ class StudentController extends Controller
         $branch_name = $branch->center_name;
         if(!empty($branch_name)){
             $branch = substr($branch_name,0,3);
-            $id = str_pad($branch, 5, '0',STR_PAD_RIGHT);
+            $id = str_pad('GCLM', 5, '0',STR_PAD_RIGHT);
             $enrollment_id = $id.$student_id;
             return $enrollment_id;
         }else{
@@ -186,7 +191,7 @@ class StudentController extends Controller
     }
     public function retriveCourseFees($course_id){
         $course = Course::where('id',$course_id)->where('status',1)->first();
-        $course_fees = $course->course_fees;
+        $course_fees = $course->reg_fees;
         if($course_fees){
             return $course_fees;
         }else{
@@ -221,20 +226,18 @@ class StudentController extends Controller
                 }
             })->addColumn('status', function ($row) {
                 $btn='';
-                if($row->student->status==1){
-                    $btn .= '<a href="' . route('branch.status',['id'=>$row->student_id,'status'=>2]).'"class="btn btn-danger btn-sm">Disable</a>';
+                // if($row->student->status==1){
+                //     $btn .= '<a href="' . route('branch.status',['id'=>$row->student_id,'status'=>2]).'"class="btn btn-danger btn-sm">Disable</a>';
                    
                
-                }else{
-                    $btn .= '<a href="' . route('branch.status',['id'=>$row->student_id,'status'=>1]).'"class="btn btn-primary btn-sm">Enable</a>';
+                // }else{
+                //     $btn .= '<a href="' . route('branch.status',['id'=>$row->student_id,'status'=>1]).'"class="btn btn-primary btn-sm">Enable</a>';
                   
-                }
+                // }
 
-                if($row->student->is_exam_fee_paid ==1){
-                    $btn .= '<a href="' . route('branch.exam_fees_form',['id'=>$row->student_id,'status'=>1]).'"class="btn btn-success btn-sm">Exam</a>';
-                }else{
-                    $btn .= '<a class="btn btn-info btn-sm">Fee Paid</a>';
-                }
+              
+                    $btn .= '<a class="btn btn-info btn-sm">Reg Fee Paid</a>';
+               
 
                 return $btn;
             })->rawColumns(['course_name','gender','medium','status'])
@@ -273,6 +276,7 @@ class StudentController extends Controller
             if($wallet_history->save()){
                 $student->is_exam_fee_paid = 2;
                 $student->exam_fee_paid_date  = Carbon::now();
+                $student->save();
             }
 
         }else{

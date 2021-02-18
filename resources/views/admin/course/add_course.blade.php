@@ -87,7 +87,7 @@
                             @enderror
                         </div>
                         
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             {{ Form::label('course_fees', 'Course Fees')}}
                             {{ Form::number('course_fees',null,array('class' => 'form-control','placeholder'=>'Enter Course Fees')) }}
                             @if($errors->has('course_fees'))
@@ -95,8 +95,17 @@
                                     <strong>{{ $errors->first('course_fees') }}</strong>
                                 </span>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="form-group">
+                            {{ Form::label('reg_fees', 'Registration Fees')}}
+                            {{ Form::number('reg_fees',null,array('class' => 'form-control','placeholder'=>'Enter Regsitration fees')) }}
+                            @if($errors->has('reg_fees'))
+                                <span class="invalid-feedback" role="alert" style="color:red">
+                                    <strong>{{ $errors->first('reg_fees') }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        {{-- <div class="form-group">
                             {{ Form::label('exam_fees', 'Exam Fees')}}
                             {{ Form::number('exam_fees',null,array('class' => 'form-control','placeholder'=>'Enter Exam Fees')) }}
                             @if($errors->has('exam_fees'))
@@ -104,7 +113,7 @@
                                     <strong>{{ $errors->first('exam_fees') }}</strong>
                                 </span>
                             @enderror
-                        </div>
+                        </div>--}}
                         <div class="form-group">                                
                             <label for="details">Details<span><b style="color: red"> * </b></span></label>
                             <textarea class="form-control" name="details" id="details">{{ isset($course->detail) ? $course->detail:'' }}</textarea>
@@ -113,7 +122,7 @@
                                     <strong>{{ $errors->first('details') }}</strong>
                                 </span>
                             @enderror
-                        </div>
+                        </div> 
                         <div class="form-group">
                             @if(isset($course) && !empty($course))
                                 {{ Form::submit('Save', array('class'=>'btn btn-success')) }}

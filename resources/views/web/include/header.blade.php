@@ -5,6 +5,7 @@
    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
    <!-- /Added by HTTrack -->
    <head>
+      <meta property="og:image" content="{{  asset('web/assets/img/GCLM.png')}}">
       <link rel="icon" href="{{  asset('web/assets/favicon.ico')}}" type="image/x-icon"/>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
      <link href="{{  asset('web/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
@@ -102,8 +103,8 @@
                            {{-- <li><a href="{{ route('web.student.student-verification') }}">Enrollment Verification</a></li>
                            <li><a href="{{ route('web.student.student-result') }}">Online Result</a></li> --}}
                            <li><a href="{{ route('web.student.admit-card') }}">Student Admit</a></li>
-                           <li><a href="{{ route('web.student.certificate-online') }}">Student Certificate</a></li>
                            <li><a href="{{ route('web.student.marksheet-online') }}">Student Marksheet</a></li>
+                           <li><a href="{{ route('web.student.certificate-online') }}">Student Certificate</a></li>
                         </ul>
                      </li>
                      <li><a href="{{route('web.gallery.gallery')}}">Gallery</a></li>

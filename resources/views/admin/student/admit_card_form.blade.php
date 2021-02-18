@@ -28,7 +28,11 @@
 
                 </div>
     	        <div>
-                    <form method="POST" action="{{ route('admin.add_admit_card',['id'=>$student_details->student->id]) }}" enctype="multipart/form-data">
+                    @if(isset($student) && !empty($student))
+                        <form method="POST" action="{{ route('admin.update_admit_card',['id'=>$student_details->student->id]) }}" enctype="multipart/form-data">
+                    @else
+                        <form method="POST" action="{{ route('admin.add_admit_card',['id'=>$student_details->student->id]) }}" enctype="multipart/form-data">
+                    @endif
                         @method('put')
                         @csrf
     	            <div class="x_content">
@@ -54,7 +58,7 @@
                                 </div> --}}
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="year">Year</label>
-                                    <input type="text"  class="form-control" name="year">
+                                    <input type="number"  class="form-control" name="year" value="{{isset($student->year)?$student->year:old('year')}}">
                                     @if($errors->has('year'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('year') }}</strong>
@@ -71,7 +75,7 @@
                                 <div class="form-row mb-10">
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                         <label for="center" >Centre<span><b style="color: red"> * </b></span></label>
-                                        <input type="tel" class="form-control" name="center"  >
+                                        <input type="tel" class="form-control" name="center"  value="{{isset($student->center)?$student->center:old('center')}}">
                                         @if($errors->has('center'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('center') }}</strong>
@@ -82,7 +86,7 @@
                                 <div class="form-row mb-10">
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                         <label for="exam_Date" >Exam Date</label>
-                                        <input type="date" class="form-control" name="exam_Date"   >
+                                        <input type="date" class="form-control" name="exam_Date"  value="{{isset($student->exam_date)?$student->exam_date:old('exam_Date')}}" >
                                         @if($errors->has('exam_Date'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('exam_Date') }}</strong>
@@ -116,7 +120,11 @@
                         </div>
                        
                         <div class="form-group">    
-                            <button type="submit" class='btn btn-success'>Submit</button>
+                            @if(isset($student) && !empty($student))
+                                <button type="submit" class='btn btn-success'>Update</button>
+                            @else
+                                <button type="submit" class='btn btn-success'>Submit</button>
+                            @endif
     	            	</div>
     	            </div>
                     </form>

@@ -10,7 +10,7 @@ class Course extends Model
     protected $table = 'course';
     protected $primarykey = 'id';
     protected $fillable = [
-        'name','duration','course_code','eligibility','detail','course_fees','exam_fees','status','category_id'
+        'name','duration','course_code','eligibility','detail','course_fees','exam_fees','reg_fees','status','category_id'
     ];
 
     public function category(){

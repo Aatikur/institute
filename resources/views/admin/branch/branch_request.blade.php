@@ -65,7 +65,7 @@
      
      <script type="text/javascript">
          $(function () {
-            var table = $('#category').DataTable();
+            var table = $('#course').DataTable();
         });
      </script>
     

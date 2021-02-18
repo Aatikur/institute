@@ -28,7 +28,11 @@
 
                 </div>
     	        <div>
-                    <form method="POST" action="{{ route('admin.add_certificate',['id'=>$student_details->student->id]) }}" enctype="multipart/form-data">
+                    @if(isset($student) && !empty($student))
+                        <form method="POST" action="{{ route('admin.add_certificate',['id'=>$student_details->student->id]) }}" enctype="multipart/form-data">
+                    @else
+                        <form method="POST" action="{{ route('admin.add_certificate',['id'=>$student_details->student->id]) }}" enctype="multipart/form-data">
+                    @endif
                         @method('put')
                         @csrf
     	            <div class="x_content">
@@ -80,7 +84,7 @@
                                     <div class="form-row mb-10">
                                         <div class="col-md-6 col-sm-12 col-xs-12 mb-3"><b>Training Period</b>
                                             <label for="training_from" >From<span><b style="color: red"> * </b></span></label>
-                                            <input type="date" class="form-control" name="training_from"  >
+                                            <input type="date" class="form-control" name="training_from" value="{{ isset($student_details->student->training_from)?$student_details->student->training_from:old('training_from') }}" >
                                             @if($errors->has('training_from'))
                                                 <span class="invalid-feedback" role="alert" style="color:red">
                                                     <strong>{{ $errors->first('training_from') }}</strong>
@@ -91,9 +95,9 @@
                                     </div>
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                         <label for="training_to" >To<span><b style="color: red"> * </b></span></label>
-                                        <input type="date" class="form-control" name="training_to"  >
+                                        <input type="date" class="form-control" name="training_to" value="{{ isset($student_details->student->training_to)?$student_details->student->training_to:old('training_to') }}" >
                                         @if($errors->has('training_to'))
-                                            <span class="invalid-feedback" role="alert" style="color:red">
+                                            <span class="invalid-feedback" role="alert" style="color:red" >
                                                 <strong>{{ $errors->first('training_to') }}</strong>
                                             </span>
                                         @enderror
@@ -119,7 +123,7 @@
                                     </div>
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                         <label for="date_of_issue" > Date Of Issue</label>
-                                        <input type="date" class="form-control" name="date_of_issue"   >
+                                        <input type="date" class="form-control" name="date_of_issue"  value="{{ isset($student_details->student->date_of_issue)?$student_details->student->date_of_issue:old('date_of_issue') }}" >
                                         @if($errors->has('date_of_issue'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('date_of_issue') }}</strong>
@@ -131,7 +135,11 @@
                         </div>
                         </div>
                         <div class="form-group">    
-                            <button type="submit" class='btn btn-success'>Submit</button>
+                            @if(isset($student) && !empty($student))
+                                <button type="submit" class='btn btn-success'>Update</button>
+                            @else
+                                <button type="submit" class='btn btn-success'>Submit</button>
+                            @endif
     	            	</div>
     	            </div>
                     </form>

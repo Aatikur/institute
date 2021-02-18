@@ -18,16 +18,31 @@
          </div>
          <br />
          <div class="contact_forms_outer" style="float:left !important;">
+            @if ($message = Session::get('login_error'))
+            <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @endif
             <form action="{{route('branch.login_submit')}}" method="post" name="form1" id="form1" class="contact_forms">
                @csrf
                <input type="hidden" name="hd" value="val" />
                <div class="contact_forms_element">
                   <input name="email" id="email" type="text" Placeholder="Center ID"  oninvalid="this.setCustomValidity('Please Enter Center ID')">
                   <span class="error msg_holder"></span>
+                  @error('email')
+                     <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                     </span>
+                  @enderror
                </div>
                <div class="contact_forms_element">
                   <input name="password" id="password" type="password" Placeholder="Password"   oninvalid="this.setCustomValidity('Please Enrter Password')">
                   <span class="error msg_holder"></span>
+                  @error('password')
+                     <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                     </span>
+                  @enderror
                </div>
                {{-- <div class="contact_forms_element" style="margin-bottom:20px;">
                   <a class="forgot_password" href="{{ route('web.center.center-forgot-password') }}"><img src="{{  asset('web/assets/img/icon/forgot-password.png')}}" height="30" alt=" ">Forgot Password?</a>

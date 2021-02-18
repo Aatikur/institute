@@ -8,6 +8,11 @@
       <link src={{asset("web/assets/lucida calligraphy italic.ttf")}}>
    </head>
    <style>
+       @media print {
+      #print-btn {
+         display :  none;
+      }
+   }
    </style>
    <body>
       <div>
@@ -65,6 +70,7 @@
                </div>
             </div>
                <div style="width: 30%;float: right;margin-top: 7px;">
+                  <img src="{{ asset('images/board/thumb/'.$board->sign) }}" alt="test" style="width: 150px;height:38px;">
                   <h2 style="font-weight: 500;font-family:lucida calligraphy;font-size: 21px;"><strong>Chairman</strong></h2>
                   <h3 style="font-weight: 500;margin-top: -16px; margin-bottom:2px;font-family:lucida calligraphy;font-size: 15px;"><strong>Board of Examination</strong></h3>
                </div>
@@ -75,7 +81,7 @@
             </div>
          </div>
          </div>
-         <div style="text-align: center"><button onclick="window.print()"class="btn btn-success">Print</button></div>
+         <div style="text-align: center"><button onclick="window.print()"class="btn btn-success" id="print-btn">Print</button></div>
       </div>
    </body>
 </html>

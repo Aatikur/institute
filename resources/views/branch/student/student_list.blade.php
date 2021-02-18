@@ -27,7 +27,7 @@
                               <th>DOB</th>
                               <th>Gender</th>
                               <th>Medium</th>
-                              <th>Action</th>
+                              <th>Status</th>
                              
                             </tr>
                           </thead>

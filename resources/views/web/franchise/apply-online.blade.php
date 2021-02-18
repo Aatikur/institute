@@ -118,14 +118,14 @@
                </div>
                <div class="franchise_forms_element">
                   <label>Date Of Birth *</label>
-                  <input name="cnt_dob" id="dob" type="text" class="hasDatepicker">
+               <input name="cnt_dob" id="dob" type="text" class="hasDatepicker" placeholder="dd-mm-yy">
                   @if($errors->has('cnt_dob'))
                      <span class="invalid-feedback" role="alert" style="color:red">
                         <strong>{{ $errors->first('cnt_dob') }}</strong>
                      </span>
                   @enderror
                </div>
-               <div class="franchise_forms_element">
+               <div class="franchise_forms_element ">
                   <label>Qualification *</label>
                   <input name="cnt_qctn" id="qualification" type="text" value="{{old('cnt_qctn')}}">
                   @if($errors->has('cnt_qctn'))
@@ -134,7 +134,7 @@
                      </span>
                   @enderror
                </div>
-               <div class="innerheading_div">
+               <div class="innerheading_div" style="margin-top: 20px;">
                   <h5>Center Information</h5>
                </div>
                <div class="franchise_forms_element">
@@ -223,121 +223,19 @@
                   @enderror
                </div>
                <div class="franchise_forms_element">
-                  <label>Centre Affiliated by *</label>
-                  <input name="affil_by" id="centeraffiliatedby" type="text" value="{{old('affil_by')}}">
-                  @if($errors->has('affil_by'))
-                     <span class="invalid-feedback" role="alert" style="color:red">
-                        <strong>{{ $errors->first('affil_by') }}</strong>
-                     </span>
-                  @enderror
-               </div>
-               <div class="franchise_forms_element">
-                  <label>Ph No. With STD code *</label>
-                  <input name="tel_no" id="phone" type="text" value="{{old('tel_no')}}">
-                  @if($errors->has('tel_no'))
-                     <span class="invalid-feedback" role="alert" style="color:red">
-                        <strong>{{ $errors->first('tel_no') }}</strong>
-                     </span>
-                  @enderror
-               </div>
-               <div class="franchise_forms_element">
-                  <label>Total Space</label>
-                  <input name="total_space" id="totalspace" type="text" value="{{old('total_space')}}">
-                   @if($errors->has('cnt_name'))
-                     <span class="invalid-feedback" role="alert" style="color:red">
-                        <strong>{{ $errors->first('cnt_name') }}</strong>
-                     </span>
-                  @enderror
-               </div>
-               <div class="franchise_forms_element">
-                  <label>Theory Room </label>
-                  <input name="theory_room" id="theoryroom" type="text" value="{{old('theory_room')}}">
-                   @if($errors->has('cnt_name'))
-                     <span class="invalid-feedback" role="alert" style="color:red">
-                        <strong>{{ $errors->first('cnt_name') }}</strong>
-                     </span>
-                  @enderror
-               </div>
-               <div class="franchise_forms_element">
-                  <label>Practical Room</label>
-                  <input name="prac_room" id="practicalroom" type="text" value="{{old('prac_room')}}">
-                   @if($errors->has('prac_room'))
-                     <span class="invalid-feedback" role="alert" style="color:red">
-                        <strong>{{ $errors->first('prac_room') }}</strong>
-                     </span>
-                  @enderror
-               </div>
-               <div class="franchise_forms_element">
                   <label>Number of Computer * </label>
                   <input name="no_of_comps" id="numberofcomputer" type="text" value="{{old('no_of_comps')}}">
                   @if($errors->has('no_of_comps'))
                      <span class="invalid-feedback" role="alert" style="color:red">
                         <strong>{{ $errors->first('no_of_comps') }}</strong>
                      </span>
-               `  @enderror
+                 @enderror
                </div>
-               <div class="franchise_forms_element">
-                  <label>Number Of Faculties * </label>
-                  <input name="no_of_faculties" id="numberoffaculties" type="text" value="{{old('no_of_faculties')}}">
-                  @if($errors->has('no_of_faculties'))
-                     <span class="invalid-feedback" role="alert" style="color:red">
-                        <strong>{{ $errors->first('no_of_faculties') }}</strong>
-                     </span>
-               `  @enderror
-               </div>
-               <div class="franchise_forms_element">
-                  <label>Computer Spec. Assembled/Branded)* </label>
-                  <input name="com_specs" id="computerspec" type="text" value="{{old('com_specs')}}">
-                  @if($errors->has('com_specs'))
-                     <span class="invalid-feedback" role="alert" style="color:red">
-                        <strong>{{ $errors->first('com_specs') }}</strong>
-                     </span>
-            `     @enderror
-               </div>
-               <div class="franchise_forms_element">
-                  <label>No. of Colleges</label>
-                  <input name="no_of_colleges" id="colleges" type="text" value="{{old('no_of_colleges')}}">
-                  @if($errors->has('no_of_colleges'))
-                     <span class="invalid-feedback" role="alert" style="color:red">
-                        <strong>{{ $errors->first('no_of_colleges') }}</strong>
-                     </span>
-         `        @enderror
-               </div>
-               <div class="franchise_forms_element">
-                  <label>No. of High Schools</label>
-                  <input name="no_of_schools" id="highschool" type="text" value="{{old('no_of_schools')}}">
-                   @if($errors->has('no_of_schools'))
-                     <span class="invalid-feedback" role="alert" style="color:red">
-                        <strong>{{ $errors->first('no_of_schools') }}</strong>
-                     </span>
-                  @enderror
-               </div>
-               <div class="franchise_forms_element2">
-                  <h5>Courses interested</h5>
-                  <div class="default" style="margin-top:10px;">
-                     <label>
-                     <input name="course" id="softwarecourses" type="radio" value="1">
-                     Software Courses
-                     </label>
-                     <label>
-                     <input name="course" id="hardwarecourses" type="radio" value="2">
-                     Hardware Courses
-                     </label>
-                     <label>
-                     <input name="course" id="universitycourses" type="radio" value="3">
-                     University Courses
-                     </label>
-                  </div>
-                   @if($errors->has('course'))
-                     <span class="invalid-feedback" role="alert" style="color:red">
-                        <strong>{{ $errors->first('course') }}</strong>
-                     </span>
-                  @enderror
-               </div>
-               <div class="franchise_forms_element2">
+             
+               <div class="franchise_forms_element2" style="margin-top: 20px;">
                   <h5>Upload Documents (** Max file size should be 200KB.)</h5>
                   <div class="franchise_forms_element3">
-                     <label class="document-upload">Colour Passport Size Photograph of The Head of The Center</label>
+                     <label class="document-upload"> Passport Size Photo</label>
                      <input name="center_photo" id="head" type="file">
                       @if($errors->has('center_photo'))
                      <span class="invalid-feedback" role="alert" style="color:red">
@@ -345,17 +243,9 @@
                      </span>
                   @enderror
                   </div>
+                 
                   <div class="franchise_forms_element3">
-                     <label class="document-upload">Voter Card of The Center Head (Both Side in One Page)</label>
-                     <input name="voter_card" id="voter" type="file">
-                      @if($errors->has('voter_card'))
-                     <span class="invalid-feedback" role="alert" style="color:red">
-                        <strong>{{ $errors->first('voter_card') }}</strong>
-                     </span>
-                  @enderror
-                  </div>
-                  <div class="franchise_forms_element3">
-                     <label class="document-upload">Pan Card of The Center Head</label>
+                     <label class="document-upload">Pan Card</label>
                      <input name="pan_photo" id="pan" type="file">
                       @if($errors->has('pan_photo'))
                      <span class="invalid-feedback" role="alert" style="color:red">
@@ -363,51 +253,27 @@
                      </span>
                   @enderror
                   </div>
+                  
+                 
                   <div class="franchise_forms_element3">
-                     <label class="document-upload">Trade License / Registration Certificate of The Center</label>
-                     <input name="trade_licence" id="trade" type="file">
-                      @if($errors->has('trade_licence'))
+                     <label class="document-upload">Aadhaar Card</label>
+                     <input name="adhar_photo" id="practical" type="file">
+                      @if($errors->has('adhar_photo'))
                      <span class="invalid-feedback" role="alert" style="color:red">
-                        <strong>{{ $errors->first('trade_licence') }}</strong>
+                        <strong>{{ $errors->first('adhar_photo') }}</strong>
                      </span>
                   @enderror
                   </div>
                   <div class="franchise_forms_element3">
-                     <label class="document-upload">Colour Photograph of Theory Room</label>
-                     <input name="theo_photo" id="theory" type="file">
-                      @if($errors->has('theo_photo'))
+                     <label class="document-upload">H.S Pass Certificate</label>
+                     <input name="hs_photo" id="office" type="file">
+                      @if($errors->has('hs_photo'))
                      <span class="invalid-feedback" role="alert" style="color:red">
-                        <strong>{{ $errors->first('theo_photo') }}</strong>
+                        <strong>{{ $errors->first('hs_photo') }}</strong>
                      </span>
                   @enderror
                   </div>
-                  <div class="franchise_forms_element3">
-                     <label class="document-upload">Colour Photograph of Practical Room</label>
-                     <input name="prac_photo" id="practical" type="file">
-                      @if($errors->has('prac_photo'))
-                     <span class="invalid-feedback" role="alert" style="color:red">
-                        <strong>{{ $errors->first('prac_photo') }}</strong>
-                     </span>
-                  @enderror
-                  </div>
-                  <div class="franchise_forms_element3">
-                     <label class="document-upload">Colour Photograph of Office Room</label>
-                     <input name="off_photo" id="office" type="file">
-                      @if($errors->has('off_photo'))
-                     <span class="invalid-feedback" role="alert" style="color:red">
-                        <strong>{{ $errors->first('off_photo') }}</strong>
-                     </span>
-                  @enderror
-                  </div>
-                  <div class="franchise_forms_element3">
-                     <label class="document-upload">Colour Photograph of Front Side of The Center</label>
-                     <input name="front_photo" id="front" type="file">
-                     @if($errors->has('front_photo'))
-                        <span class="invalid-feedback" role="alert" style="color:red">
-                           <strong>{{ $errors->first('front_photo') }}</strong>
-                        </span>
-                     @enderror
-                  </div>
+                  
                </div>
                <!-- <div class="franchise_forms_element2">
                   <label>Captcha <span class="red-star">*</span></label>
