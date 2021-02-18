@@ -8,6 +8,11 @@
       <link src={{asset("web/assets/lucida calligraphy italic.ttf")}}>
    </head>
    <style>
+       @media print {
+      #print-btn {
+         display :  none;
+      }
+   }
    </style>
    <body>
       <div>
@@ -76,7 +81,7 @@
             </div>
          </div>
          </div>
-         <div style="text-align: center"><button onclick="window.print()"class="btn btn-success">Print</button></div>
+         <div style="text-align: center"><button onclick="window.print()"class="btn btn-success" id="print-btn">Print</button></div>
       </div>
    </body>
 </html>

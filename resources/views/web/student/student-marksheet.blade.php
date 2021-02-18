@@ -9,12 +9,16 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    </head>
    <style>
-
+       @media print {
+      #print-btn {
+         display :  none;
+      }
+   }
    </style>
 <script type="text/javascript">
-    $(document).ready(function () {
-        window.print();
-    });
+   //  $(document).ready(function () {
+   //      window.print();
+   //  });
   </script>
    <body>
       <div>
@@ -221,7 +225,7 @@
             </div>
          </div>
         </div> 
-         <!--<div style="text-align: center"><button onclick="window.print()"class="btn btn-success">Print</button></div>-->
+         <div style="text-align: center"><button onclick="window.print()"class="btn btn-success" id="print-btn">Print</button></div>
       </div>
    </body>
 </html>
