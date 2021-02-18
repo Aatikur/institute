@@ -26,10 +26,10 @@
             </div>
             <div style="margin-top: -15%;">
             <div style="width: 20%;float: left;margin: 0px 0px 0px 8px;">
-               <img src="{{asset('web/assets/img/people.png')}}" style="width: 115px;height:125px;">
+               {!!$qr_code!!}
             </div>
             <div style="width: 20%;float: right;">
-               <img src="{{asset('web/assets/img/people.png')}}" style="width: 115px;height:125px;">
+               <img src="{{asset('images/student/'.$student_details->image)}}" style="width: 115px;height:125px;">
             </div>
             </div>
             <div style="margin: 0px 15px 0px 15px;">
