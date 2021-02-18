@@ -15,6 +15,7 @@ use App\Models\BranchDetails;
 use App\Models\Marks;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use File;
 use Image;
 
@@ -39,9 +40,9 @@ class StudentController extends Controller
            
             })->addColumn('status', function ($row) {
                if($row->student->is_reg_fee_paid == 2){
-                   return '<a class="btn btn-success btn-sm">Reg Fee Paid</a>';
+                    return '<a class="btn btn-success btn-sm">Reg Fee Paid</a>';
                }else{
-                return '<a class="btn btn-warning btn-sm">Reg Fee Not Paid</a>';
+                    return '<a class="btn btn-warning btn-sm">Reg Fee Not Paid</a>';
                }
            
             })->addColumn('action', function ($row) {
@@ -414,8 +415,19 @@ class StudentController extends Controller
 
     public function viewCertificate($id){
         $student_details = StudentDetail::findorFail($id);
+        $course = $student_details->student->course->name;
+        $center_name = $student_details->student->branchDetails->center_name;
+        $name = $student_details->name;
+        $co = $student_details->father_name;
+        $grade = $student_details->student->grade;
+        $enrollment = $student_details->student->enrollment_id;
+        $training_from = $student_details->student->training_from;
+        $training_to = $student_details->student->training_to;
+        $issue_date = $student_details->student->date_of_issue; 
         $board = Board::first();
-        return view('web.student.student-certificate',compact('student_details','board'));
+        $data = "Globalfast Computer Literacy Mission\nA National Programme Of Information Technology Education & Development\nwww.gclm.co.in\n\nSTUDENT DETAILS\n Course Name:$course\nCenter Name : $center_name\nName:$name\nC/O: $co\nDate Of Birth : $student_details->dob\nEnrollment No: $enrollment\nGrade:$grade\nTraining Period:$training_from(From)    $training_to(To)\nDate Of Issue:$issue_date\n";
+        $qr_code = QrCode::generate($data); 
+        return view('web.student.student-certificate',compact('student_details','board','qr_code'));
 
     }
 
