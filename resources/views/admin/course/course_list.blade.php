@@ -22,10 +22,11 @@
                               <th>Course Category</th>
                               <th>Course Code</th>
                               <th>Eligibility</th>
-                              <th>Course Fee</th>
+                              {{-- <th>Course Fee</th> --}}
+                              <th>Registration Fee</th>
                               <th>Duration</th>
                               <th>Detail</th>
-                              <th>Exam Fees</th>
+                              {{-- <th>Exam Fees</th> --}}
                               <th>Status</th>
                               <th>Action</th>
                             </tr>
@@ -42,10 +43,11 @@
                                       <td>{{$item->category->name??null}}</td>
                                       <td>{{$item->course_code}}</td>
                                       <td>{{$item->eligibility}}</td>
-                                      <td>{{$item->course_fees}}</td>
+                                      {{-- <td>{{$item->course_fees}}</td> --}}
+                                      <td>{{$item->reg_fees}}</td>
                                       <td>{{$item->duration}}</td>
                                       <td>{!! $item->detail !!}</td>
-                                      <td>{{$item->exam_fees}}</td>
+                                      {{-- <td>{{$item->exam_fees}}</td> --}}
                                       <td>
                                         @if ($item->status == '1')
                                           <a  class="btn btn-sm btn-primary" aria-disabled="true">Enabled</a>

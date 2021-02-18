@@ -57,7 +57,7 @@ class StudentController extends Controller
        
         $branch_wallet = BranchWallet::where('branch_id',Auth::user()->id)->first();
         $course = Course::where('id',$request->input('course'))->first();
-        if($branch_wallet->amount >= $course->course_fees){
+        if($branch_wallet->amount >= $course->reg_fees){
             $branch_wallet->amount = $branch_wallet->amount -  $request->input('course_fees');
             $branch_wallet->save();
             $wallet_history = new WalletHistory();
@@ -76,7 +76,7 @@ class StudentController extends Controller
         $student->branch_id = Auth::user()->id;
         $student->reg_fee_paid_date = Carbon::today();
         if($student->save()){
-            $wallet_history->comment = 'Course Fees Of Amount="'.$request->input('course_fees').'" Paid For Student ID="'.$student->id.'"';
+            $wallet_history->comment = 'Registration Fees Of Amount="'.$request->input('course_fees').'" Paid For Student ID="'.$student->id.'"';
                 $wallet_history->save();
             $enrollment_id = $this->generateEnrollmentId($student->id);
             if($enrollment_id == false){
@@ -191,7 +191,7 @@ class StudentController extends Controller
     }
     public function retriveCourseFees($course_id){
         $course = Course::where('id',$course_id)->where('status',1)->first();
-        $course_fees = $course->course_fees;
+        $course_fees = $course->reg_fees;
         if($course_fees){
             return $course_fees;
         }else{
@@ -235,11 +235,9 @@ class StudentController extends Controller
                   
                 // }
 
-                if($row->student->is_exam_fee_paid ==1){
-                    $btn .= '<a href="' . route('branch.exam_fees_form',['id'=>$row->student_id,'status'=>1]).'"class="btn btn-success btn-sm">Exam</a>';
-                }else{
-                    $btn .= '<a class="btn btn-info btn-sm">Fee Paid</a>';
-                }
+              
+                    $btn .= '<a class="btn btn-info btn-sm">Reg Fee Paid</a>';
+               
 
                 return $btn;
             })->rawColumns(['course_name','gender','medium','status'])

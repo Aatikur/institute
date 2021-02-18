@@ -60,8 +60,9 @@ class CourseController extends Controller
             'course_code'=>'required',
             'eligibility'=>'required',
             'duration'=>'required',
-            'course_fees'=>'required',
-            'exam_fees'=>'required',
+            'reg_fees'=>'required|numeric',
+            // 'course_fees'=>'required',
+            // 'exam_fees'=>'required',
             'details'=>'required',
             'category'=>'required|numeric',
         ]);
@@ -72,8 +73,9 @@ class CourseController extends Controller
         $course->duration = $request->input('duration');
         $course->eligibility = $request->input('eligibility');
         $course->detail = $request->input('details');
-        $course->course_fees = $request->input('course_fees');
-        $course->exam_fees = $request->input('exam_fees');
+        $course->reg_fees = $request->input('reg_fees');
+        // $course->course_fees = $request->input('course_fees');
+        // $course->exam_fees = $request->input('exam_fees');
         $course->save();
         if($course->save()){
             return redirect()->back()->with('message','Course Added Successfully');
@@ -108,8 +110,9 @@ class CourseController extends Controller
             'course_code'=>'required',
             'eligibility'=>'required',
             'duration'=>'required',
-            'course_fees'=>'required',
-            'exam_fees'=>'required',
+            'reg_fees'=>'required|numeric',
+            // 'course_fees'=>'required',
+            // 'exam_fees'=>'required',
             'details'=>'required',
             'category'=>'required|numeric',
         ]);
@@ -119,8 +122,9 @@ class CourseController extends Controller
         $duration =  $request->input('duration');
         $eligibility = $request->input('eligibility');
         $details = $request->input('details');
-        $course_fees = $request->input('course_fees');
-        $exam_fees = $request->input('exam_fees');
+        $reg_fees = $request->input('reg_fees');
+        // $course_fees = $request->input('course_fees');
+        // $exam_fees = $request->input('exam_fees');
         $course_data = Course::where('id',$id)->first();
        
         $course_data->name = $course_name;
@@ -128,9 +132,10 @@ class CourseController extends Controller
         $course_data->duration =  $duration;
         $course_data->eligibility =  $eligibility;
         $course_data->detail =  $details;
-        $course_data->course_fees =  $course_fees;
+        // $course_data->course_fees =  $course_fees;
+        $course_data->reg_fees =  $reg_fees;
         $course_data->category_id =  $request->input('category');
-        $course_data->exam_fees =  $exam_fees;
+        // $course_data->exam_fees =  $exam_fees;
         if($course_data->save()){
             
             return redirect()->back()->with('message','Course Details Updated Successfully');
