@@ -39,7 +39,13 @@
                </div>
             <div style="width: 100%; overflow: auto;">
                 <h2 style="font-weight: 500;width: 18%; float:left;margin-top: 0px;font-family:lucida calligraphy;font-size: 20px;"><strong>S/D/W/O </strong> </h2>
-                <h3 style="font-weight: 500;width: 82%; float:right;border-bottom:1px solid;margin-top: 0px;"><span style="padding-left: 10px;">{{$student_details->father_name}}</span></h3>
+                <h3 style="font-weight: 500;width: 82%; float:right;border-bottom:1px solid;margin-top: 0px;"><span style="padding-left: 10px;">
+                  @if(!empty($student_details->father_name))
+                     {{$student_details->father_name}}
+                  @elseif(!empty($student_details->mother_name))
+                     {{$student_details->mother_name}}
+                  @endif
+               </span></h3>
              </div>
              <div style="width: 100%; overflow: auto;">
                 <h2 style="font-weight: 500;width: 52%; float:left;margin-top: 0px;font-family:lucida calligraphy;font-size: 20px;"><strong>has successfully completed the </strong> </h2>

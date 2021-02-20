@@ -30,7 +30,11 @@
             <div style="margin: 0px 50px 0px 50px;">
                <div style="width: 80%; float:left">
                   <h4 style="font-weight: 500; "><strong >Student's Name : </strong><span>{{$student_details->name}}</span></h4>
-                  <h4 style="font-weight: 500;"><strong>Father's Name : </strong>{{$student_details->father_name}} </h4>
+                  @if(!empty($student_details->father_name))
+                     <h4 style="font-weight: 500;"><strong>Father's Name : </strong>{{$student_details->father_name}} </h4>
+                  @elseif(!empty($student_details->mother_name))
+                     <h4 style="font-weight: 500;"><strong>Mother's Name : </strong>{{$student_details->mother_name}} </h4>
+                  @endif
                   <h4 style="font-weight: 500;width: 70%; float:left;margin-top: 0px;"><strong>Registration-no : </strong>{{$student_details->student->reg_no??null}}</h4>
                   <h4 style="font-weight: 500;width: 30%; float:right;margin-top: 0px;"><strong>Year : </strong>{{$student_details->student->year??null}}</h4>
                </div>
@@ -44,7 +48,9 @@
                </div>
                
                <div style="width: 30%; float:left;margin-top: 20px;">
-                  <img src="{{ asset('images/student/thumb/'.$student_details->sign) }}" alt="test" style="width: 150px; height:38px;">
+                  @if(!empty($student_details->sign))
+                     <img src="{{ asset('images/student/thumb/'.$student_details->sign) }}" alt="test" style="width: 150px; height:38px;">
+                  @endif
                   <h4 style="font-weight: 500; margin-top: 0px;"><strong >Signature of Candidate</strong></h4>
                </div>
               <div style="width: 40%; float:left;margin-top: 40px;">
