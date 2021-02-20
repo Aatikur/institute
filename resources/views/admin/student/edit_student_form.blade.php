@@ -66,7 +66,7 @@
                                 @enderror
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
-                                    <label for="father_name">Father Name<span><b style="color: red"> * </b></span></label>
+                                    <label for="father_name">Father Name</label>
                                     <input type="text"  class="form-control" name="father_name" value="{{ $student_details->father_name }}" >
                                     @if($errors->has('father_name'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
@@ -248,7 +248,7 @@
                             </div>
                             <div class="form-row mb-10">
                                 <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
-                                    <label for="sign" >Signature <span><b style="color: red"> * </b></span></label>
+                                    <label for="sign" >Signature </label>
                                     <input class="form-control" type="file" name="sign" id="signprev">
                                     @if(isset($student_details->sign) &7 !empty($student_details->sign))
                                         <img style="width:150px;height:150px;" src="{{ asset('images/student/thumb/'.$student_details->sign) }}" id="signpreview"/>
