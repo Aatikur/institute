@@ -42,8 +42,6 @@
                 <h3 style="font-weight: 500;width: 82%; float:right;border-bottom:1px solid;margin-top: 0px;"><span style="padding-left: 10px;">
                   @if(!empty($student_details->father_name))
                      {{$student_details->father_name}}
-                  @elseif(!empty($student_details->mother_name))
-                     {{$student_details->mother_name}}
                   @endif
                </span></h3>
              </div>

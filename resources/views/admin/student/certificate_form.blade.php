@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="father_name">Father Name<span><b style="color: red"> * </b></span></label>
-                                    <input type="text"  class="form-control" readonly="readonly"  value="{{ $student_details->father_name }}" >
+                                    <input type="text"  class="form-control" readonly="readonly"  value="{{ isset($student_details->father_name)?$student_details->father_name:'' }}" >
                                   
                                 </div>
                                 <div class="form-row mb-10">
