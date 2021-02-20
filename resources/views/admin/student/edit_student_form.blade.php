@@ -250,7 +250,9 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
                                     <label for="sign" >Signature <span><b style="color: red"> * </b></span></label>
                                     <input class="form-control" type="file" name="sign" id="signprev">
-                                    <img style="width:150px;height:150px;" src="{{ asset('images/student/thumb/'.$student_details->sign) }}" id="signpreview"/>
+                                    @if(isset($student_details->sign) &7 !empty($student_details->sign))
+                                        <img style="width:150px;height:150px;" src="{{ asset('images/student/thumb/'.$student_details->sign) }}" id="signpreview"/>
+                                    @endif
                                     @if($errors->has('sign'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('sign') }}</strong>
