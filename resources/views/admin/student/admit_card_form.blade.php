@@ -42,14 +42,14 @@
                                     <label for="student_name">Name<span><b style="color: red"> * </b></span></label>
                                     <input type="text" class="form-control" value="{{ $student_details->name }}" readonly="readonly" name="student_name">
                                 </div>
-                                @if(isset($student_details->father_name ) && !empty($student_details->father_name ))
+                              
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
-                                        <label for="father_name">Father Name<span><b style="color: red"> * </b></span></label>
+                                        <label for="father_name">C/O</label>
                                         <input type="text"  class="form-control" readonly="readonly"  value="{{ $student_details->father_name }}" >
                                     
                                     </div>
                                
-                                @endif
+                               
                                 {{-- <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="reg_no">Registration Number<span><b style="color: red"> * </b></span></label>
                                     <input type="text"  class="form-control" name="reg_no" >
@@ -60,7 +60,7 @@
                                     @enderror
                                 </div> --}}
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
-                                    <label for="year">Year</label>
+                                    <label for="year">Year<span><b style="color: red"> * </b></span></label>
                                     <input type="number"  class="form-control" name="year" value="{{isset($student->year)?$student->year:old('year')}}">
                                     @if($errors->has('year'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="form-row mb-10">
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                        <label for="tel_no" >Course</label>
+                                        <label for="tel_no" >Course<span><b style="color: red"> * </b></span></label>
                                         <input type="tel" class="form-control" name="tel_no"  readonly="readonly" value="{{ $student_details->student->course->name }}" >
                                       
                                     </div>
@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="form-row mb-10">
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                        <label for="exam_Date" >Exam Date</label>
+                                        <label for="exam_Date" >Exam Date<span><b style="color: red"> * </b></span></label>
                                         <input type="date" class="form-control" name="exam_Date"  value="{{isset($student->exam_date)?$student->exam_date:old('exam_Date')}}" >
                                         @if($errors->has('exam_Date'))
                                         <span class="invalid-feedback" role="alert" style="color:red">

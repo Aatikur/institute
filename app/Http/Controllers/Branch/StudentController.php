@@ -107,8 +107,8 @@ class StudentController extends Controller
             $student_details->student_id =$student->id;
             $student_details->branch_id = Auth::user()->id;
             $student_details->name = $request->input('student_name');
-           if(!empty( $request->input('father_name'))){
-                $student_details->father_name = $request->input('father_name');
+           if(!empty( $request->input('c_o'))){
+                $student_details->father_name = $request->input('c_o');
            }
             $student_details->mother_name = $request->input('mother_name');
             if(!empty($request->input('hus_name'))){

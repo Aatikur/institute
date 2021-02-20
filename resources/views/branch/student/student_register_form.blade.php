@@ -64,7 +64,7 @@
                                     </span>
                                 @enderror
                                 </div>
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
+                                {{-- <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="father_name">Father Name<span><b style="color: red"> * </b></span></label>
                                     <input type="text"  class="form-control" name="father_name" value="{{ old('father_name') }}" >
                                     @if($errors->has('father_name'))
@@ -72,7 +72,7 @@
                                             <strong>{{ $errors->first('father_name') }}</strong>
                                         </span>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="mother_name">Mother Name<span><b style="color: red"> * </b></span></label>
                                     <input type="text"  class="form-control" name="mother_name" value="{{ old('mother_name') }}" >
@@ -82,12 +82,21 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
+                                {{-- <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="hus_name">Husband Name</label>
                                     <input type="text"  class="form-control" name="hus_name" value="{{ old('hus_name') }}" >
                                     @if($errors->has('hus_name'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('hus_name') }}</strong>
+                                        </span>
+                                    @enderror
+                                </div> --}}
+                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
+                                    <label for="c_o">C/O</label>
+                                    <input type="text"  class="form-control" name="c_o" value="{{ old('c_o') }}" >
+                                    @if($errors->has('c_o'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('c_o') }}</strong>
                                         </span>
                                     @enderror
                                 </div>
@@ -246,7 +255,7 @@
                             </div>
                             <div class="form-row mb-10">
                                 <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
-                                    <label for="sign" >Signature Of Student <span><b style="color: red"> * </b></span></label>
+                                    <label for="sign" >Signature Of Student </label>
                                     <input class="form-control" type="file" name="sign">
                                     @if($errors->has('sign'))
                                         <span class="invalid-feedback" role="alert" style="color:red">

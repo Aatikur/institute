@@ -21,7 +21,7 @@
                               <th>Sl</th>
                               <th>Course Name</th>
                               <th>Student Name</th>
-                              <th>Father's Name</th>
+                              <th>C/O</th>
                               <th>Mother's Name</th>
                               <th>Mobile No</th>
                               <th>Enrollment ID</th>

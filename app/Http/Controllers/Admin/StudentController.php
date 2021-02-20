@@ -47,7 +47,8 @@ class StudentController extends Controller
            
             })->addColumn('action', function ($row) {
                 // $btn = '<a href="'.route('admin.branch_wallet_history',['id'=>$row->id]).'" class="btn btn-primary">View</a>';
-                return $btn = '<a href="'.route('admin.edit_student_form',['student_id'=>$row->id]).'" class="btn btn-info">Edit</a>';
+        
+                return $btn = '<a href="'.route('admin.edit_student_form',['student_id'=>$row->student->id]).'" class="btn btn-info">Edit</a>';
             })->rawColumns(['branch','action','course','status'])
             ->make(true);
     }
@@ -147,8 +148,8 @@ class StudentController extends Controller
             $student_details = StudentDetail::where('student_id',$id)->first();
             $student_details->student_id =$student->id;
             $student_details->name = $request->input('student_name');
-            if(!empty( $request->input('father_name'))){
-                $student_details->father_name = $request->input('father_name');
+            if(!empty( $request->input('c_o'))){
+                $student_details->father_name = $request->input('c_o');
             }
             $student_details->mother_name = $request->input('mother_name');
             if(!empty($request->input('hus_name'))){

@@ -15,7 +15,7 @@
     	    <div class="x_panel">
 
     	        <div class="x_title">
-    	            <h2>Register Student</h2>
+    	            <h2>Update Student</h2>
     	            <div class="clearfix"></div>
     	        </div>
                 <div>
@@ -66,11 +66,11 @@
                                 @enderror
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
-                                    <label for="father_name">Father Name</label>
-                                    <input type="text"  class="form-control" name="father_name" value="{{ $student_details->father_name }}" >
-                                    @if($errors->has('father_name'))
+                                    <label for="c_o">C/O</label>
+                                    <input type="text"  class="form-control" name="c_o" value="{{ $student_details->father_name }}" >
+                                    @if($errors->has('c_o'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('father_name') }}</strong>
+                                            <strong>{{ $errors->first('c_o') }}</strong>
                                         </span>
                                     @enderror
                                 </div>
@@ -83,7 +83,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
+                                {{-- <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="hus_name">Husband Name</label>
                                     <input type="text"  class="form-control" name="hus_name" value="{{ $student_details->husband_name }}" >
                                     @if($errors->has('hus_name'))
@@ -91,7 +91,7 @@
                                             <strong>{{ $errors->first('hus_name') }}</strong>
                                         </span>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="form-row mb-10">
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                         <label for="tel_no" >Telephone Number</label>
@@ -250,7 +250,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
                                     <label for="sign" >Signature </label>
                                     <input class="form-control" type="file" name="sign" id="signprev">
-                                    @if(isset($student_details->sign) &7 !empty($student_details->sign))
+                                    @if(isset($student_details->sign) && !empty($student_details->sign))
                                         <img style="width:150px;height:150px;" src="{{ asset('images/student/thumb/'.$student_details->sign) }}" id="signpreview"/>
                                     @endif
                                     @if($errors->has('sign'))

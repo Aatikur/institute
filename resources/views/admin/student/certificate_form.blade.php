@@ -43,7 +43,7 @@
                                     <input type="text" class="form-control" value="{{ $student_details->name }}" readonly="readonly" name="student_name">
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
-                                    <label for="father_name">Father Name<span><b style="color: red"> * </b></span></label>
+                                    <label for="father_name">C/O</label>
                                     <input type="text"  class="form-control" readonly="readonly"  value="{{ isset($student_details->father_name)?$student_details->father_name:'' }}" >
                                   
                                 </div>
