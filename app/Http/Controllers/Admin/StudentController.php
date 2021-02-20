@@ -80,7 +80,6 @@ class StudentController extends Controller
         $this->validate($request,[
             'course'=>'required|numeric',
             'student_name'=>'required',
-            'father_name'=>'required',
             'mother_name'=>'required',
             'mob_no'=>'required|numeric|digits:10',
             'dob'=>'required|date',
@@ -148,8 +147,9 @@ class StudentController extends Controller
             $student_details = StudentDetail::where('student_id',$id)->first();
             $student_details->student_id =$student->id;
             $student_details->name = $request->input('student_name');
-         
-            $student_details->father_name = $request->input('father_name');
+            if(!empty( $request->input('father_name'))){
+                $student_details->father_name = $request->input('father_name');
+            }
             $student_details->mother_name = $request->input('mother_name');
             if(!empty($request->input('hus_name'))){
                 $student_details->husband_name = $request->input('hus_name');

@@ -205,9 +205,8 @@ class WebController extends Controller
             }
             $branch_details->save();
            
-        }else{
-            return redirect()->back()->with('error','Something Went Wrong!');
         }
+      
         });
         return redirect()->back()->with('message','Branch Registered Successfully');
     } catch (\Exception $e) {

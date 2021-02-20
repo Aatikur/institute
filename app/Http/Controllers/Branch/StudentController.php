@@ -30,7 +30,6 @@ class StudentController extends Controller
         $this->validate($request,[
             'course'=>'required|numeric',
             'student_name'=>'required',
-            'father_name'=>'required',
             'mother_name'=>'required',
             'mob_no'=>'required|numeric|digits:10',
             'sign'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -44,7 +43,7 @@ class StudentController extends Controller
             'gender'=>'required|numeric',
             'medium'=>'required|numeric',
             'profile'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'sign'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'sign'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'exam'=>'array|required|min:1',
             'board'=>'array|required|min:1',
             'college'=>'array|required|min:1',
@@ -52,8 +51,7 @@ class StudentController extends Controller
             'marks'=>'array|required|min:1',
 
         ]);
-        try {
-            DB::transaction(function () use ($request) {
+      
        
         $branch_wallet = BranchWallet::where('branch_id',Auth::user()->id)->first();
         $course = Course::where('id',$request->input('course'))->first();
@@ -109,8 +107,9 @@ class StudentController extends Controller
             $student_details->student_id =$student->id;
             $student_details->branch_id = Auth::user()->id;
             $student_details->name = $request->input('student_name');
-           
-            $student_details->father_name = $request->input('father_name');
+           if(!empty( $request->input('father_name'))){
+                $student_details->father_name = $request->input('father_name');
+           }
             $student_details->mother_name = $request->input('mother_name');
             if(!empty($request->input('hus_name'))){
                 $student_details->husband_name = $request->input('hus_name');
@@ -166,14 +165,7 @@ class StudentController extends Controller
            
 
         }
-          });
-            return redirect()->back()->with('message','Student Registered Successfully');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went Wrong! Try after sometime!');
-        }
-
-        
-
+        return redirect()->back()->with('message','Student Registered Successfully');
     }
 
     private function generateEnrollmentId($student_id){
@@ -224,6 +216,8 @@ class StudentController extends Controller
                 }else{
                     return "Hindi";
                 }
+            })->addColumn('enrollment_id', function ($row) {
+                return $row->student->enrollment_id;
             })->addColumn('status', function ($row) {
                 $btn='';
                 // if($row->student->status==1){
@@ -240,7 +234,7 @@ class StudentController extends Controller
                
 
                 return $btn;
-            })->rawColumns(['course_name','gender','medium','status'])
+            })->rawColumns(['course_name','gender','medium','status','enrollment_id'])
             ->make(true);
     }
 

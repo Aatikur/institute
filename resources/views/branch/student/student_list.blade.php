@@ -24,6 +24,7 @@
                               <th>Father's Name</th>
                               <th>Mother's Name</th>
                               <th>Mobile No</th>
+                              <th>Enrollment ID</th>
                               <th>DOB</th>
                               <th>Gender</th>
                               <th>Medium</th>
@@ -60,6 +61,7 @@
           {data: 'father_name', name: 'father_name' ,searchable: true},  
           {data: 'mother_name', name: 'mother_name' ,searchable: true},  
           {data: 'mob_no', name: 'mob_no' ,searchable: true},
+          {data: 'enrollment_id', name: 'enrollment_id' ,searchable: true},
           {data: 'dob', name: 'dob' ,searchable: true},
           {data: 'gender', name: 'gender' ,searchable: true},
           {data: 'medium', name: 'medium' ,searchable: true},
