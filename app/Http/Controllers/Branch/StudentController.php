@@ -30,7 +30,6 @@ class StudentController extends Controller
         $this->validate($request,[
             'course'=>'required|numeric',
             'student_name'=>'required',
-            'mother_name'=>'required',
             'mob_no'=>'required|numeric|digits:10',
             'sign'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'dob'=>'required|date',
@@ -44,11 +43,11 @@ class StudentController extends Controller
             'medium'=>'required|numeric',
             'profile'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'sign'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'exam'=>'array|required|min:1',
-            'board'=>'array|required|min:1',
-            'college'=>'array|required|min:1',
-            'year'=>'array|required|min:1',
-            'marks'=>'array|required|min:1',
+            'exam'=>'array|min:1',
+            'board'=>'array|min:1',
+            'college'=>'array|min:1',
+            'year'=>'array|min:1',
+            'marks'=>'array|min:1',
 
         ]);
       

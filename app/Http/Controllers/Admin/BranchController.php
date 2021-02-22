@@ -66,8 +66,10 @@ class BranchController extends Controller
             $branch_details->center_address = $request->input('center_address');
             $branch_details->center_city = $request->input('center_city');
             $branch_details->center_state	 = $request->input('center_state');
+            $branch_details->center_state_code	 = $request->input('center_state_code');
             $branch_details->center_district = $request->input('center_district');
-            $center_code = $this->generateCenterCode($branch->id);
+            $branch_details->save();
+            $center_code = $this->generateCenterCode($branch->id,$branch_details->center_state_code);
             $branch_details->center_code = $center_code;
             $branch_details->no_of_computers = $request->input('no_of_comps');
             $branch_details->save();
@@ -139,6 +141,21 @@ class BranchController extends Controller
             return redirect()->back()->with('error','Something Went Wrong!');
         }
 
+    }
+    public function approveBranch(Request $request){
+        $center_code = $request->input('center_code');
+        $branch_id = $request->input('branch_id');
+        $branch = Branch::where('id',$branch_id)->update([
+            'status'=>1
+        ]);
+        $branch_details = BranchDetails::where('branch_id',$branch_id)->first();
+        $branch_details->center_state_code =$this->generateCenterCode($branch_id,$center_code);
+     
+        if($branch_details->save()){
+            return 1;
+        }else{
+            return 2;
+        }
     }
 
     public function editBranchForm($id){
@@ -330,8 +347,8 @@ class BranchController extends Controller
         return $image_name;
     }
 
-    public function generateCenterCode($branch_id){
-        $center_code ='GCLM-BC-'.$branch_id;
+    public function generateCenterCode($branch_id,$center_state_code){
+        $center_code ='GCLM-'.strtoupper($center_state_code).'-'.$branch_id;
         return $center_code;
     }
 }

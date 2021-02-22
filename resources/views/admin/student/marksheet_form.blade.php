@@ -47,11 +47,11 @@
                                     <input type="text"  class="form-control" readonly="readonly"  value="{{ isset($student_details->father_name)?$student_details->father_name:'' }}" >
                                   
                                 </div>
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
+                                {{-- <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="father_name">Mother Name<span><b style="color: red"> * </b></span></label>
                                     <input type="text"  class="form-control" readonly="readonly"  value="{{ $student_details->mother_name }}" >
                                   
-                                </div>
+                                </div> --}}
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="duration">Duration<span><b style="color: red"> * </b></span></label>
                                     <input type="text"  class="form-control" name="duration" value="{{isset($student->student->duration) ? $student->student->duration :old('duration')}}">
@@ -106,7 +106,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="doc_div"><p>*</p>
+                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="doc_div"><p style="display:none">*</p>
                                 <label for="student_name">Marks Obtained<span><b style="color: red"> * </b></span></label>
                                 <input type="number" class="form-control" name="theory_marks_obtained" id="theory_marks" value="{{isset($student->theory_marks_obtained) ? $student->theory_marks_obtained :old('theory_marks_obtained')}}">
                                 @if($errors->has('theory_marks_obtained'))
@@ -126,7 +126,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="doc_div"><p>*</p>
+                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="doc_div"><p style="display:none">*</p>
                                 <label for="student_name">Marks Obtained<span><b style="color: red"> * </b></span></label>
                                 <input type="number" class="form-control" name="prac_marks_obtained" id="prac_marks" value="{{isset($student->prac_marks_obtained) ? $student->prac_marks_obtained :old('prac_marks_obtained')}}">
                                 @if($errors->has('prac_marks_obtained'))

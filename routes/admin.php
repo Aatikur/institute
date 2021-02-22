@@ -34,6 +34,7 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
             Route::get('add/form', 'BranchController@addBranchForm')->name('admin.add_branch_form');
             Route::post('add','BranchController@addBranch')->name('admin.add_branch'); 
             Route::get('status/{branch_id}/{status}','BranchController@status')->name('admin.branch_status');
+            Route::post('approve/branch/','BranchController@approveBranch')->name('admin.approve_branch');
             Route::get('edit/form/{id}', 'BranchController@editBranchForm')->name('admin.edit_branch_form');
             Route::post('update/{id}','BranchController@updateBranch')->name('admin.update_branch');
             Route::get('upload/doc/{branch_id}','BranchController@uploadDocForm')->name('admin.upload_doc');

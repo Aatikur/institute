@@ -74,7 +74,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
+                                {{-- <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="mother_name">Mother Name<span><b style="color: red"> * </b></span></label>
                                     <input type="text"  class="form-control" name="mother_name" value="{{ $student_details->mother_name }}" >
                                     @if($errors->has('mother_name'))
@@ -82,7 +82,7 @@
                                             <strong>{{ $errors->first('mother_name') }}</strong>
                                         </span>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 {{-- <div class="col-md-6 col-sm-12 col-xs-12 mb-3" id="amount_div" >
                                     <label for="hus_name">Husband Name</label>
                                     <input type="text"  class="form-control" name="hus_name" value="{{ $student_details->husband_name }}" >
@@ -267,7 +267,7 @@
                                 
                                 <div class="form-row mb-10" >
                                     <div class="col-md-2 col-sm-12 col-xs-12 mb-3">
-                                        <label for="exam" >Exam Name <span><b style="color: red"> * </b></span></label>
+                                        <label for="exam" >Exam Name </label>
                                         <input class="form-control" type="text" value="{{ $value->exam_name }}" name="exam[]">
                                         <input type="hidden" name="quali_id[]" value="{{ $value->id }}"> 
                                         @if($errors->has('exam'))
@@ -277,7 +277,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-3 col-sm-12 col-xs-12 mb-3">
-                                        <label for="board" >Board <span><b style="color: red"> * </b></span></label>
+                                        <label for="board" >Board </label>
                                         <input class="form-control" type="text" value="{{ $value->board }}" name="board[]">
                                         @if($errors->has('board'))
                                             <span class="invalid-feedback" role="alert" style="color:red">
@@ -286,7 +286,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-3 col-sm-12 col-xs-12 mb-3">
-                                        <label for="college" >College <span><b style="color: red"> * </b></span></label>
+                                        <label for="college" >College </label>
                                         <input class="form-control" type="text" value="{{ $value->college }}" name="college[]">
                                         @if($errors->has('college'))
                                             <span class="invalid-feedback" role="alert" style="color:red">
@@ -295,7 +295,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-2 col-sm-12 col-xs-12 mb-3">
-                                        <label for="year" >Year Of Passing <span><b style="color: red"> * </b></span></label>
+                                        <label for="year" >Year Of Passing </label>
                                         <input class="form-control" type="text" value="{{ $value->year_of_passing }}" name="year[]">
                                         @if($errors->has('year'))
                                             <span class="invalid-feedback" role="alert" style="color:red">
@@ -304,7 +304,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-2 col-sm-12 col-xs-12 mb-3">
-                                        <label for="marks" >Marks <span><b style="color: red"> * </b></span></label>
+                                        <label for="marks" >Marks </label>
                                         <input class="form-control" type="number" value="{{ $value->marks_obtained }}" name="marks[]">
                                         @if($errors->has('marks'))
                                             <span class="invalid-feedback" role="alert" style="color:red">

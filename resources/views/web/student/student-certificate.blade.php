@@ -47,7 +47,7 @@
              </div>
              <div style="width: 100%; overflow: auto;">
                 <h2 style="font-weight: 500;width: 52%; float:left;margin-top: 0px;font-family:lucida calligraphy;font-size: 20px;"><strong>has successfully completed the </strong> </h2>
-                <h3 style="font-weight: 500;width: 48%; float:right;border-bottom:1px solid;margin-top: 0px;"><span style="padding-left: 10px;">{{$student_details->student->course->name??null}}</span></h3>
+                <h3 style="font-weight: 900;width: 48%; float:right;border-bottom:1px solid;margin-top: 0px;font-size: 20px;"><span style="padding-left: 10px;">{{$student_details->student->course->name??null}}</span></h3>
              </div>
              <div style="width: 100%; overflow: auto;">
                <h2 style="font-weight: 500;width: 5%; float:left;margin-top: 0px;font-family:lucida calligraphy;font-size: 20px;"><strong>at </strong> </h2>

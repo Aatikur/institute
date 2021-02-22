@@ -14,7 +14,7 @@
       <div class="social_media">
          <a href="#!">
          <img src="{{asset('web/assets/img/footer/facebook-ftr.png')}}" height="48" alt="facebook" /></a>
-         <a href="#!"><img src="{{asset('web/assets/img/footer/whatsapp.png')}}" height="48" alt="twitter" /></a>
+         <a href="http://wa.me/+917002116136"><img src="{{asset('web/assets/img/footer/whatsapp.png')}}" height="48" alt="twitter" /></a>
          <a href="#!"><img src="{{asset('web/assets/img/footer/youtube.png')}}" height="48" alt="twitter" /></a>
       </div>
       <p class="visitorClass"></p>

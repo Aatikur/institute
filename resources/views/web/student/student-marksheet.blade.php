@@ -34,15 +34,13 @@
                   <h2 style="font-weight: 500;width: 40%; float:right; font-size: 18px;"><strong style="font-family:lucida calligraphy;">Reg. No : <span style="font-family:Arial;">{{$student_details->student->reg_no}}</span> </strong> </h2>
                </div>
                <div style="width: 100%; overflow: auto;">
-                  <h2 style="font-weight: 500;width: 60%; float:left; font-size: 18px; margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Mother's Name : <span style="font-family:Arial;">{{$student_details->mother_name}}</span> </strong> </h2>
+                  {{-- <h2 style="font-weight: 500;width: 60%; float:left; font-size: 18px; margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Mother's Name : <span style="font-family:Arial;">{{$student_details->mother_name}}</span> </strong> </h2> --}}
+                  <h2 style="font-weight: 500;width: 60%; float:left; font-size: 18px; margin-top: 0px;"><strong style="font-family:lucida calligraphy;">C/O : <span style="font-family:Arial;">{{isset($student_details->father_name)?$student_details->father_name:''}}</span> </strong> </h2>
                   <h2 style="font-weight: 500;width: 40%; float:right; font-size: 18px;margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Duration : <span style="font-family:Arial;">{{$student_details->student->duration}}</span> </strong> </h2>
                </div>
                <div style="width: 100%; overflow: auto;">
-                  <h2 style="font-weight: 500;width: 60%; float:left; font-size: 18px; margin-top: 0px;"><strong style="font-family:lucida calligraphy;">C/O : <span style="font-family:Arial;">{{isset($student_details->father_name)?$student_details->father_name:''}}</span> </strong> </h2>
-                  <h2 style="font-weight: 500;width: 40%; float:right; font-size: 18px;margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Examination : <span style="font-family:Arial;">{{$student_details->student->exam_date}}</span> </strong> </h2>
-               </div>
-               <div style="width: 100%; overflow: auto;">
-                  <h2 style="font-weight: 500; float:left; font-size: 18px; margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Course Name : <span style="font-family:Arial;">{{$student_details->student->course->name}} </span> </strong> </h2>
+                  <h2 style="font-weight: 500;width: 60%; float:left; font-size: 18px; margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Course Name : <span style="font-family:Arial;">{{$student_details->student->course->name}} </span> </strong> </h2>
+                  <h2 style="font-weight: 500;width: 40%; float:left; font-size: 18px;margin-top: 0px;"><strong style="font-family:lucida calligraphy;">Examination : <span style="font-family:Arial;">{{$student_details->student->exam_date}}</span> </strong> </h2>
                </div>
                <div style="width: 100%; overflow: auto;">
                   <table style="width:100%;border: 2px solid #fe5a17;">

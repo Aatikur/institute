@@ -81,7 +81,6 @@ class StudentController extends Controller
         $this->validate($request,[
             'course'=>'required|numeric',
             'student_name'=>'required',
-            'mother_name'=>'required',
             'mob_no'=>'required|numeric|digits:10',
             'dob'=>'required|date',
             'state'=>'required',

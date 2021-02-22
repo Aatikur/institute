@@ -155,6 +155,15 @@
                                 @enderror
                             </div> 
                             <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                <label for="center_state_code">Center State Code (eg: AS For Assam)<span><b style="color: red"> * </b></span></label>
+                                <input type="text" class="form-control" name="center_state_code"  value="{{ old('center_state_code') }}" >
+                                @if($errors->has('center_state_code'))
+                                    <span class="invalid-feedback" role="alert" style="color:red">
+                                        <strong>{{ $errors->first('center_state_code') }}</strong>
+                                    </span>
+                                @enderror
+                            </div> 
+                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                 <label for="center_district">Center District<span><b style="color: red"> * </b></span></label>
                                 <input type="text" class="form-control" name="center_district"   value="{{ old('center_district') }}" >
                                 @if($errors->has('center_district'))
