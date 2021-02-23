@@ -187,50 +187,7 @@
                             
                         </div>
                         <div class="well" style="overflow: auto">
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="affil_by" >Center Affiliated By <span><b style="color: red"> * </b></span></label>
-                                    <input type="text" class="form-control" name="affil_by" value="{{ old('affil_by') }}">
-                                    @if($errors->has('affil_by'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('affil_by') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="tel_no" >Ph No<span><b style="color: red"> * </b></span></label>
-                                    <input type="tel" class="form-control" name="tel_no" value="{{ old('tel_no') }}">
-                                    @if($errors->has('tel_no'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('tel_no') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="theory_room" >Theory Room<span><b style="color: red"> * </b></span></label>
-                                    <input type="text" class="form-control" name="theory_room" value="{{ old('theory_room') }}">
-                                    @if($errors->has('theory_room'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('theory_room') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="prac_room" >Pratical Room<span><b style="color: red"> * </b></span></label>
-                                    <input type="text" class="form-control" name="prac_room" value="{{ old('prac_room') }}">
-                                    @if($errors->has('prac_room'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('prac_room') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
+                           
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="no_of_comps" >No Of Computers<span><b style="color: red"> * </b></span></label>
@@ -242,50 +199,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="no_of_faculties" >No Of Faculties<span><b style="color: red"> * </b></span></label>
-                                    <input type="number" class="form-control" name="no_of_faculties" value="{{ old('no_of_faculties') }}">
-                                    @if($errors->has('no_of_faculties'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('no_of_faculties') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="no_of_colleges" >No Of Colleges<span><b style="color: red"> * </b></span></label>
-                                    <input type="number" class="form-control" name="no_of_colleges" value="{{ old('no_of_colleges') }}">
-                                    @if($errors->has('no_of_colleges'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('no_of_colleges') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="no_of_schools" >No Of Schools<span><b style="color: red"> * </b></span></label>
-                                    <input type="number" class="form-control" name="no_of_schools" value="{{ old('no_of_schools') }}">
-                                    @if($errors->has('no_of_schools'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('no_of_schools') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row mb-10">
-                                <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
-                                    <label for="com_specs" >Computer Specs<span><b style="color: red"> * </b></span></label>
-                                    <textarea class="form-control" name="com_specs"  >{{ old('com_specs') }}</textarea>
-                                    @if($errors->has('com_specs'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('com_specs') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
+                            
                             
                             <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">

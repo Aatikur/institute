@@ -10,6 +10,8 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'],function(){
     Route::group(['middleware'=>'auth:admin'],function(){
         Route::get('/dashboard', 'DashboardController@dashboardView')->name('admin.deshboard'); 
         Route::post('logout', 'LoginController@logout')->name('admin.logout');
+        Route::get('/change/password/form', 'DashboardController@changePasswordForm')->name('admin.admin_change_password_form');
+        Route::post('/change/password', 'DashboardController@changePassword')->name('admin.admin_change_password');
         
         Route::group(['prefix'=>'course'],function(){
             Route::get('category/list','CourseController@courseCategoryList')->name('admin.course_category_list');

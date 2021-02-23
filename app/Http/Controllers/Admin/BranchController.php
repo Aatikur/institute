@@ -348,7 +348,11 @@ class BranchController extends Controller
     }
 
     public function generateCenterCode($branch_id,$center_state_code){
-        $center_code ='GCLM-'.strtoupper($center_state_code).'-'.$branch_id;
-        return $center_code;
+       
+        $center_codes ='GCLM-'.strtoupper($center_state_code).'-';
+        $center_code = strlen($center_codes);
+        $code = str_pad($center_codes,$center_code+3-strlen((string)$branch_id),'0');
+        $final = $code.$branch_id;
+        return $final;
     }
 }

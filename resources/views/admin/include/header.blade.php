@@ -100,6 +100,8 @@
                   <li><a href="{{ route('admin.board_list') }}"><i class="fa fa-hand-rock-o"></i> Authorises Signature </span></a></li>
                   <li><a href="{{ route('admin.gallery_list') }}"><i class="fa fa-picture-o"></i> Gallery </span></a></li>
                   <li><a href="{{ route('admin.docs_list') }}"><i class="fa fa-file"></i> Documents Upload </span></a></li>
+                  <li> <a href="{{route('admin.admin_change_password_form')}}"><i class="fa fa-key" aria-hidden="true"></i>Change Password</a></li>
+                  
                 </ul>
               </div>
 
